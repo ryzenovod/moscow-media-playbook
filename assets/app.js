@@ -1,5 +1,6 @@
 /**
  * MOSCOW MEDIA PLAYBOOK // CONTROLLER (PICO CSS V2 + GOOGLE TRANSLATE)
+ * Version: 2.1 (Pure Semantic HTML5 + Multi-Language Engine)
  */
 
 // 1. Checklist Master Data
