@@ -1,760 +1,275 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>MOSCOW MEDIA PLAYBOOK // FREE PRO STUDIOS (MODULE 01)</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="assets/styles.css" />
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            ink: {
-              950: '#09090B',
-              900: '#101014',
-              800: '#18181E',
-              700: '#262730',
-              600: '#383A47'
-            },
-            signal: {
-              amber: '#F59E0B',
-              red: '#EF4444',
-              emerald: '#10B981',
-              sky: '#38BDF8'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOSCOW MEDIA PLAYBOOK // FREE STUDIOS (MODULE 01)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.zinc.min.css">
 </head>
-<body class="min-h-screen antialiased selection:bg-signal-amber selection:text-black pb-32 md:pb-24">
+<body>
 
-  <!-- Global Toast Notification Container -->
-  <div id="toast" class="fixed bottom-24 md:bottom-6 right-4 sm:right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-ink-900/95 border border-signal-amber/70 text-white px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md max-w-sm">
-    <div class="w-8 h-8 rounded-lg bg-signal-amber/15 border border-signal-amber/40 flex items-center justify-center shrink-0 text-signal-amber">
-      <i data-lucide="check-circle-2" class="w-4 h-4 stroke-[2.5]"></i>
-    </div>
-    <div class="overflow-hidden">
-      <p id="toast-label" class="font-mono text-[10px] uppercase tracking-wider text-signal-amber font-bold">Copied to Clipboard</p>
-      <p id="toast-text" class="text-xs sm:text-sm font-medium text-zinc-200 truncate mt-0.5"></p>
-    </div>
-  </div>
-
-  <!-- Shared Top Navigation Header -->
-  <header class="sticky top-0 z-40 glass-header border-b border-ink-700">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-      <a href="index.html" class="flex items-center gap-3 group">
-        <span class="w-2.5 h-2.5 rounded-full bg-signal-emerald live-dot"></span>
-        <span class="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 group-hover:text-signal-amber transition">
-          MOSCOW MEDIA PLAYBOOK <span class="text-zinc-500">//</span> <span class="text-signal-emerald">STUDIOS</span>
-        </span>
-      </a>
-
-      <!-- Desktop Navigation Bar -->
-      <nav class="hidden md:flex items-center gap-1.5 font-mono text-xs">
-        <a href="index.html" data-nav="index.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="flame" class="w-3.5 h-3.5 text-signal-red"></i>
-          Overview & Urgent
-        </a>
-        <a href="studios.html" data-nav="studios.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="video" class="w-3.5 h-3.5 text-signal-emerald"></i>
-          01. Free Studios
-        </a>
-        <a href="network.html" data-nav="network.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-signal-amber"></i>
-          02. Jobs & Bureaus
-        </a>
-        <a href="scripts.html" data-nav="scripts.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="mail" class="w-3.5 h-3.5 text-signal-sky"></i>
-          03. RU Email Scripts
-        </a>
-      </nav>
-
-      <!-- Global Checklist Progress Badge -->
-      <div class="flex items-center gap-2 bg-ink-800/90 border border-ink-700 px-3 py-1.5 rounded-lg text-xs font-mono shadow-sm">
-        <span class="text-zinc-400 hidden sm:inline">TRACKER:</span>
-        <span class="flex items-center gap-1.5">
-          <i data-lucide="check-square" class="w-3.5 h-3.5 text-signal-emerald"></i>
-          <span id="progress-badge" class="text-signal-emerald font-bold progress-badge">0/8</span>
-        </span>
-      </div>
-    </div>
+  <!-- Navigation Bar -->
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+      </ul>
+      <ul>
+        <li><a href="./index.html">Overview & Urgent</a></li>
+        <li><a href="./studios.html">01. Studios</a></li>
+        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><mark id="progress-badge">0/8</mark></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-12">
+  <!-- Main Content -->
+  <main class="container">
 
-    <!-- HERO & FILTER BAR -->
-    <section class="space-y-6">
-      <div class="border-b border-ink-700 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-        <div>
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-signal-emerald/10 border border-signal-emerald/30 text-signal-emerald font-mono text-xs mb-3">
-            <i data-lucide="video" class="w-3.5 h-3.5"></i>
-            MODULE 01 // PRODUCTION INFRASTRUCTURE
-          </div>
-          <h1 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-            Where to Shoot for Free in Moscow <span class="text-zinc-400">(Zero or Low Bureaucracy)</span>
-          </h1>
-          <p class="mt-2 text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-            Broadcast-grade TV studios, cycloramas, podcast sound booths, and Adobe CC / Maxon editing rooms across Moscow. Below are verified insider routes bypassing standard Russian dean approvals and citizenship hurdles.
-          </p>
-        </div>
-        <div class="flex items-center gap-2 font-mono text-xs text-zinc-400 shrink-0">
-          <span id="studios-visible-counter" class="bg-ink-900 border border-ink-800 px-3 py-1.5 rounded-lg">Showing 4 of 4 locations</span>
-        </div>
+    <!-- Module Header -->
+    <hgroup>
+      <p><kbd>MODULE 01 // PRODUCTION INFRASTRUCTURE</kbd></p>
+      <h2>Where to Shoot for Free in Moscow</h2>
+      <p>Zero or Low Bureaucracy: Broadcast TV Studios, Cycloramas, Sound Booths & Adobe CC Suites</p>
+    </hgroup>
+
+    <!-- Studio 1: Molodezh Moskvy -->
+    <article>
+      <header>
+        <p><mark>#1 BEST HACK // 100% FREE CITY STUDIO (DAILY 10:00–20:00, AGE 14–35)</mark></p>
+        <h3>«Molodezh Moskvy» Pro Media Studios</h3>
+      </header>
+
+      <p>
+        Funded directly by the Moscow City Government for anyone aged 14–35. <strong>Requires zero university deans, paperwork, or academic credits.</strong> They provide a full <strong>Video Studio with multi-light rigs, Podcast & Audio Booths, and Editing Suites with Adobe Creative Cloud & Maxon</strong> completely free of charge.
+      </p>
+
+      <div class="grid">
+        <!-- Hub A -->
+        <article>
+          <header>
+            <strong>HUB A: TULSKAYA METRO (Ryabovskaya Manufactory)</strong>
+          </header>
+          <p>Kholodilny Pereulok, 3, Bldg 1, Str. 8. Includes Pro Video Studio + "Content Farm" for reels and podcasts.</p>
+          <fieldset role="group">
+            <input type="text" value="Холодильный переулок, 3, корп. 1, стр. 8" readonly />
+            <button class="contrast" onclick="copyText('Холодильный переулок, 3, корп. 1, стр. 8', this)">Copy RU</button>
+          </fieldset>
+          <footer>
+            <a href="https://yandex.ru/maps/?text=Москва, Холодильный переулок, 3к1с8" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Open on Yandex Maps</a>
+          </footer>
+        </article>
+
+        <!-- Hub B -->
+        <article>
+          <header>
+            <strong>HUB B: PROSPEKT VERNADSKOGO («Zvyozdny»)</strong>
+          </header>
+          <p>Prospekt Vernadskogo, 14. Video Studio + Sound Isolation Studio + Adobe CC Editing Bay.</p>
+          <fieldset role="group">
+            <input type="text" value="проспект Вернадского, 14" readonly />
+            <button class="contrast" onclick="copyText('проспект Вернадского, 14', this)">Copy RU</button>
+          </fieldset>
+          <footer>
+            <div class="grid">
+              <a href="https://yandex.ru/maps/?text=Москва, проспект Вернадского, 14" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Yandex Maps</a>
+              <button class="outline secondary" onclick="copyText('@molodej_moscow_zv', this)">TG: @molodej_moscow_zv</button>
+            </div>
+          </footer>
+        </article>
       </div>
 
-      <!-- Interactive Filter Controls -->
-      <div class="flex flex-wrap items-center gap-2 pt-1 font-mono text-xs" role="group" aria-label="Filter Studios">
-        <span class="text-zinc-500 mr-1 text-[11px] uppercase tracking-wider flex items-center gap-1">
-          <i data-lucide="filter" class="w-3 h-3"></i> Filter:
-        </span>
-        <button 
-          data-filter-btn 
-          onclick="filterStudios('all', this)" 
-          class="px-3 py-1.5 rounded-lg border bg-signal-amber text-black border-signal-amber font-bold transition shadow-sm"
-          aria-pressed="true">
-          All Locations (4)
-        </button>
-        <button 
-          data-filter-btn 
-          onclick="filterStudios('free-city', this)" 
-          class="px-3 py-1.5 rounded-lg border bg-ink-900 text-zinc-400 border-ink-700 hover:text-white hover:border-ink-600 transition"
-          aria-pressed="false">
-          100% Free City Hubs
-        </button>
-        <button 
-          data-filter-btn 
-          onclick="filterStudios('hse', this)" 
-          class="px-3 py-1.5 rounded-lg border bg-ink-900 text-zinc-400 border-ink-700 hover:text-white hover:border-ink-600 transition"
-          aria-pressed="false">
-          HSE Media Center
-        </button>
-        <button 
-          data-filter-btn 
-          onclick="filterStudios('rggu', this)" 
-          class="px-3 py-1.5 rounded-lg border bg-ink-900 text-zinc-400 border-ink-700 hover:text-white hover:border-ink-600 transition"
-          aria-pressed="false">
-          RGGU Internal Bypass
-        </button>
-        <button 
-          data-filter-btn 
-          onclick="filterStudios('rudn-library', this)" 
-          class="px-3 py-1.5 rounded-lg border bg-ink-900 text-zinc-400 border-ink-700 hover:text-white hover:border-ink-600 transition"
-          aria-pressed="false">
-          RUDN & Libraries
-        </button>
+      <!-- How to Book Guide -->
+      <details open>
+        <summary><strong>Step-by-Step How to Book & Foreign Passport Bypass Scheme</strong></summary>
+        <ol>
+          <li><strong>Select Slot:</strong> Open <a href="https://mosmolodezh.ru" target="_blank">mosmolodezh.ru</a> and pick your preferred hub, time, and room (Video Studio, Sound Booth, or Adobe CC Edit Suite).</li>
+          <li><strong>Bypass Foreign Passport:</strong> If the portal asks for Russian citizenship / Gosuslugi, send me the date and time. <strong>I will book the slot under my HSE student account in 2 minutes</strong> and add your name as co-creator.</li>
+          <li><strong>Walk In:</strong> Arrive with your passport. The front desk checks the reservation, unlocks the room, and provides wireless microphones and studio lighting.</li>
+        </ol>
+      </details>
+    </article>
+
+    <!-- Studio 2: HSE Media Center -->
+    <article>
+      <header>
+        <p><mark>#2 MY UNIVERSITY // HSE MEDIA CENTER (FCI)</mark></p>
+        <h3>HSE TV & Media Production Center (МИТТЦ) — Khitrovsky 2/8</h3>
+      </header>
+
+      <p>
+        Full broadcast television studio, cyclorama, green screen, multi-camera lighting rig, and sound recording rooms.
+      </p>
+
+      <p>
+        <strong>The Rule:</strong> Personal blogs aren't allowed; bookings officially require an internal memo (<em>служебная записка</em>) 5 days in advance tied to an accredited HSE project.<br />
+        <strong>Our Bypass:</strong> We pitch a joint <em>"HSE × RGGU Middle East Video Dialogue"</em> through HSE Creative Extracurriculars (Креативная Внеучебка ФКИ), recruiting 1–2 HSE undergraduates into our crew for their course portfolio.
+      </p>
+
+      <label>Russian Address for Yandex Taxi:</label>
+      <fieldset role="group">
+        <input type="text" value="Хитровский пер., 2/8, корп. 5" readonly />
+        <button class="contrast" onclick="copyText('Хитровский пер., 2/8, корп. 5', this)">Copy RU</button>
+      </fieldset>
+      <p><a href="https://yandex.ru/maps/?text=Москва, Хитровский переулок, 2/8 корпус 5" target="_blank" rel="noopener noreferrer">Open Khitrovsky 2/8 on Yandex Maps</a></p>
+
+      <!-- Key Staff & Room Directory Table -->
+      <h4>Directory of Key Personnel (Block «P», 2nd Floor)</h4>
+      <div class="overflow-auto">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th scope="col">Staff Member</th>
+              <th scope="col">Office & Role</th>
+              <th scope="col">Email & Contact</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Anna Krasnovskaya</strong></td>
+              <td>Curator, "Creative Extracurriculars" (Our main entry door)</td>
+              <td>akrasnovskaya@hse.ru</td>
+              <td><button class="outline secondary" onclick="copyText('akrasnovskaya@hse.ru', this)">Copy Email</button></td>
+            </tr>
+            <tr>
+              <td><strong>Roman Dyakonov</strong></td>
+              <td>Office P-205 (Deputy Director / Stage Director — Student Projects)</td>
+              <td>rdyakonov@hse.ru</td>
+              <td><button class="outline secondary" onclick="copyText('rdyakonov@hse.ru', this)">Copy Email</button></td>
+            </tr>
+            <tr>
+              <td><strong>Sergey Pavlov</strong></td>
+              <td>Office P-206 (Director of HSE Media Center)</td>
+              <td>svpavlov@hse.ru / +7 (495) 772-95-90 x23227</td>
+              <td>
+                <button class="outline secondary" onclick="copyText('svpavlov@hse.ru', this)">Email</button>
+                <button class="outline secondary" onclick="copyText('+74957729590', this)">Phone</button>
+              </td>
+            </tr>
+            <tr>
+              <td><strong>Elena Tultseva</strong></td>
+              <td>Office P-216 (Deputy Director — TV Studio & Sound Booking)</td>
+              <td>tultseva@mail.ru</td>
+              <td><button class="outline secondary" onclick="copyText('tultseva@mail.ru', this)">Copy Email</button></td>
+            </tr>
+            <tr>
+              <td><strong>Sergey Tsymbal</strong></td>
+              <td>Office P-215 (Chief Engineer — Broadcast Gear Checkout)</td>
+              <td>stsymbal@hse.ru / +7 (964) 638-89-44</td>
+              <td>
+                <button class="outline secondary" onclick="copyText('stsymbal@hse.ru', this)">Email</button>
+                <button class="outline secondary" onclick="copyText('+79646388944', this)">Phone</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </section>
 
-    <!-- STUDIOS DETAILED DOSSIER LIST -->
-    <div class="space-y-10">
+      <footer>
+        <a href="./scripts.html#script-4" role="button" class="secondary">View Pre-Written HSE Studio Pitch Script</a>
+      </footer>
+    </article>
 
-      <!-- ===================================================================
-           STUDIO 1: MOLODEZH MOSKVY (100% FREE CITY HUBS)
-           =================================================================== -->
-      <section data-studio-category="free-city" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-emerald/40 hover:border-signal-emerald/70 transition-all shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-emerald/20 text-signal-emerald font-mono text-xs font-bold uppercase tracking-wider">
-                #1 BEST HACK // 100% FREE CITY STUDIO
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Daily 10:00–20:00 // Age 14–35
-              </span>
+    <!-- Studio 3: RGGU Internal Bypass -->
+    <article>
+      <header>
+        <p><mark>#3 YOUR UNI (RGGU) // GOING OVER THEIR HEADS</mark></p>
+        <h3>How to Override the Bureaucratic "No" at RGGU</h3>
+      </header>
+
+      <p>
+        Low-level administrators always say no because they don't want responsibility. Go straight to the TV professionals and student media heads at RGGU who actually need high-profile content:
+      </p>
+
+      <fieldset role="group">
+        <input type="text" value="Миусская пл., 6" readonly />
+        <button class="contrast" onclick="copyText('Миусская пл., 6', this)">Copy RU for Taxi</button>
+      </fieldset>
+      <p><a href="https://yandex.ru/maps/?text=Москва, Миусская площадь, 6" target="_blank" rel="noopener noreferrer">Open RGGU Main Campus on Yandex Maps</a></p>
+
+      <div class="grid">
+        <article>
+          <header><strong>1. Vladislav Flyarkovsky</strong></header>
+          <p>Director, Institute of Mass Media & Advertising. Legendary Russian TV journalist. Walk up to him in person with your video reel on a tablet or phone. A real TV boss respects another pro and can unlock the RGGU TV studio with one call.</p>
+        </article>
+
+        <article>
+          <header><strong>2. Anastasia Gavrilova</strong></header>
+          <p>Head of Student Media «RGGU.LIVE». Find them on VK or Telegram. Offer a collaboration: they book the studio under their student media quota and put their logo in the corner; you deliver broadcast-level international interviews.</p>
+        </article>
+
+        <article>
+          <header><strong>3. Mikhail Boldyrev</strong></header>
+          <p>Center for Project & Communication Technologies. Coordinates university digital lab initiatives.</p>
+          <footer>
+            <button class="outline secondary" onclick="copyText('der_kikr@rggu.ru', this)">Copy der_kikr@rggu.ru</button>
+            <button class="outline secondary" onclick="copyText('+74952506390', this)">Copy +7 (495) 250-63-90</button>
+          </footer>
+        </article>
+      </div>
+    </article>
+
+    <!-- Studio 4: RUDN & Svetlovka -->
+    <article>
+      <header>
+        <p><mark>#4 BACKUP HUBS // RUDN & SVETLOVKA</mark></p>
+        <h3>RUDN Middle East Association & Svetlovka Media Lab</h3>
+      </header>
+
+      <p>
+        When academic studios are unavailable, these two central hubs provide immediate access for podcasts and audio recording.
+      </p>
+
+      <div class="grid">
+        <!-- RUDN -->
+        <article>
+          <header>
+            <strong>RUDN UNIVERSITY (Miklukho-Maklaya, 6)</strong>
+          </header>
+          <p>RUDN has the largest Kurdish and Arab student community in Russia and a TV production center at the Philological Faculty.</p>
+          <p>Contact: <strong>Hassi Oussama</strong> (President, Arab & Middle East Association RUDN)</p>
+          <fieldset role="group">
+            <input type="text" value="ул. Миклухо-Маклая, 6" readonly />
+            <button class="contrast" onclick="copyText('ул. Миклухо-Маклая, 6', this)">Copy RU</button>
+          </fieldset>
+          <footer>
+            <div class="grid">
+              <button class="outline secondary" onclick="copyText('1032249774@rudn.ru', this)">Copy 1032249774@rudn.ru</button>
+              <a href="https://yandex.ru/maps/?text=Москва, ул. Миклухо-Маклая, 6" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Yandex Maps</a>
             </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              «Molodezh Moskvy» Pro Media Studios
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <a href="https://mosmolodezh.ru" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-emerald"></i>
-              mosmolodezh.ru
-            </a>
-          </div>
-        </div>
+          </footer>
+        </article>
 
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          Funded directly by the Moscow City Government for creators aged 14–35. <strong>Requires zero university approvals, dean stamps, or academic credits.</strong> They provide state-of-the-art <strong>Video Studios with multi-light setups, Podcast & Voiceover Booths, and Post-Production Suites equipped with Adobe Creative Cloud & Maxon</strong> completely free of charge.
-        </p>
-
-        <!-- Two Physical Production Hubs -->
-        <div class="mt-6 grid md:grid-cols-2 gap-4">
-          <!-- Hub A: Tulskaya -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-signal-sky uppercase">
-                  HUB A: TULSKAYA METRO (Ryabovskaya Manufactory)
-                </span>
-                <span class="text-[11px] font-mono text-zinc-500">Kholodilny 3</span>
-              </div>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Includes full Pro Video Stage, cyclorama, interview couch setups, and high-throughput "Content Farm" area for shorts, reels, and video essays.
-              </p>
-              <div class="mt-3 p-2.5 rounded bg-ink-900 border border-ink-800 font-mono text-xs text-zinc-300 flex items-center justify-between">
-                <span>Холодильный переулок, 3, корп. 1, стр. 8</span>
-              </div>
+        <!-- Svetlovka -->
+        <article>
+          <header>
+            <strong>«SVETLOVKA» MEDIA CENTER (Mayakovskaya)</strong>
+          </header>
+          <p>Bolshaya Sadovaya, 1. Central youth library with an acoustically isolated podcast/sound studio and creator workstations.</p>
+          <fieldset role="group">
+            <input type="text" value="Большая Садовая ул., 1" readonly />
+            <button class="contrast" onclick="copyText('Большая Садовая ул., 1', this)">Copy RU</button>
+          </fieldset>
+          <footer>
+            <div class="grid">
+              <a href="https://svetlovka.ru" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Visit svetlovka.ru</a>
+              <a href="https://yandex.ru/maps/?text=Москва, Большая Садовая, 1" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Yandex Maps</a>
             </div>
-
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('Холодильный переулок, 3, корп. 1, стр. 8', 'Tulskaya Studio Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, Холодильный переулок, 3к1с8" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-            </div>
-          </div>
-
-          <!-- Hub B: Vernadskogo -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-signal-sky uppercase">
-                  HUB B: PROSPEKT VERNADSKOGO («Zvyozdny»)
-                </span>
-                <span class="text-[11px] font-mono text-zinc-500">Vernadskogo 14</span>
-              </div>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Specialized Video Studio + Sound Isolation Studio + dedicated Adobe CC & Maxon Editing Bay for high-bitrate video color grading and rendering.
-              </p>
-              <div class="mt-3 p-2.5 rounded bg-ink-900 border border-ink-800 font-mono text-xs text-zinc-300 flex items-center justify-between">
-                <span>проспект Вернадского, 14</span>
-              </div>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('проспект Вернадского, 14', 'Zvyozdny Studio Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, проспект Вернадского, 14" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-              <button onclick="copyText('@molodej_moscow_zv', 'Zvyozdny Admin Telegram')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-amber border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition ml-auto">
-                <i data-lucide="send" class="w-3 h-3"></i> TG: @molodej_moscow_zv
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step-by-Step Booking & Foreign Passport Hack -->
-        <div class="mt-6 pt-5 border-t border-ink-800 space-y-3">
-          <h4 class="font-mono text-xs uppercase tracking-wider text-signal-amber font-bold flex items-center gap-2">
-            <i data-lucide="shield-check" class="w-4 h-4 text-signal-amber"></i>
-            Step-by-Step How to Book & Foreign Passport Bypass Scheme
-          </h4>
-
-          <div class="grid sm:grid-cols-3 gap-3 text-xs">
-            <div class="p-3.5 rounded-xl bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-emerald block mb-1">STEP 1: SELECT SLOT</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Go to <a href="https://mosmolodezh.ru" target="_blank" class="underline text-zinc-200">mosmolodezh.ru</a> and pick your preferred date, location (Tulskaya or Vernadskogo), and room type (Video Studio, Podcast Booth, or Editing Bay).
-              </p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-ink-950 border border-signal-amber/40">
-              <span class="font-mono font-bold text-signal-amber block mb-1">STEP 2: PASSPORT BYPASS</span>
-              <p class="text-zinc-300 leading-relaxed">
-                If the registration form asks for Russian citizenship or Gosuslugi verification, <strong>send me the exact date & time</strong>. I book the slot under my HSE Russian account in 2 minutes and list you as co-producer!
-              </p>
-            </div>
-
-            <div class="p-3.5 rounded-xl bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-sky block mb-1">STEP 3: WALK-IN & SHOOT</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Arrive 15 minutes before the slot with your passport. The front desk staff verifies the reservation, unlocks the studio, and checks the wireless lavaliers and lighting grids for you.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           STUDIO 2: HSE MEDIA CENTER (FCI KHITROVKA)
-           =================================================================== -->
-      <section data-studio-category="hse" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-amber/40 hover:border-signal-amber/70 transition-all shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-amber/20 text-signal-amber font-mono text-xs font-bold uppercase tracking-wider">
-                #2 MY UNIVERSITY // HSE MEDIA CENTER (FCI)
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Khitrovsky Lane, 2/8, Bldg 5
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              HSE TV & Media Production Center (МИТТЦ ФКИ)
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="copyText('Хитровский пер., 2/8, корп. 5', 'HSE Media Center Address')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="copy" class="w-3.5 h-3.5 text-signal-amber"></i>
-              Copy RU for Taxi
-            </button>
-            <a href="https://yandex.ru/maps/?text=Москва, Хитровский переулок, 2/8 корпус 5" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i>
-              Yandex Maps
-            </a>
-          </div>
-        </div>
-
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          Full federal broadcast television studio, motorized cyclorama, chromakey green screen, professional multi-camera teleprompter system, and isolated sound recording booths.
-        </p>
-
-        <!-- The Rule vs Our Bypass Box -->
-        <div class="mt-4 p-4 rounded-xl bg-ink-950 border border-signal-amber/30 text-xs sm:text-sm">
-          <p class="text-zinc-300 leading-relaxed">
-            <strong class="text-signal-red font-mono uppercase">The Official Restriction:</strong> Personal YouTube/Telegram channels and commercial vlogs are strictly forbidden by university charter; bookings officially require an internal memo (<em>служебная записка</em>) submitted 5 business days in advance tied to an accredited HSE project.
-          </p>
-          <p class="mt-2 text-zinc-300 leading-relaxed">
-            <strong class="text-signal-emerald font-mono uppercase">Our Tactical Bypass:</strong> We register our show through <strong>HSE "Creative Extracurriculars" (Креативная Внеучебка ФКИ)</strong> as an official student project: <em>"HSE × RGGU Middle East Video Dialogue"</em>. We invite 1-2 HSE media communications undergraduates into our production crew for their portfolio credits, granting us 100% legitimate, recurring studio access.
-          </p>
-        </div>
-
-        <!-- Visual Floor Plan: 2nd Floor Block "P" (Khitrovka) -->
-        <div class="mt-6 p-5 rounded-xl bg-ink-950/95 border border-ink-800">
-          <div class="flex items-center justify-between mb-3">
-            <h4 class="font-mono text-xs uppercase tracking-wider text-signal-sky font-bold flex items-center gap-2">
-              <i data-lucide="layout" class="w-4 h-4 text-signal-sky"></i>
-              Floor Map: Khitrovsky 2/8, Bldg 5 — Block «P» (2nd Floor)
-            </h4>
-            <span class="text-[11px] font-mono text-zinc-500">MITTC Production Wing</span>
-          </div>
-
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-            <!-- Room P-205 -->
-            <div class="p-3.5 rounded-lg bg-ink-900 border border-ink-700/80 hover:border-signal-amber/50 transition">
-              <div class="flex items-center justify-between font-mono text-[11px] text-signal-amber mb-1 font-bold">
-                <span>ROOM P-205</span>
-                <span class="text-zinc-500">STAGE DIR</span>
-              </div>
-              <p class="font-display font-bold text-white text-sm">Roman Dyakonov</p>
-              <p class="text-[11px] text-zinc-400 mt-1">Deputy Director / Stage Director. Approves technical resources for student media.</p>
-              <button onclick="copyText('rdyakonov@hse.ru', 'Roman Dyakonov Email')" class="mt-2.5 w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-signal-amber font-mono text-[11px] flex items-center justify-center gap-1 border border-ink-700">
-                <span>rdyakonov@hse.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-            </div>
-
-            <!-- Room P-206 -->
-            <div class="p-3.5 rounded-lg bg-ink-900 border border-ink-700/80 hover:border-signal-amber/50 transition">
-              <div class="flex items-center justify-between font-mono text-[11px] text-signal-sky mb-1 font-bold">
-                <span>ROOM P-206</span>
-                <span class="text-zinc-500">DIRECTOR</span>
-              </div>
-              <p class="font-display font-bold text-white text-sm">Sergey Pavlov</p>
-              <p class="text-[11px] text-zinc-400 mt-1">Director of HSE Media Center. Oversees all major internal and external filming operations.</p>
-              <div class="mt-2.5 space-y-1.5 font-mono text-[11px]">
-                <button onclick="copyText('svpavlov@hse.ru', 'Sergey Pavlov Email')" class="w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky flex items-center justify-center gap-1 border border-ink-700">
-                  <span>svpavlov@hse.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-                </button>
-                <button onclick="copyText('+74957729590', 'Sergey Pavlov Phone (ext 23227)')" class="w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-zinc-300 flex items-center justify-center gap-1 border border-ink-700">
-                  <span>+7 (495) 772-95-90 x23227</span> <i data-lucide="copy" class="w-3 h-3"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Room P-215 -->
-            <div class="p-3.5 rounded-lg bg-ink-900 border border-ink-700/80 hover:border-signal-amber/50 transition">
-              <div class="flex items-center justify-between font-mono text-[11px] text-signal-emerald mb-1 font-bold">
-                <span>ROOM P-215</span>
-                <span class="text-zinc-500">CHIEF TECH</span>
-              </div>
-              <p class="font-display font-bold text-white text-sm">Sergey Tsymbal</p>
-              <p class="text-[11px] text-zinc-400 mt-1">Chief Broadcast Engineer. Oversees cameras, wireless mics, lighting rigs & checkout.</p>
-              <div class="mt-2.5 space-y-1.5 font-mono text-[11px]">
-                <button onclick="copyText('stsymbal@hse.ru', 'Sergey Tsymbal Email')" class="w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-signal-emerald flex items-center justify-center gap-1 border border-ink-700">
-                  <span>stsymbal@hse.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-                </button>
-                <button onclick="copyText('+79646388944', 'Sergey Tsymbal Mobile')" class="w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-zinc-300 flex items-center justify-center gap-1 border border-ink-700">
-                  <span>+7 (964) 638-89-44</span> <i data-lucide="copy" class="w-3 h-3"></i>
-                </button>
-              </div>
-            </div>
-
-            <!-- Room P-216 -->
-            <div class="p-3.5 rounded-lg bg-ink-900 border border-ink-700/80 hover:border-signal-amber/50 transition">
-              <div class="flex items-center justify-between font-mono text-[11px] text-purple-400 mb-1 font-bold">
-                <span>ROOM P-216</span>
-                <span class="text-zinc-500">SCHEDULING</span>
-              </div>
-              <p class="font-display font-bold text-white text-sm">Elena Tultseva</p>
-              <p class="text-[11px] text-zinc-400 mt-1">Deputy Director. Directly manages the TV Studio schedule calendar and audio booth slots.</p>
-              <button onclick="copyText('tultseva@mail.ru', 'Elena Tultseva Email')" class="mt-2.5 w-full py-1 px-2 rounded bg-ink-800 hover:bg-ink-700 text-purple-300 font-mono text-[11px] flex items-center justify-center gap-1 border border-ink-700">
-                <span>tultseva@mail.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-            </div>
-          </div>
-
-          <!-- Entry Point Sponsor: Anna Krasnovskaya -->
-          <div class="mt-4 p-3.5 rounded-lg bg-ink-900/90 border border-signal-emerald/40 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-            <div>
-              <div class="flex items-center gap-2">
-                <span class="px-2 py-0.5 rounded bg-signal-emerald/20 text-signal-emerald font-mono text-[10px] font-bold">
-                  PROJECT SPONSOR // OUR ENTRY DOOR
-                </span>
-                <span class="font-display font-bold text-white text-sm">Anna Krasnovskaya</span>
-              </div>
-              <p class="text-xs text-zinc-400 mt-0.5">
-                Curator, HSE "Creative Extracurriculars" (Креативная Внеучебка ФКИ). She signs off on joint inter-university media projects.
-              </p>
-            </div>
-            <div class="flex items-center gap-2 shrink-0">
-              <button onclick="copyText('akrasnovskaya@hse.ru', 'Anna Krasnovskaya Email')" class="px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-signal-emerald border border-ink-700 font-mono text-xs flex items-center gap-1 transition">
-                <span>akrasnovskaya@hse.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-              <a href="scripts.html#script-3" class="px-3 py-1.5 rounded-lg bg-signal-amber text-black hover:bg-amber-400 font-mono text-xs font-bold flex items-center gap-1 transition">
-                <span>Open Script #3</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step-by-Step Execution Plan -->
-        <div class="mt-6 pt-5 border-t border-ink-800">
-          <h4 class="font-mono text-xs uppercase tracking-wider text-signal-amber font-bold mb-3 flex items-center gap-2">
-            <i data-lucide="git-merge" class="w-4 h-4 text-signal-amber"></i>
-            Step-by-Step HSE Khitrovka Booking Procedure
-          </h4>
-
-          <div class="grid sm:grid-cols-4 gap-3 text-xs">
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono text-signal-amber font-bold block mb-1">01. SEND EMAIL</span>
-              <p class="text-zinc-400 leading-relaxed">
-                I send Script #3 from my official HSE corporate student email to Anna Krasnovskaya & Roman Dyakonov.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono text-signal-sky font-bold block mb-1">02. FORM CREW</span>
-              <p class="text-zinc-400 leading-relaxed">
-                We announce 2 positions for HSE media undergraduates (camera operator & sound editor) for their course portfolio.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono text-signal-emerald font-bold block mb-1">03. SLUZHEBNAYA</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Roman Dyakonov signs off on the official internal memo submitted to Elena Tultseva in Room P-216.
-              </p>
-            </div>
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono text-purple-400 font-bold block mb-1">04. GEAR & SHOOT</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Check in at Khitrovsky 2/8 with Sergey Tsymbal (P-215) for broadcast cameras, lights, and studio orientation.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           STUDIO 3: RGGU INTERNAL BYPASS
-           =================================================================== -->
-      <section data-studio-category="rggu" class="dossier-card rounded-2xl p-6 sm:p-8 border-purple-500/40 hover:border-purple-500/70 transition-all shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono text-xs font-bold uppercase tracking-wider">
-                #3 YOUR UNI (RGGU) // GOING OVER THEIR HEADS
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Miusskaya Sq., 6 (Miusy)
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              How to Override the Bureaucratic "No" at RGGU
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="copyText('Миусская пл., 6', 'RGGU Main Campus Address')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="copy" class="w-3.5 h-3.5 text-purple-300"></i>
-              Copy RU for Taxi
-            </button>
-            <a href="https://yandex.ru/maps/?text=Москва, Миусская площадь, 6" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i>
-              Yandex Maps
-            </a>
-          </div>
-        </div>
-
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          Low-level administrative assistants and faculty secretaries reflexively say "no" or demand weeks of paperwork because they don't want responsibility. <strong>Bypass them completely.</strong> Go straight to high-ranking broadcast professionals and student media heads who are hungry for prestige content:
-        </p>
-
-        <!-- 3 Specific Bypass Channels -->
-        <div class="mt-6 grid md:grid-cols-3 gap-4">
-          <!-- Channel 1: Vladislav Flyarkovsky -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="font-mono text-xs text-purple-400 font-bold uppercase mb-1">
-                ROUTE 01 // TV TITAN PITCH
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Vladislav Flyarkovsky</h3>
-              <p class="text-xs text-zinc-400 font-mono mt-0.5">Director, Institute of Mass Media & Advertising</p>
-              <p class="text-xs text-zinc-300 mt-3 leading-relaxed">
-                He is a legendary Russian TV journalist, anchor, and documentary maker. Walk up to him in person during office hours with your best TV reel playing on a tablet or phone. A veteran TV boss respects real airtime experience and can unlock the RGGU TV studio with one single phone call.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 text-[11px] font-mono text-purple-300">
-              Tactic: Pro-to-pro showreel showcase.
-            </div>
-          </div>
-
-          <!-- Channel 2: Anastasia Gavrilova (RGGU.LIVE) -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="font-mono text-xs text-signal-amber font-bold uppercase mb-1">
-                ROUTE 02 // BARTER COLLABORATION
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Anastasia Gavrilova</h3>
-              <p class="text-xs text-zinc-400 font-mono mt-0.5">Head of Student Media «RGGU.LIVE»</p>
-              <p class="text-xs text-zinc-300 mt-3 leading-relaxed">
-                Find <code class="text-signal-amber">RGGU.LIVE</code> on VK or Telegram. Offer a win-win partnership: they book the TV studio under their monthly student media quota, add their animated watermark to the video intro, and you provide high-profile Middle East interviews and international broadcast standards.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 text-[11px] font-mono text-signal-amber">
-              Tactic: Quota barter for brand exposure.
-            </div>
-          </div>
-
-          <!-- Channel 3: Mikhail Boldyrev -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="font-mono text-xs text-signal-sky font-bold uppercase mb-1">
-                ROUTE 03 // PROJECT CENTER
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Mikhail Boldyrev</h3>
-              <p class="text-xs text-zinc-400 font-mono mt-0.5">Center for Project & Comm. Tech</p>
-              <p class="text-xs text-zinc-300 mt-3 leading-relaxed">
-                Coordinates digital media technology and laboratory initiatives across RGGU faculties. Handles formal technical requests for studio equipment and stage lighting.
-              </p>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 space-y-1.5 font-mono text-xs">
-              <button onclick="copyText('der_kikr@rggu.ru', 'RGGU Media Center Email')" class="w-full py-1.5 px-2 rounded bg-ink-800 hover:bg-ink-700 text-signal-amber flex items-center justify-between border border-ink-700">
-                <span>der_kikr@rggu.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-              <button onclick="copyText('+74952506390', 'RGGU Media Center Phone')" class="w-full py-1.5 px-2 rounded bg-ink-800 hover:bg-ink-700 text-zinc-300 flex items-center justify-between border border-ink-700">
-                <span>+7 (495) 250-63-90</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-            </div>
-          </div>
-        </div>
-
-        <!-- How to Book Guide -->
-        <div class="mt-6 pt-5 border-t border-ink-800">
-          <h4 class="font-mono text-xs uppercase tracking-wider text-purple-300 font-bold mb-3 flex items-center gap-2">
-            <i data-lucide="zap" class="w-4 h-4 text-purple-300"></i>
-            Step-by-Step RGGU Action Order
-          </h4>
-          <div class="grid sm:grid-cols-3 gap-3 text-xs">
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-purple-300 block mb-1">1. TABLET REEL READY</span>
-              <p class="text-zinc-400 leading-relaxed">Download a 60-second video reel directly onto your iPad/phone so no internet loading is needed.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-amber block mb-1">2. MESSAGE RGGU.LIVE</span>
-              <p class="text-zinc-400 leading-relaxed">DM Anastasia Gavrilova on Telegram with a concise collaboration proposal for their video podcast slot.</p>
-            </div>
-            <div class="p-3 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-sky block mb-1">3. CATCH FLYARKOVSKY</span>
-              <p class="text-zinc-400 leading-relaxed">Visit the Institute of Mass Media & Advertising floor before or after his lecture to pitch the series directly.</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           STUDIO 4: RUDN & SVETLOVKA
-           =================================================================== -->
-      <section data-studio-category="rudn-library" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-sky/40 hover:border-signal-sky/70 transition-all shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-sky/20 text-signal-sky font-mono text-xs font-bold uppercase tracking-wider">
-                #4 BACKUP HUBS // RUDN & SVETLOVKA
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                International Community & Modernized Library
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              RUDN Middle East Association & Svetlovka Media Lab
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-mono text-zinc-400">Zero Bureaucratic Overhead</span>
-          </div>
-        </div>
-
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          When academic university studios are fully booked during exam cycles, these two hubs serve as instant, reliable fallback options for recording podcasts, audio commentary, and independent video reports.
-        </p>
-
-        <div class="mt-6 grid md:grid-cols-2 gap-5">
-          <!-- Hub 1: RUDN Association -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-signal-amber uppercase">
-                  RUDN UNIVERSITY (Miklukho-Maklaya, 6)
-                </span>
-                <span class="text-[11px] font-mono text-zinc-500">Yugo-Zapadnaya</span>
-              </div>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                RUDN University hosts the strongest and most active Kurdish and Arab student community in the Russian Federation, complete with a professional TV and radio center at the Philological Faculty (Mass Communications Dept).
-              </p>
-
-              <div class="mt-4 p-3.5 rounded-lg bg-ink-900 border border-ink-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs text-zinc-400">Key Contact:</span>
-                  <span class="text-xs font-bold text-white">Hassi Oussama</span>
-                </div>
-                <div class="text-[11px] text-zinc-400">
-                  President, Association of Arab & Middle East Students (RUDN)
-                </div>
-                <div class="pt-2 border-t border-ink-800 flex items-center justify-between font-mono text-xs">
-                  <span class="text-zinc-500">Official Email:</span>
-                  <button onclick="copyText('1032249774@rudn.ru', 'Hassi Oussama RUDN Email')" class="text-signal-amber hover:underline flex items-center gap-1">
-                    <span>1032249774@rudn.ru</span> <i data-lucide="copy" class="w-3 h-3"></i>
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('ул. Миклухо-Маклая, 6', 'RUDN Campus Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, ул. Миклухо-Маклая, 6" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-            </div>
-          </div>
-
-          <!-- Hub 2: Svetlovka Library -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between mb-2">
-                <span class="font-mono text-xs font-bold text-signal-sky uppercase">
-                  «SVETLOVKA» MEDIA CENTER (Mayakovskaya)
-                </span>
-                <span class="text-[11px] font-mono text-zinc-500">Bolshaya Sadovaya 1</span>
-              </div>
-              <p class="text-xs text-zinc-300 leading-relaxed">
-                Central Moscow modernized public youth library. Features an acoustically treated sound recording and podcast booth equipped with Shure microphones and open creator workstations.
-              </p>
-
-              <div class="mt-4 p-3.5 rounded-lg bg-ink-900 border border-ink-800 space-y-2">
-                <div class="flex items-center justify-between">
-                  <span class="text-xs text-zinc-400">Address:</span>
-                  <span class="text-xs font-bold text-white">Большая Садовая ул., 1</span>
-                </div>
-                <div class="flex items-center justify-between">
-                  <span class="text-xs text-zinc-400">Official Portal:</span>
-                  <a href="https://svetlovka.ru" target="_blank" rel="noopener noreferrer" class="text-xs font-mono text-signal-sky hover:underline flex items-center gap-1">
-                    <span>svetlovka.ru</span> <i data-lucide="external-link" class="w-3 h-3"></i>
-                  </a>
-                </div>
-                <div class="pt-2 border-t border-ink-800 text-[11px] text-zinc-400">
-                  Online reservation available for library card holders (free instant registration with foreign passport & translation).
-                </div>
-              </div>
-            </div>
-
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('Большая Садовая ул., 1', 'Svetlovka Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, Большая Садовая, 1" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs font-mono flex items-center gap-1.5 transition">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- Step-by-Step Booking Guide -->
-        <div class="mt-6 pt-5 border-t border-ink-800">
-          <h4 class="font-mono text-xs uppercase tracking-wider text-signal-sky font-bold mb-3 flex items-center gap-2">
-            <i data-lucide="check-circle" class="w-4 h-4 text-signal-sky"></i>
-            Step-by-Step RUDN & Svetlovka Booking Instructions
-          </h4>
-          <div class="grid sm:grid-cols-2 gap-3 text-xs">
-            <div class="p-3.5 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-amber block mb-1">RUDN CO-PRODUCTION:</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Send an intro email to Hassi Oussama (<code class="text-zinc-200 font-mono">1032249774@rudn.ru</code>) proposing a joint media broadcast covering Middle Eastern culture & academic ties for the RUDN student association.
-              </p>
-            </div>
-            <div class="p-3.5 rounded-lg bg-ink-950 border border-ink-800">
-              <span class="font-mono font-bold text-signal-sky block mb-1">SVETLOVKA ONLINE RESERVATION:</span>
-              <p class="text-zinc-400 leading-relaxed">
-                Visit <a href="https://svetlovka.ru" target="_blank" class="underline text-zinc-200">svetlovka.ru</a>, navigate to "Услуги / Студия звукозаписи" and book a 2-hour slot. Bring your foreign passport to the 1st floor desk to issue your physical card.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
+          </footer>
+        </article>
+      </div>
+    </article>
 
   </main>
 
   <!-- Footer -->
-  <footer class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 pt-8 border-t border-ink-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-    <div>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026)</div>
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-signal-emerald"></span>
-      <span>ALL 4 PRODUCTION HUBS VERIFIED</span>
-    </div>
+  <footer class="container">
+    <small>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026) — ALL 4 PRODUCTION HUBS VERIFIED</small>
   </footer>
 
-  <!-- Mobile Bottom Navigation Bar (iOS / Android Native Feel) -->
-  <nav class="mobile-bottom-nav md:hidden" aria-label="Mobile Bottom Navigation">
-    <div class="grid grid-cols-4 h-16 max-w-md mx-auto items-center px-2">
-      <a href="index.html" data-nav="index.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="layout-dashboard" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Overview</span>
-      </a>
-      <a href="studios.html" data-nav="studios.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center group">
-        <i data-lucide="video" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Studios</span>
-      </a>
-      <a href="network.html" data-nav="network.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="briefcase" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Jobs</span>
-      </a>
-      <a href="scripts.html" data-nav="scripts.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="mail" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Emails</span>
-      </a>
-    </div>
-  </nav>
-
-  <!-- Client Application Controller -->
-  <script src="assets/app.js"></script>
+  <!-- Scripts -->
+  <script src="./assets/app.js"></script>
 </body>
 </html>

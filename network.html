@@ -1,588 +1,247 @@
 <!DOCTYPE html>
-<html lang="en" class="dark scroll-smooth">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-  <title>MOSCOW MEDIA PLAYBOOK // JOBS, TV BUREAUS & INSIDERS (MODULE 02)</title>
-
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-
-  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-
-  <!-- Custom Stylesheet -->
-  <link rel="stylesheet" href="assets/styles.css" />
-
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          fontFamily: {
-            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-            display: ['"Space Grotesk"', 'sans-serif'],
-            mono: ['"JetBrains Mono"', 'monospace'],
-          },
-          colors: {
-            ink: {
-              950: '#09090B',
-              900: '#101014',
-              800: '#18181E',
-              700: '#262730',
-              600: '#383A47'
-            },
-            signal: {
-              amber: '#F59E0B',
-              red: '#EF4444',
-              emerald: '#10B981',
-              sky: '#38BDF8'
-            }
-          }
-        }
-      }
-    }
-  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOSCOW MEDIA PLAYBOOK // JOBS & TV BUREAUS (MODULE 02)</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.zinc.min.css">
 </head>
-<body class="min-h-screen antialiased selection:bg-signal-amber selection:text-black pb-32 md:pb-24">
+<body>
 
-  <!-- Global Toast Notification Container -->
-  <div id="toast" class="fixed bottom-24 md:bottom-6 right-4 sm:right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-ink-900/95 border border-signal-amber/70 text-white px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md max-w-sm">
-    <div class="w-8 h-8 rounded-lg bg-signal-amber/15 border border-signal-amber/40 flex items-center justify-center shrink-0 text-signal-amber">
-      <i data-lucide="check-circle-2" class="w-4 h-4 stroke-[2.5]"></i>
-    </div>
-    <div class="overflow-hidden">
-      <p id="toast-label" class="font-mono text-[10px] uppercase tracking-wider text-signal-amber font-bold">Copied to Clipboard</p>
-      <p id="toast-text" class="text-xs sm:text-sm font-medium text-zinc-200 truncate mt-0.5"></p>
-    </div>
-  </div>
-
-  <!-- Shared Top Navigation Header -->
-  <header class="sticky top-0 z-40 glass-header border-b border-ink-700">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
-      <a href="index.html" class="flex items-center gap-3 group">
-        <span class="w-2.5 h-2.5 rounded-full bg-signal-amber live-dot"></span>
-        <span class="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 group-hover:text-signal-amber transition">
-          MOSCOW MEDIA PLAYBOOK <span class="text-zinc-500">//</span> <span class="text-signal-amber">NETWORK</span>
-        </span>
-      </a>
-
-      <!-- Desktop Navigation Bar -->
-      <nav class="hidden md:flex items-center gap-1.5 font-mono text-xs">
-        <a href="index.html" data-nav="index.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="flame" class="w-3.5 h-3.5 text-signal-red"></i>
-          Overview & Urgent
-        </a>
-        <a href="studios.html" data-nav="studios.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="video" class="w-3.5 h-3.5 text-signal-emerald"></i>
-          01. Free Studios
-        </a>
-        <a href="network.html" data-nav="network.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-signal-amber"></i>
-          02. Jobs & Bureaus
-        </a>
-        <a href="scripts.html" data-nav="scripts.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
-          <i data-lucide="mail" class="w-3.5 h-3.5 text-signal-sky"></i>
-          03. RU Email Scripts
-        </a>
-      </nav>
-
-      <!-- Global Checklist Progress Badge -->
-      <div class="flex items-center gap-2 bg-ink-800/90 border border-ink-700 px-3 py-1.5 rounded-lg text-xs font-mono shadow-sm">
-        <span class="text-zinc-400 hidden sm:inline">TRACKER:</span>
-        <span class="flex items-center gap-1.5">
-          <i data-lucide="check-square" class="w-3.5 h-3.5 text-signal-emerald"></i>
-          <span id="progress-badge" class="text-signal-emerald font-bold progress-badge">0/8</span>
-        </span>
-      </div>
-    </div>
+  <!-- Navigation Bar -->
+  <header class="container">
+    <nav>
+      <ul>
+        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+      </ul>
+      <ul>
+        <li><a href="./index.html">Overview & Urgent</a></li>
+        <li><a href="./studios.html">01. Studios</a></li>
+        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><mark id="progress-badge">0/8</mark></li>
+      </ul>
+    </nav>
   </header>
 
-  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-12">
+  <!-- Main Content -->
+  <main class="container">
 
-    <!-- HERO SECTION -->
-    <section class="border-b border-ink-700 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
-      <div>
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-signal-amber/10 border border-signal-amber/30 text-signal-amber font-mono text-xs mb-3">
-          <i data-lucide="briefcase" class="w-3.5 h-3.5"></i>
-          MODULE 02 // CAREER, TV BUREAUS & DIRECT HIRING
-        </div>
-        <h1 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
-          Direct Doors to TV Bureaus, RT Arabic & Business Councils
-        </h1>
-        <p class="mt-2 text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Zero automated HR portals. Below are verified direct contacts of decision-makers, Moscow bureau chiefs, accredited foreign correspondents, and university insiders who can put you on air.
-        </p>
-      </div>
-      <div class="flex items-center gap-2 font-mono text-xs text-zinc-400 shrink-0">
-        <span class="bg-ink-900 border border-ink-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
-          <span class="w-2 h-2 rounded-full bg-signal-amber live-dot"></span>
-          Direct Executive Outreach
-        </span>
-      </div>
-    </section>
+    <!-- Module Header -->
+    <hgroup>
+      <p><kbd>MODULE 02 // CAREER, TV BUREAUS & DIRECT HIRING</kbd></p>
+      <h2>Direct Doors to TV Bureaus, RT Arabic & Business Councils</h2>
+      <p>Zero HR Portals — Direct Outreach to Bureau Chiefs, Executive Producers & University Insiders</p>
+    </hgroup>
 
-    <!-- CRITICAL INTEL: WHY STANDARD JOB BOARDS FAIL FOREIGNERS -->
-    <section class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-red/50 bg-gradient-to-br from-red-950/20 via-ink-950 to-ink-900 shadow-xl">
-      <div class="flex items-center gap-2 font-mono text-xs text-signal-red font-bold uppercase tracking-wider mb-2">
-        <i data-lucide="alert-triangle" class="w-4 h-4 text-signal-red"></i>
-        Critical Moscow Reality Check: Why Standard Job Boards Fail Foreigners
-      </div>
-      <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
-        The «hh.ru & General HR» Trap vs. Direct Editor Outreach
-      </h2>
-      <p class="mt-2 text-zinc-300 text-sm sm:text-base leading-relaxed">
-        If you submit a standard foreign resume through automated Russian hiring platforms (<code class="text-zinc-200 font-mono text-xs bg-ink-800 px-1.5 py-0.5 rounded border border-ink-700">hh.ru</code>, <code class="text-zinc-200 font-mono text-xs bg-ink-800 px-1.5 py-0.5 rounded border border-ink-700">SuperJob</code>), you will be filtered out before a human editor ever sees your work. Here is how the system actually operates and how we beat it:
+    <!-- Why Standard Job Boards Fail Foreigners -->
+    <article>
+      <header>
+        <p><mark>CRITICAL REALITY CHECK: THE HH.RU TRAP VS. DIRECT OUTREACH</mark></p>
+        <h3>Why Standard Job Boards Fail Foreigners in Moscow</h3>
+      </header>
+
+      <p>
+        If you submit a foreign resume through automated Russian hiring platforms (<code>hh.ru</code>, <code>SuperJob</code>), ATS filters discard it before a human editor ever sees your work. Here is how the system operates and how we beat it:
       </p>
 
-      <div class="mt-6 grid md:grid-cols-2 gap-5 text-xs sm:text-sm">
+      <div class="grid">
         <!-- The Trap -->
-        <div class="p-5 rounded-xl bg-ink-950/90 border border-signal-red/40 flex flex-col justify-between">
-          <div>
-            <div class="font-mono text-xs text-signal-red font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i data-lucide="x-circle" class="w-4 h-4 text-signal-red"></i>
-              THE TRAP: AUTOMATED HR FILTERS
-            </div>
-            <ul class="space-y-2.5 text-zinc-400">
-              <li class="flex items-start gap-2">
-                <span class="text-signal-red font-bold font-mono">1.</span>
-                <span><strong>ATS Document Rejection:</strong> Corporate applicant tracking systems automatically reject foreign educational credentials that lack Russian notarized nostrification / apostilles.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-signal-red font-bold font-mono">2.</span>
-                <span><strong>Tax & Permit Friction:</strong> Entry-level HR officers don't want to deal with foreign visa quotas, migration registration, or SNILS paperwork, instantly dropping your CV into the "archive" pile.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-signal-red font-bold font-mono">3.</span>
-                <span><strong>General Mailbox Blackhole:</strong> Resumes sent to <code class="text-zinc-300 font-mono">cv@</code> or <code class="text-zinc-300 font-mono">info@</code> receive hundreds of generic student applications daily and are rarely read by chief editors.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-ink-800/80 font-mono text-[11px] text-zinc-500">
-            Result: 98% silent rejection rate regardless of TV talent.
-          </div>
-        </div>
+        <article>
+          <header><strong>THE TRAP: AUTOMATED HR FILTERS</strong></header>
+          <ul>
+            <li><strong>ATS Document Rejection:</strong> Algorithms reject foreign university credentials lacking notarized Russian apostilles or nostrification.</li>
+            <li><strong>Tax & Permit Friction:</strong> Entry-level HR officers avoid foreign quota paperwork, dropping foreign CVs into the archive pile.</li>
+            <li><strong>General Mailbox Black Hole:</strong> Resumes sent to general inboxes get lost among hundreds of generic applicant emails.</li>
+          </ul>
+          <footer><small>Result: 98% silent rejection rate regardless of TV experience.</small></footer>
+        </article>
 
-        <!-- The Solution -->
-        <div class="p-5 rounded-xl bg-ink-950/90 border border-signal-emerald/40 flex flex-col justify-between">
-          <div>
-            <div class="font-mono text-xs text-signal-emerald font-bold uppercase tracking-wider mb-2 flex items-center gap-1.5">
-              <i data-lucide="check-circle-2" class="w-4 h-4 text-signal-emerald"></i>
-              OUR HACK: DIRECT EDITOR & INSIDER OUTREACH
-            </div>
-            <ul class="space-y-2.5 text-zinc-300">
-              <li class="flex items-start gap-2">
-                <span class="text-signal-emerald font-bold font-mono">1.</span>
-                <span><strong>Massive Middle East Pivot:</strong> Russian state media (RT, Sputnik) and exporter councils currently face an acute shortage of on-the-ground Middle East analysts who actually speak Kurdish and Arabic and have broadcast presence.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-signal-emerald font-bold font-mono">2.</span>
-                <span><strong>Peer-to-Peer Television Respect:</strong> Executive producers and bureau chiefs hire who they know and trust. One 10-minute coffee meeting with a showreel bypasses months of corporate HR red tape.</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <span class="text-signal-emerald font-bold font-mono">3.</span>
-                <span><strong>GPH / Contract Work:</strong> Editors can immediately commission you as an independent expert, foreign stringer, or contract host (договор ГПХ) with zero HR visa complications.</span>
-              </li>
-            </ul>
-          </div>
-          <div class="mt-4 pt-3 border-t border-ink-800/80 font-mono text-[11px] text-signal-emerald">
-            Result: Direct pilot recordings, op-ed bylines & paid TV commentary.
-          </div>
-        </div>
+        <!-- Our Solution -->
+        <article>
+          <header><strong>OUR SOLUTION: DIRECT EDITOR OUTREACH</strong></header>
+          <ul>
+            <li><strong>Massive Middle East Pivot:</strong> Russian state media and exporter councils face an acute shortage of on-the-ground analysts fluent in Kurdish and Arabic.</li>
+            <li><strong>Peer-to-Peer Television Respect:</strong> Executive producers hire experienced broadcast professionals through direct showreel reviews and personal recommendations.</li>
+            <li><strong>Immediate Contract Work:</strong> Editors can commission you as an independent expert, foreign stringer, or contract host (договор ГПХ) with zero HR visa friction.</li>
+          </ul>
+          <footer><small>Result: Direct pilot recordings, paid on-air commentary & op-eds.</small></footer>
+        </article>
       </div>
-    </section>
+    </article>
 
-    <!-- DETAILED TARGET DOSSIERS -->
-    <div class="space-y-10">
+    <!-- Target 1: KRG Representation -->
+    <article>
+      <header>
+        <p><mark>PRIORITY TARGET #1 // KURDISH MEDIA & BUSINESS HUB (MAYAKOVSKAYA)</mark></p>
+        <h3>KRG Representation in Russia + «Kurdistan 24» & «Rudaw» Moscow Bureaus</h3>
+      </header>
 
-      <!-- ===================================================================
-           TARGET 1: KRG MOSCOW REPRESENTATION + RUDAW / KURDISTAN 24
-           =================================================================== -->
-      <section class="dossier-card rounded-2xl p-6 sm:p-8 border-l-4 border-l-signal-amber border-ink-700 shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-amber/20 text-signal-amber font-mono text-xs font-bold uppercase tracking-wider">
-                PRIORITY TARGET #1 // KURDISH MEDIA & BUSINESS HUB
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Mayakovskaya / Tverskaya Metro
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              KRG Representation in Russia + «Kurdistan 24» & «Rudaw» Bureaus
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <button onclick="copyText('Трёхпрудный пер., 11/13, стр. 2, оф. 98', 'KRG Moscow Address')" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="copy" class="w-3.5 h-3.5 text-signal-amber"></i>
-              Copy RU for Taxi
-            </button>
-            <a href="https://yandex.ru/maps/?text=Москва, Трёхпрудный переулок, 11/13с2" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="map" class="w-3.5 h-3.5"></i>
-              Yandex Maps
-            </a>
-          </div>
-        </div>
+      <p>
+        The Kurdistan Regional Government (KRG) Representation is the primary diplomatic and media hub in Moscow. Both <strong>Kurdistan 24</strong> (correspondents <em>Khoshawi Mohammed</em> & <em>Hemin Tahir Mohammed</em>) and <strong>Rudaw</strong> maintain MFA-accredited television bureaus in Moscow. Additionally, the Representation coordinates business missions with the <strong>Russian-Iraqi Business Council at the Russian Chamber of Commerce and Industry (ТПП РФ)</strong>.
+      </p>
 
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          The Kurdistan Regional Government (KRG) Representation in Moscow is the definitive nucleus for Kurdish diplomatic, business, and media activities in Russia. Both <strong>Kurdistan 24</strong> (correspondents <em>Khoshawi Mohammed</em> & <em>Hemin Tahir Mohammed</em>) and <strong>Rudaw</strong> operate official MFA-accredited television bureaus in Moscow. Additionally, the Representation coordinates bilateral trade delegations with the <strong>Russian-Iraqi Business Council at the Russian Chamber of Commerce and Industry (ТПП РФ)</strong>.
-        </p>
+      <label>Russian Address for Yandex Taxi:</label>
+      <fieldset role="group">
+        <input type="text" value="Трёхпрудный пер., 11/13, стр. 2, оф. 98" readonly />
+        <button class="contrast" onclick="copyText('Трёхпрудный пер., 11/13, стр. 2, оф. 98', this)">Copy RU</button>
+      </fieldset>
+      <p><a href="https://yandex.ru/maps/?text=Москва, Трёхпрудный переулок, 11/13с2" target="_blank" rel="noopener noreferrer">Open Trekhprudny 11/13 on Yandex Maps</a></p>
 
-        <!-- Structured Contact Dossier Card -->
-        <div class="mt-6 p-5 sm:p-6 rounded-xl bg-ink-950/95 border border-ink-800 space-y-3 font-mono text-xs sm:text-sm">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Key Decision Maker:</span>
-            <span class="text-white font-bold text-sm sm:text-base">Danar Mustafa (Acting Representative / Press Secretary)</span>
-          </div>
+      <h4>Direct Contact Dossier: Danar Mustafa (Acting Representative / Press Secretary)</h4>
+      <div class="overflow-auto">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th scope="col">Channel</th>
+              <th scope="col">Contact Detail</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Direct Mobile Phone</td>
+              <td>+7 (915) 264-86-80</td>
+              <td><button class="outline secondary" onclick="copyText('+79152648680', this)">Copy Phone</button></td>
+            </tr>
+            <tr>
+              <td>Diplomatic Landline</td>
+              <td>+7 (499) 130-03-34</td>
+              <td><button class="outline secondary" onclick="copyText('+74991300334', this)">Copy Phone</button></td>
+            </tr>
+            <tr>
+              <td>Official Email</td>
+              <td>russia@gov.krd</td>
+              <td><button class="outline secondary" onclick="copyText('russia@gov.krd', this)">Copy Email</button></td>
+            </tr>
+            <tr>
+              <td>Official Telegram</td>
+              <td>@krgrus</td>
+              <td><button class="outline secondary" onclick="copyText('@krgrus', this)">Copy Telegram</button></td>
+            </tr>
+            <tr>
+              <td>Official Website</td>
+              <td>krgrussia.ru</td>
+              <td><a href="http://krgrussia.ru" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Visit Site</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Moscow Office Address:</span>
-            <button onclick="copyText('Трёхпрудный пер., 11/13, стр. 2, оф. 98', 'KRG Moscow Address')" class="text-signal-sky hover:underline flex items-center gap-1.5 text-left">
-              <span>Трёхпрудный пер., 11/13, стр. 2, оф. 98</span>
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
+      <p>
+        <strong>Action:</strong> Send Script #3 to <code>russia@gov.krd</code> and message <code>@krgrus</code> on Telegram. Then visit Trekhprudny Pereulok in person with your showreel on a tablet. Danar Mustafa can introduce you directly to the Moscow bureau chiefs of <em>Rudaw</em> and <em>Kurdistan 24</em>.
+      </p>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Direct Mobile Phone:</span>
-            <button onclick="copyText('+79152648680', 'Danar Mustafa Mobile')" class="text-signal-emerald hover:underline flex items-center gap-1.5">
-              <span>+7 (915) 264-86-80</span>
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
+      <footer>
+        <a href="./scripts.html#script-3" role="button" class="secondary">Open Pre-Written KRG Introduction Script</a>
+      </footer>
+    </article>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Diplomatic Landline:</span>
-            <button onclick="copyText('+74991300334', 'KRG Landline')" class="text-zinc-200 hover:underline flex items-center gap-1.5">
-              <span>+7 (499) 130-03-34</span>
-              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-            </button>
-          </div>
+    <!-- Target 2: RT Arabic & Sputnik via HSE -->
+    <article>
+      <header>
+        <p><mark>PRIORITY TARGET #2 // INTERNATIONAL BROADCASTING BACKDOOR</mark></p>
+        <h3>Backdoor into RT Arabic, Ruptly & Sputnik via HSE</h3>
+      </header>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Official Electronic Channels:</span>
-            <div class="flex flex-wrap items-center gap-3">
-              <button onclick="copyText('russia@gov.krd', 'KRG Official Email')" class="text-signal-amber hover:underline flex items-center gap-1">
-                <span>russia@gov.krd</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-              <button onclick="copyText('@krgrus', 'KRG Official Telegram')" class="text-signal-sky hover:underline flex items-center gap-1">
-                <span>@krgrus</span> <i data-lucide="copy" class="w-3 h-3"></i>
-              </button>
-              <a href="http://krgrussia.ru" target="_blank" rel="noopener noreferrer" class="text-zinc-300 hover:text-white flex items-center gap-1 underline">
-                <span>krgrussia.ru</span> <i data-lucide="external-link" class="w-3 h-3"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+      <p>
+        <strong>RT Arabic</strong> operates out of their broadcast complex at <em>Ulitsa Borovaya, 3, Bldg 1</em> (Head of RT Arabic: <strong>Maya Manna</strong>), and <strong>Sputnik / RIA Novosti</strong> is at <em>Zubovsky Blvd, 4</em>. Instead of sending a resume into general corporate queues, we utilize a direct insider connection at HSE:
+      </p>
 
-        <!-- Two Commercial & Media Expansion Tracks -->
-        <div class="mt-6 grid md:grid-cols-2 gap-4 text-xs">
-          <div class="p-4 rounded-xl bg-ink-950 border border-ink-800">
-            <span class="font-mono text-signal-amber font-bold uppercase block mb-1">
-              TRACK 01: TV BUREAUS (KURDISTAN 24 & RUDAW)
-            </span>
-            <p class="text-zinc-400 leading-relaxed">
-              MFA-accredited Moscow correspondents <strong>Khoshawi Mohammed</strong> and <strong>Hemin Tahir Mohammed</strong> frequently require local co-producers, field interviewers, and Russian media monitoring assistants for breaking Moscow diplomatic stories. Meeting Danar Mustafa unlocks a direct personal introduction to both teams.
-            </p>
-          </div>
+      <!-- Headquarters Addresses -->
+      <div class="grid">
+        <article>
+          <header><strong>RT Arabic & Ruptly HQ (Borovaya 3, Bldg 1)</strong></header>
+          <fieldset role="group">
+            <input type="text" value="ул. Боровая, 3, стр. 1" readonly />
+            <button class="contrast" onclick="copyText('ул. Боровая, 3, стр. 1', this)">Copy RU</button>
+          </fieldset>
+          <footer><a href="https://yandex.ru/maps/?text=Москва, ул. Боровая, 3с1" target="_blank" rel="noopener noreferrer">Yandex Maps</a></footer>
+        </article>
 
-          <div class="p-4 rounded-xl bg-ink-950 border border-ink-800">
-            <span class="font-mono text-signal-emerald font-bold uppercase block mb-1">
-              TRACK 02: RUSSIAN-IRAQI BUSINESS COUNCIL (ТПП РФ)
-            </span>
-            <p class="text-zinc-400 leading-relaxed">
-              Russian grain, machinery, fertilizer, and IT exporters expanding into Erbil and Baghdad desperately lack bilingual PR/GR directors who understand the local media landscape. The KRG Representation directly connects trusted professionals with executive council members.
-            </p>
-          </div>
-        </div>
+        <article>
+          <header><strong>MIA «Rossiya Segodnya» / Sputnik HQ (Zubovsky Blvd, 4)</strong></header>
+          <fieldset role="group">
+            <input type="text" value="Зубовский бульвар, 4" readonly />
+            <button class="contrast" onclick="copyText('Зубовский бульвар, 4', this)">Copy RU</button>
+          </fieldset>
+          <footer><a href="https://yandex.ru/maps/?text=Москва, Зубовский бульвар, 4" target="_blank" rel="noopener noreferrer">Yandex Maps</a></footer>
+        </article>
+      </div>
 
-        <!-- Tactical Action Plan -->
-        <div class="mt-6 pt-5 border-t border-ink-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="text-xs text-zinc-300 leading-relaxed max-w-2xl">
-            <strong class="text-white font-mono uppercase">Immediate Action Protocol:</strong> Send Script #2 to <code class="text-signal-amber">russia@gov.krd</code> and message <code class="text-signal-sky">@krgrus</code> on Telegram. Then visit the office in Trekhprudny Pereulok in person with your showreel on a tablet.
-          </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <a href="scripts.html#script-2" class="px-3.5 py-2 rounded-lg bg-signal-amber text-black font-mono text-xs font-bold hover:bg-amber-400 transition flex items-center gap-1.5 shadow-sm">
-              <span>Open Script #2</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </section>
+      <h4>Our University Insider: Rami El-Kalyubi (Рами Мохамедович Эль-Кальюби)</h4>
+      <p>
+        Senior Editor at RT Arabic & RIA Novosti Arabic Service; Lecturer at HSE Faculty of World Economy & International Affairs.
+      </p>
 
-      <!-- ===================================================================
-           TARGET 2: RT ARABIC, RUPTLY & SPUTNIK BACKDOOR VIA HSE
-           =================================================================== -->
-      <section class="dossier-card rounded-2xl p-6 sm:p-8 border-l-4 border-l-signal-sky border-ink-700 shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-sky/20 text-signal-sky font-mono text-xs font-bold uppercase tracking-wider">
-                PRIORITY TARGET #2 // INTERNATIONAL BROADCASTING
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Tretyakovskaya / Polyanka Metro
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Backdoor into RT Arabic, Ruptly & Sputnik via HSE
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <span class="text-xs font-mono text-signal-emerald flex items-center gap-1">
-              <i data-lucide="unlock" class="w-3.5 h-3.5"></i> Direct Academic Bridge
-            </span>
-          </div>
-        </div>
+      <label>HSE Campus Office for Yandex Taxi:</label>
+      <fieldset role="group">
+        <input type="text" value="ул. Малая Ордынка, 17, стр. 1, каб. 316" readonly />
+        <button class="contrast" onclick="copyText('ул. Малая Ордынка, 17, стр. 1, каб. 316', this)">Copy RU</button>
+      </fieldset>
+      <p><a href="https://yandex.ru/maps/?text=Москва, ул. Малая Ордынка, 17с1" target="_blank" rel="noopener noreferrer">Open Malaya Ordynka 17 on Yandex Maps</a></p>
 
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          <strong>RT Arabic</strong> operates out of their main broadcast complex at <em>Ulitsa Borovaya, 3, Bldg 1</em> (Head of RT Arabic: <strong>Maya Manna</strong>), while <strong>Sputnik / RIA Novosti (Rossiya Segodnya)</strong> is headquartered at <em>Zubovsky Blvd, 4</em>. Instead of sending a resume into general corporate queues, we utilize an extraordinary direct insider connection teaching at my university (HSE):
-        </p>
+      <p>
+        <strong>The 10-Minute Consultation Plan:</strong> Prepare a 1-page link to your showreel. I will message Rami El-Kalyubi from my official HSE student email using Script #5 to book a 10-minute coffee meeting at Malaya Ordynka so he can pass your portfolio directly to executive producers at RT and Sputnik.
+      </p>
 
-        <!-- Insider Dossier Card -->
-        <div class="mt-6 p-5 sm:p-6 rounded-xl bg-ink-950/95 border border-signal-sky/30 space-y-3 font-mono text-xs sm:text-sm">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Our University Insider:</span>
-            <span class="text-white font-bold text-sm sm:text-base">Rami El-Kalyubi (Рами Мохамедович Эль-Кальюби)</span>
-          </div>
+      <footer>
+        <a href="./scripts.html#script-5" role="button" class="secondary">View Script to Rami El-Kalyubi</a>
+      </footer>
+    </article>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Professional Background:</span>
-            <span class="text-signal-emerald font-semibold">Senior Editor at RT Arabic & RIA Novosti Arabic Service</span>
-          </div>
+    <!-- Target 3: Think Tanks Playbook -->
+    <article>
+      <header>
+        <p><mark>PRIORITY TARGET #3 // THINK TANKS & STRATEGIC PRESS CENTERS</mark></p>
+        <h3>Russian International Affairs Council (RIAC), IV RAN & Valdai Club</h3>
+      </header>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">Academic Position:</span>
-            <span class="text-zinc-200">Lecturer, Faculty of World Economy & International Affairs (HSE)</span>
-          </div>
+      <p>
+        Russian foreign policy think tanks commission paid analytical briefs, invite regional commentators to closed expert roundtables, and publish bilingual op-eds.
+      </p>
 
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-3 border-b border-ink-800/80 gap-1">
-            <span class="text-zinc-400">HSE Campus Office:</span>
-            <div class="flex items-center gap-2">
-              <button onclick="copyText('ул. Малая Ордынка, 17, стр. 1, каб. 316', 'HSE Malaya Ordynka Office')" class="text-signal-sky hover:underline flex items-center gap-1.5">
-                <span>Малая Ордынка, 17, с.1, каб. 316</span>
-                <i data-lucide="copy" class="w-3.5 h-3.5"></i>
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, ул. Малая Ордынка, 17с1" target="_blank" rel="noopener noreferrer" class="text-zinc-400 hover:text-white" title="Yandex Maps">
-                <i data-lucide="map" class="w-3.5 h-3.5"></i>
-              </a>
-            </div>
-          </div>
-        </div>
+      <div class="grid">
+        <!-- IV RAN -->
+        <article>
+          <header><strong>01. IV RAN (Rozhdestvenka, 12)</strong></header>
+          <p>Kuznetsky Most metro. Hosts the Kurdish Studies Sector (Kirill Vertyaev, Vadim Makarenko). High-profile conferences on Nov 11 & Nov 17–18.</p>
+          <fieldset role="group">
+            <input type="text" value="ул. Рождественка, 12" readonly />
+            <button class="contrast" onclick="copyText('ул. Рождественка, 12', this)">Copy RU</button>
+          </fieldset>
+          <footer><a href="./index.html#urgent" role="button" class="secondary">Conference Details</a></footer>
+        </article>
 
-        <!-- Target Media Headquarters -->
-        <div class="mt-6 grid md:grid-cols-2 gap-4 text-xs font-mono">
-          <!-- RT Arabic HQ -->
-          <div class="p-4 rounded-xl bg-ink-950 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-signal-sky mb-2">
-                <span class="font-bold uppercase">RT ARABIC & RUPTLY HEADQUARTERS</span>
-                <span class="text-zinc-500">Aviamotornaya</span>
-              </div>
-              <p class="text-zinc-400 font-sans text-xs leading-relaxed">
-                Primary international studios and Arabic editorial floor. Head of RT Arabic: <strong>Maya Manna</strong>.
-              </p>
-              <div class="mt-2.5 p-2 rounded bg-ink-900 border border-ink-800 text-zinc-300">
-                ул. Боровая, 3, стр. 1
-              </div>
-            </div>
-            <div class="mt-3 pt-2.5 border-t border-ink-800 flex gap-2">
-              <button onclick="copyText('ул. Боровая, 3, стр. 1', 'RT HQ Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs flex items-center gap-1">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, ул. Боровая, 3с1" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs flex items-center gap-1">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-            </div>
-          </div>
+        <!-- RIAC -->
+        <article>
+          <header><strong>02. RIAC / РСМД (4th Tverskaya-Yamskaya, 8)</strong></header>
+          <p>Premier Russian foreign policy think tank. Regularly publishes op-eds on Middle Eastern and Kurdish developments.</p>
+          <fieldset role="group">
+            <input type="text" value="ул. 4-я Тверская-Ямская, 8" readonly />
+            <button class="contrast" onclick="copyText('ул. 4-я Тверская-Ямская, 8', this)">Copy RU</button>
+          </fieldset>
+          <footer><a href="https://russiancouncil.ru" target="_blank" rel="noopener noreferrer" role="button" class="secondary">russiancouncil.ru</a></footer>
+        </article>
 
-          <!-- Sputnik / RIA Novosti HQ -->
-          <div class="p-4 rounded-xl bg-ink-950 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between text-signal-sky mb-2">
-                <span class="font-bold uppercase">MIA «ROSSIYA SEGODNYA» / SPUTNIK</span>
-                <span class="text-zinc-500">Park Kultury</span>
-              </div>
-              <p class="text-zinc-400 font-sans text-xs leading-relaxed">
-                Central federal international multimedia press center, wire agency, and Arabic radio streaming rooms.
-              </p>
-              <div class="mt-2.5 p-2 rounded bg-ink-900 border border-ink-800 text-zinc-300">
-                Зубовский бульвар, 4
-              </div>
-            </div>
-            <div class="mt-3 pt-2.5 border-t border-ink-800 flex gap-2">
-              <button onclick="copyText('Зубовский бульвар, 4', 'Sputnik HQ Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 text-xs flex items-center gap-1">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU for Taxi
-              </button>
-              <a href="https://yandex.ru/maps/?text=Москва, Зубовский бульвар, 4" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 text-xs flex items-center gap-1">
-                <i data-lucide="map" class="w-3 h-3"></i> Yandex Maps
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <!-- How We Execute It -->
-        <div class="mt-6 pt-5 border-t border-ink-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-          <div class="text-xs text-zinc-300 leading-relaxed max-w-2xl">
-            <strong class="text-white font-mono uppercase">The 10-Minute Consultation Strategy:</strong> You prepare a 1-page mobile showreel. I reach out to Rami El-Kalyubi from my official HSE student email using <strong>Script #4</strong> to book a 10-minute chat in Office 316. We show your reel, and ask him to pass your direct contacts to executive producers at RT Arabic.
-          </div>
-          <div class="flex items-center gap-2 shrink-0">
-            <a href="scripts.html#script-4" class="px-3.5 py-2 rounded-lg bg-signal-sky text-black font-mono text-xs font-bold hover:bg-sky-400 transition flex items-center gap-1.5 shadow-sm">
-              <span>Open Script #4</span>
-              <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
-            </a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ===================================================================
-           TARGET 3: THINK TANKS & STRATEGIC PRESS CENTERS PLAYBOOK
-           =================================================================== -->
-      <section class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-emerald/40 hover:border-signal-emerald/70 transition-all shadow-xl">
-        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-5 border-b border-ink-700">
-          <div>
-            <div class="flex items-center gap-2 flex-wrap mb-1.5">
-              <span class="px-2.5 py-0.5 rounded bg-signal-emerald/20 text-signal-emerald font-mono text-xs font-bold uppercase tracking-wider">
-                PRIORITY TARGET #3 // ANALYTICS & OP-ED MONETIZATION
-              </span>
-              <span class="px-2 py-0.5 rounded bg-ink-800 text-zinc-300 font-mono text-xs border border-ink-700">
-                Foreign Policy Think Tanks & Press Hubs
-              </span>
-            </div>
-            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white tracking-tight">
-              Think Tanks & Strategic Press Centers Playbook
-            </h2>
-          </div>
-          <div class="flex flex-wrap items-center gap-2">
-            <a href="scripts.html#script-1" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-signal-amber border border-ink-600 text-xs font-mono transition">
-              <i data-lucide="mail" class="w-3.5 h-3.5"></i>
-              Accreditation Emails
-            </a>
-          </div>
-        </div>
-
-        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
-          Beyond television broadcasting, Russian foreign policy think tanks commission paid analytical briefs, invite international commentators to closed roundtables, and publish bilingual op-eds.
-        </p>
-
-        <!-- 3 Think Tank Hubs -->
-        <div class="mt-6 grid md:grid-cols-3 gap-4 text-xs">
-          <!-- Hub 1: IV RAN -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between font-mono text-signal-red font-bold uppercase mb-1">
-                <span>01. IV RAN</span>
-                <span class="text-zinc-500">Nov 11 & 17–18</span>
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Institute of Oriental Studies</h3>
-              <p class="text-zinc-400 mt-2 leading-relaxed">
-                Kuznetsky Most metro. Hosts the Kurdish Studies Sector (Kirill Vertyaev, Vadim Makarenko). Center of all Middle East academic & media networking in Moscow.
-              </p>
-              <div class="mt-3 p-2 rounded bg-ink-900 border border-ink-800 font-mono text-zinc-300">
-                ул. Рождественка, 12
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('ул. Рождественка, 12', 'IV RAN Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 font-mono text-xs flex items-center gap-1">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU
-              </button>
-              <a href="index.html#urgent" class="px-2.5 py-1.5 rounded bg-signal-red/20 hover:bg-signal-red/30 text-signal-red border border-signal-red/40 font-mono text-xs flex items-center gap-1">
-                <span>Urgent Details</span> <i data-lucide="arrow-right" class="w-3 h-3"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hub 2: RIAC (РСМД) -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between font-mono text-signal-amber font-bold uppercase mb-1">
-                <span>02. RIAC (РСМД)</span>
-                <span class="text-zinc-500">Mayakovskaya</span>
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Russian International Affairs Council</h3>
-              <p class="text-zinc-400 mt-2 leading-relaxed">
-                Russia's premier foreign policy think tank. Actively publishes expert op-eds on Iraqi, Syrian, and Kurdish regional developments in English and Russian.
-              </p>
-              <div class="mt-3 p-2 rounded bg-ink-900 border border-ink-800 font-mono text-zinc-300">
-                ул. 4-я Тверская-Ямская, 8
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <button onclick="copyText('ул. 4-я Тверская-Ямская, 8', 'RIAC Address')" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-700 font-mono text-xs flex items-center gap-1">
-                <i data-lucide="copy" class="w-3 h-3 text-signal-amber"></i> Copy RU
-              </button>
-              <a href="https://russiancouncil.ru" target="_blank" rel="noopener noreferrer" class="px-2.5 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 font-mono text-xs flex items-center gap-1">
-                <span>russiancouncil.ru</span> <i data-lucide="external-link" class="w-3 h-3"></i>
-              </a>
-            </div>
-          </div>
-
-          <!-- Hub 3: Valdai Club -->
-          <div class="p-5 rounded-xl bg-ink-950/90 border border-ink-800 flex flex-col justify-between">
-            <div>
-              <div class="flex items-center justify-between font-mono text-signal-sky font-bold uppercase mb-1">
-                <span>03. VALDAI CLUB</span>
-                <span class="text-zinc-500">Geopolitics</span>
-              </div>
-              <h3 class="font-display font-bold text-white text-base">Valdai Discussion Club</h3>
-              <p class="text-zinc-400 mt-2 leading-relaxed">
-                Hosts high-level Middle East expert conferences with top diplomats and regional media representatives. Accredit as a foreign media researcher via their press pool.
-              </p>
-              <div class="mt-3 p-2 rounded bg-ink-900 border border-ink-800 font-mono text-zinc-300">
-                valdaiclub.com / Press Pool
-              </div>
-            </div>
-            <div class="mt-4 pt-3 border-t border-ink-800 flex flex-wrap gap-2">
-              <a href="https://valdaiclub.com" target="_blank" rel="noopener noreferrer" class="w-full py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-signal-sky border border-ink-700 font-mono text-xs flex items-center justify-center gap-1">
-                <span>valdaiclub.com Press Portal</span> <i data-lucide="external-link" class="w-3 h-3"></i>
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-    </div>
+        <!-- Valdai Club -->
+        <article>
+          <header><strong>03. Valdai Discussion Club</strong></header>
+          <p>Premier geopolitical discussion forum with an active Middle East conference track and international media pool.</p>
+          <p>Official Website: <a href="https://valdaiclub.com" target="_blank" rel="noopener noreferrer">valdaiclub.com</a></p>
+          <footer><a href="https://valdaiclub.com" target="_blank" rel="noopener noreferrer" role="button" class="secondary">Press Portal</a></footer>
+        </article>
+      </div>
+    </article>
 
   </main>
 
   <!-- Footer -->
-  <footer class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 pt-8 border-t border-ink-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
-    <div>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026)</div>
-    <div class="flex items-center gap-2">
-      <span class="w-2 h-2 rounded-full bg-signal-amber"></span>
-      <span>ALL CONTACTS & ADDRESSES VERIFIED // ZERO HR PORTALS</span>
-    </div>
+  <footer class="container">
+    <small>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026) — ZERO HR PORTALS</small>
   </footer>
 
-  <!-- Mobile Bottom Navigation Bar (iOS / Android Native Feel) -->
-  <nav class="mobile-bottom-nav md:hidden" aria-label="Mobile Bottom Navigation">
-    <div class="grid grid-cols-4 h-16 max-w-md mx-auto items-center px-2">
-      <a href="index.html" data-nav="index.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="layout-dashboard" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Overview</span>
-      </a>
-      <a href="studios.html" data-nav="studios.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="video" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Studios</span>
-      </a>
-      <a href="network.html" data-nav="network.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center group">
-        <i data-lucide="briefcase" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Jobs</span>
-      </a>
-      <a href="scripts.html" data-nav="scripts.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
-        <i data-lucide="mail" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
-        <span class="text-[10px] font-mono leading-none tracking-tight">Emails</span>
-      </a>
-    </div>
-  </nav>
-
-  <!-- Client Application Controller -->
-  <script src="assets/app.js"></script>
+  <!-- Scripts -->
+  <script src="./assets/app.js"></script>
 </body>
 </html>
