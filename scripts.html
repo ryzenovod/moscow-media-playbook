@@ -12,17 +12,26 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+        <li><strong>MOSCOW MEDIA PLAYBOOK</strong></li>
       </ul>
       <ul>
-        <li><a href="./index.html">Overview & Urgent</a></li>
-        <li><a href="./studios.html">01. Studios</a></li>
-        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
-        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><a href="./index.html">Overview</a></li>
+        <li><a href="./studios.html">Studios</a></li>
+        <li><a href="./network.html">Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li>
+          <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
+            <option value="en">🇬🇧 EN</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="ku">☀️ Kurmancî</option>
+            <option value="ckb">☀️ کوردی (Soranî)</option>
+          </select>
+        </li>
       </ul>
     </nav>
   </header>
+  <div id="google_translate_element" hidden></div>
 
   <!-- Main Content -->
   <main class="container">
@@ -78,7 +87,7 @@
       <header>
         <p><mark>SCRIPT 01 // MAIN GEOPOLITICS CONFERENCE (NOV 17–18)</mark></p>
         <h3>Accreditation Request for Center for Middle East Studies (IV RAN)</h3>
-        <small>To: <strong>mitrofanenkova.olga@bk.ru</strong>, CC: <strong>pr@ivran.ru</strong></small>
+        <small>To: <strong class="notranslate" translate="no">mitrofanenkova.olga@bk.ru</strong>, CC: <strong class="notranslate" translate="no">pr@ivran.ru</strong></small>
       </header>
 
       <details>
@@ -88,7 +97,7 @@
         </p>
       </details>
 
-      <textarea rows="11" readonly id="textarea-script-1"></textarea>
+      <textarea rows="11" readonly id="textarea-script-1" translate="no" class="notranslate"></textarea>
 
       <footer>
         <div class="grid">
@@ -103,7 +112,7 @@
       <header>
         <p><mark>SCRIPT 02 // URGENT WARM-UP CONFERENCE (NOV 11)</mark></p>
         <h3>Quick Registration for "Asia & Africa at the Crossroads" + Roundtable</h3>
-        <small>To: Dmitry Mileev (<strong>dim.mil@mail.ru</strong>)</small>
+        <small>To: Dmitry Mileev (<strong class="notranslate" translate="no">dim.mil@mail.ru</strong>)</small>
       </header>
 
       <details>
@@ -113,7 +122,7 @@
         </p>
       </details>
 
-      <textarea rows="11" readonly id="textarea-script-2"></textarea>
+      <textarea rows="11" readonly id="textarea-script-2" translate="no" class="notranslate"></textarea>
 
       <footer>
         <div class="grid">
@@ -128,7 +137,7 @@
       <header>
         <p><mark>SCRIPT 03 // KRG MOSCOW & TV BUREAUS</mark></p>
         <h3>Direct Meeting & Collaboration Pitch to Danar Mustafa (KRG Moscow)</h3>
-        <small>To: <strong>russia@gov.krd</strong> / Telegram: <strong>@krgrus</strong></small>
+        <small>To: <strong class="notranslate" translate="no">russia@gov.krd</strong> / Telegram: <strong class="notranslate" translate="no">@krgrus</strong></small>
       </header>
 
       <details>
@@ -138,7 +147,7 @@
         </p>
       </details>
 
-      <textarea rows="11" readonly id="textarea-script-3"></textarea>
+      <textarea rows="11" readonly id="textarea-script-3" translate="no" class="notranslate"></textarea>
 
       <footer>
         <div class="grid">
@@ -153,7 +162,7 @@
       <header>
         <p><mark>SCRIPT 04 // HSE STUDIO PITCH (SENT BY HSE FRIEND)</mark></p>
         <h3>Pitching Joint HSE × RGGU Podcast to «Creative Extracurriculars»</h3>
-        <small>To: <strong>akrasnovskaya@hse.ru</strong>, CC: <strong>rdyakonov@hse.ru</strong></small>
+        <small>To: <strong class="notranslate" translate="no">akrasnovskaya@hse.ru</strong>, CC: <strong class="notranslate" translate="no">rdyakonov@hse.ru</strong></small>
       </header>
 
       <details>
@@ -163,7 +172,7 @@
         </p>
       </details>
 
-      <textarea rows="12" readonly id="textarea-script-4"></textarea>
+      <textarea rows="12" readonly id="textarea-script-4" translate="no" class="notranslate"></textarea>
 
       <footer>
         <div class="grid">
@@ -178,7 +187,7 @@
       <header>
         <p><mark>SCRIPT 05 // RT ARABIC BACKDOOR VIA HSE</mark></p>
         <h3>Requesting 10-Min In-Person Coffee with Rami El-Kalyubi at HSE</h3>
-        <small>To: Rami El-Kalyubi (<strong>Malaya Ordynka 17, Office 316</strong>)</small>
+        <small>To: Rami El-Kalyubi (<strong class="notranslate" translate="no">Malaya Ordynka 17, Office 316</strong>)</small>
       </header>
 
       <details>
@@ -188,7 +197,7 @@
         </p>
       </details>
 
-      <textarea rows="12" readonly id="textarea-script-5"></textarea>
+      <textarea rows="12" readonly id="textarea-script-5" translate="no" class="notranslate"></textarea>
 
       <footer>
         <div class="grid">

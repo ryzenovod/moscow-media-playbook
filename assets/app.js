@@ -1,6 +1,5 @@
 /**
- * MOSCOW MEDIA PLAYBOOK // PURE SEMANTIC CONTROLLER (PICO CSS V2)
- * Handles clipboard copying, state synchronization, and navigation.
+ * MOSCOW MEDIA PLAYBOOK // CONTROLLER (PICO CSS V2 + GOOGLE TRANSLATE)
  */
 
 // 1. Checklist Master Data
@@ -28,7 +27,7 @@ const CHECKLIST_ITEMS = [
   { 
     id: 'step5', 
     title: 'Contact / Visit KRG Office (Danar Mustafa)', 
-    desc: 'Send Script #3 to russia@gov.krd / @krgrus and visit Trekhprudny Pereulok, 11/13 to connect with Rudaw & Kurdistan 24.' 
+    desc: 'Send Script #2 to russia@gov.krd / @krgrus and visit Trekhprudny Pereulok, 11/13 to connect with Rudaw & Kurdistan 24.' 
   },
   { 
     id: 'step6', 
@@ -48,6 +47,7 @@ const CHECKLIST_ITEMS = [
 ];
 
 const STORAGE_KEY = 'moscow_media_playbook_2026_v1';
+const LANG_KEY = 'moscow_media_lang_v1';
 
 // 2. Clipboard Helper with in-button feedback
 function copyText(text, btnElement) {
@@ -90,9 +90,7 @@ function fallbackCopy(text) {
   textarea.select();
   try {
     document.execCommand('copy');
-  } catch (err) {
-    console.error('Fallback copy failed', err);
-  }
+  } catch (err) {}
   document.body.removeChild(textarea);
 }
 
@@ -211,7 +209,49 @@ function highlightActiveNav() {
   });
 }
 
-// 5. Cross-tab synchronization
+// 5. Google Translate Cookie Switcher (EN / RU / KU / CKB)
+function setTranslateCookie(lang) {
+  const cookieVal = `/en/${lang}`;
+  document.cookie = `googtrans=${cookieVal}; path=/;`;
+  if (window.location.hostname) {
+    document.cookie = `googtrans=${cookieVal}; path=/; domain=.${window.location.hostname};`;
+    document.cookie = `googtrans=${cookieVal}; path=/; domain=${window.location.hostname};`;
+  }
+  localStorage.setItem(LANG_KEY, lang);
+}
+
+function changeLanguage(lang) {
+  setTranslateCookie(lang);
+  window.location.reload();
+}
+
+window.googleTranslateElementInit = function() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'en',
+    includedLanguages: 'en,ru,ku,ckb',
+    autoDisplay: false
+  }, 'google_translate_element');
+};
+
+function initLanguageSwitcher() {
+  const savedLang = localStorage.getItem(LANG_KEY) || 'en';
+  const select = document.getElementById('lang-switcher');
+  if (select) {
+    select.value = savedLang;
+  }
+  if (savedLang !== 'en') {
+    setTranslateCookie(savedLang);
+  }
+
+  if (!document.getElementById('google-translate-script')) {
+    const script = document.createElement('script');
+    script.id = 'google-translate-script';
+    script.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    document.body.appendChild(script);
+  }
+}
+
+// 6. Cross-tab synchronization
 window.addEventListener('storage', (e) => {
   if (e.key === STORAGE_KEY) {
     updateGlobalProgressBadge();
@@ -219,12 +259,17 @@ window.addEventListener('storage', (e) => {
       renderChecklist();
     }
   }
+  if (e.key === LANG_KEY) {
+    const select = document.getElementById('lang-switcher');
+    if (select) select.value = e.newValue || 'en';
+  }
 });
 
-// 6. DOM Lifecycle
+// 7. Lifecycle Initialization
 document.addEventListener('DOMContentLoaded', () => {
   highlightActiveNav();
   updateGlobalProgressBadge();
+  initLanguageSwitcher();
   if (document.getElementById('checklist-container')) {
     renderChecklist();
   }

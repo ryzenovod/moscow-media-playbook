@@ -12,17 +12,26 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+        <li><strong>MOSCOW MEDIA PLAYBOOK</strong></li>
       </ul>
       <ul>
-        <li><a href="./index.html">Overview & Urgent</a></li>
-        <li><a href="./studios.html">01. Studios</a></li>
-        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
-        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><a href="./index.html">Overview</a></li>
+        <li><a href="./studios.html">Studios</a></li>
+        <li><a href="./network.html">Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li>
+          <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
+            <option value="en">🇬🇧 EN</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="ku">☀️ Kurmancî</option>
+            <option value="ckb">☀️ کوردی (Soranî)</option>
+          </select>
+        </li>
       </ul>
     </nav>
   </header>
+  <div id="google_translate_element" hidden></div>
 
   <!-- Main Content -->
   <main class="container">
@@ -53,7 +62,7 @@
           </header>
           <p>Kholodilny Pereulok, 3, Bldg 1, Str. 8. Includes Pro Video Studio + "Content Farm" for reels and podcasts.</p>
           <fieldset role="group">
-            <input type="text" value="Холодильный переулок, 3, корп. 1, стр. 8" readonly />
+            <input type="text" value="Холодильный переулок, 3, корп. 1, стр. 8" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('Холодильный переулок, 3, корп. 1, стр. 8', this)">Copy RU</button>
           </fieldset>
           <footer>
@@ -68,13 +77,13 @@
           </header>
           <p>Prospekt Vernadskogo, 14. Video Studio + Sound Isolation Studio + Adobe CC Editing Bay.</p>
           <fieldset role="group">
-            <input type="text" value="проспект Вернадского, 14" readonly />
+            <input type="text" value="проспект Вернадского, 14" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('проспект Вернадского, 14', this)">Copy RU</button>
           </fieldset>
           <footer>
             <div class="grid">
               <a href="https://yandex.ru/maps/?text=Москва, проспект Вернадского, 14" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Yandex Maps</a>
-              <button class="outline secondary" onclick="copyText('@molodej_moscow_zv', this)">TG: @molodej_moscow_zv</button>
+              <button class="outline secondary notranslate" translate="no" onclick="copyText('@molodej_moscow_zv', this)">TG: @molodej_moscow_zv</button>
             </div>
           </footer>
         </article>
@@ -109,7 +118,7 @@
 
       <label>Russian Address for Yandex Taxi:</label>
       <fieldset role="group">
-        <input type="text" value="Хитровский пер., 2/8, корп. 5" readonly />
+        <input type="text" value="Хитровский пер., 2/8, корп. 5" readonly translate="no" class="notranslate" />
         <button class="contrast" onclick="copyText('Хитровский пер., 2/8, корп. 5', this)">Copy RU</button>
       </fieldset>
       <p><a href="https://yandex.ru/maps/?text=Москва, Хитровский переулок, 2/8 корпус 5" target="_blank" rel="noopener noreferrer">Open Khitrovsky 2/8 on Yandex Maps</a></p>
@@ -130,37 +139,37 @@
             <tr>
               <td><strong>Anna Krasnovskaya</strong></td>
               <td>Curator, "Creative Extracurriculars" (Our main entry door)</td>
-              <td>akrasnovskaya@hse.ru</td>
-              <td><button class="outline secondary" onclick="copyText('akrasnovskaya@hse.ru', this)">Copy Email</button></td>
+              <td class="notranslate" translate="no">akrasnovskaya@hse.ru</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('akrasnovskaya@hse.ru', this)">Copy Email</button></td>
             </tr>
             <tr>
               <td><strong>Roman Dyakonov</strong></td>
               <td>Office P-205 (Deputy Director / Stage Director — Student Projects)</td>
-              <td>rdyakonov@hse.ru</td>
-              <td><button class="outline secondary" onclick="copyText('rdyakonov@hse.ru', this)">Copy Email</button></td>
+              <td class="notranslate" translate="no">rdyakonov@hse.ru</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('rdyakonov@hse.ru', this)">Copy Email</button></td>
             </tr>
             <tr>
               <td><strong>Sergey Pavlov</strong></td>
               <td>Office P-206 (Director of HSE Media Center)</td>
-              <td>svpavlov@hse.ru / +7 (495) 772-95-90 x23227</td>
+              <td class="notranslate" translate="no">svpavlov@hse.ru / +7 (495) 772-95-90 x23227</td>
               <td>
-                <button class="outline secondary" onclick="copyText('svpavlov@hse.ru', this)">Email</button>
-                <button class="outline secondary" onclick="copyText('+74957729590', this)">Phone</button>
+                <button class="outline secondary notranslate" translate="no" onclick="copyText('svpavlov@hse.ru', this)">Email</button>
+                <button class="outline secondary notranslate" translate="no" onclick="copyText('+74957729590', this)">Phone</button>
               </td>
             </tr>
             <tr>
               <td><strong>Elena Tultseva</strong></td>
               <td>Office P-216 (Deputy Director — TV Studio & Sound Booking)</td>
-              <td>tultseva@mail.ru</td>
-              <td><button class="outline secondary" onclick="copyText('tultseva@mail.ru', this)">Copy Email</button></td>
+              <td class="notranslate" translate="no">tultseva@mail.ru</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('tultseva@mail.ru', this)">Copy Email</button></td>
             </tr>
             <tr>
               <td><strong>Sergey Tsymbal</strong></td>
               <td>Office P-215 (Chief Engineer — Broadcast Gear Checkout)</td>
-              <td>stsymbal@hse.ru / +7 (964) 638-89-44</td>
+              <td class="notranslate" translate="no">stsymbal@hse.ru / +7 (964) 638-89-44</td>
               <td>
-                <button class="outline secondary" onclick="copyText('stsymbal@hse.ru', this)">Email</button>
-                <button class="outline secondary" onclick="copyText('+79646388944', this)">Phone</button>
+                <button class="outline secondary notranslate" translate="no" onclick="copyText('stsymbal@hse.ru', this)">Email</button>
+                <button class="outline secondary notranslate" translate="no" onclick="copyText('+79646388944', this)">Phone</button>
               </td>
             </tr>
           </tbody>
@@ -184,7 +193,7 @@
       </p>
 
       <fieldset role="group">
-        <input type="text" value="Миусская пл., 6" readonly />
+        <input type="text" value="Миусская пл., 6" readonly translate="no" class="notranslate" />
         <button class="contrast" onclick="copyText('Миусская пл., 6', this)">Copy RU for Taxi</button>
       </fieldset>
       <p><a href="https://yandex.ru/maps/?text=Москва, Миусская площадь, 6" target="_blank" rel="noopener noreferrer">Open RGGU Main Campus on Yandex Maps</a></p>
@@ -204,8 +213,8 @@
           <header><strong>3. Mikhail Boldyrev</strong></header>
           <p>Center for Project & Communication Technologies. Coordinates university digital lab initiatives.</p>
           <footer>
-            <button class="outline secondary" onclick="copyText('der_kikr@rggu.ru', this)">Copy der_kikr@rggu.ru</button>
-            <button class="outline secondary" onclick="copyText('+74952506390', this)">Copy +7 (495) 250-63-90</button>
+            <button class="outline secondary notranslate" translate="no" onclick="copyText('der_kikr@rggu.ru', this)">Copy der_kikr@rggu.ru</button>
+            <button class="outline secondary notranslate" translate="no" onclick="copyText('+74952506390', this)">Copy +7 (495) 250-63-90</button>
           </footer>
         </article>
       </div>
@@ -231,12 +240,12 @@
           <p>RUDN has the largest Kurdish and Arab student community in Russia and a TV production center at the Philological Faculty.</p>
           <p>Contact: <strong>Hassi Oussama</strong> (President, Arab & Middle East Association RUDN)</p>
           <fieldset role="group">
-            <input type="text" value="ул. Миклухо-Маклая, 6" readonly />
+            <input type="text" value="ул. Миклухо-Маклая, 6" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('ул. Миклухо-Маклая, 6', this)">Copy RU</button>
           </fieldset>
           <footer>
             <div class="grid">
-              <button class="outline secondary" onclick="copyText('1032249774@rudn.ru', this)">Copy 1032249774@rudn.ru</button>
+              <button class="outline secondary notranslate" translate="no" onclick="copyText('1032249774@rudn.ru', this)">Copy 1032249774@rudn.ru</button>
               <a href="https://yandex.ru/maps/?text=Москва, ул. Миклухо-Маклая, 6" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Yandex Maps</a>
             </div>
           </footer>
@@ -249,7 +258,7 @@
           </header>
           <p>Bolshaya Sadovaya, 1. Central youth library with an acoustically isolated podcast/sound studio and creator workstations.</p>
           <fieldset role="group">
-            <input type="text" value="Большая Садовая ул., 1" readonly />
+            <input type="text" value="Большая Садовая ул., 1" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('Большая Садовая ул., 1', this)">Copy RU</button>
           </fieldset>
           <footer>

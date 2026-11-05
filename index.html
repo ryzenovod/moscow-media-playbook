@@ -12,17 +12,26 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+        <li><strong>MOSCOW MEDIA PLAYBOOK</strong></li>
       </ul>
       <ul>
-        <li><a href="./index.html">Overview & Urgent</a></li>
-        <li><a href="./studios.html">01. Studios</a></li>
-        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
-        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><a href="./index.html">Overview</a></li>
+        <li><a href="./studios.html">Studios</a></li>
+        <li><a href="./network.html">Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li>
+          <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
+            <option value="en">🇬🇧 EN</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="ku">☀️ Kurmancî</option>
+            <option value="ckb">☀️ کوردی (Soranî)</option>
+          </select>
+        </li>
       </ul>
     </nav>
   </header>
+  <div id="google_translate_element" hidden></div>
 
   <!-- Main Content -->
   <main class="container">
@@ -60,7 +69,7 @@
 
       <label>Russian Address for Yandex Taxi:</label>
       <fieldset role="group">
-        <input type="text" value="ул. Рождественка, 12" readonly />
+        <input type="text" value="ул. Рождественка, 12" readonly translate="no" class="notranslate" />
         <button class="contrast" onclick="copyText('ул. Рождественка, 12', this)">Copy RU</button>
       </fieldset>
 
@@ -74,7 +83,7 @@
           <p>Includes the Young Researchers Roundtable "The East in a Changing World". Great warm-up networking event.</p>
           <footer>
             <small>Organizer: Dmitry Mileev</small><br />
-            <button class="outline secondary" onclick="copyText('dim.mil@mail.ru', this)">Copy dim.mil@mail.ru</button>
+            <button class="outline secondary notranslate" translate="no" onclick="copyText('dim.mil@mail.ru', this)">Copy dim.mil@mail.ru</button>
           </footer>
         </article>
 
@@ -91,15 +100,15 @@
                 <tbody>
                   <tr>
                     <td>Org. Secretary (Olga Evseenko)</td>
-                    <td><button class="outline secondary" onclick="copyText('mitrofanenkova.olga@bk.ru', this)">Copy mitrofanenkova.olga@bk.ru</button></td>
+                    <td><button class="outline secondary notranslate" translate="no" onclick="copyText('mitrofanenkova.olga@bk.ru', this)">Copy mitrofanenkova.olga@bk.ru</button></td>
                   </tr>
                   <tr>
                     <td>Press Accreditation (Dmitry Burmistrov)</td>
-                    <td><button class="outline secondary" onclick="copyText('pr@ivran.ru', this)">Copy pr@ivran.ru</button></td>
+                    <td><button class="outline secondary notranslate" translate="no" onclick="copyText('pr@ivran.ru', this)">Copy pr@ivran.ru</button></td>
                   </tr>
                   <tr>
                     <td>Center Direct Phone</td>
-                    <td><button class="outline secondary" onclick="copyText('+74951327353', this)">Copy +7 (495) 132-73-53</button></td>
+                    <td><button class="outline secondary notranslate" translate="no" onclick="copyText('+74951327353', this)">Copy +7 (495) 132-73-53</button></td>
                   </tr>
                 </tbody>
               </table>
@@ -142,8 +151,8 @@
         <ol>
           <li><strong>Phase 01 (The Q&A Anchor):</strong> Sit in rows 1–3. When Q&A opens, raise your hand: <em>"I'm [Name], former Kurdish TV anchor / foreign correspondent, now researching at RGGU..."</em> Ask a sharp question. This anchors your authority in the room.</li>
           <li><strong>Phase 02 (The 90-Second Sprint):</strong> Skip the coffee line. Walk directly to the speaker's podium within 90 seconds before crowds gather around Vadim Makarenko or Kirill Vertyaev.</li>
-          <li><strong>Phase 03 (Elevator Pitch in Russian):</strong> Say: <em>"Добрый день! Я [Имя], только что задавал вопрос. Я несколько лет вел эфиры на Ближнем Востоке, сейчас в Москве. Ищу форматы работы с московскими редакциями."</em></li>
-          <li><strong>Phase 04 (Digital Handoff):</strong> Keep your phone unlocked with a lockscreen QR code leading to your showreel: <em>"Вот секундный QR-код на мои эфиры, давайте обменяемся контактами в Telegram."</em></li>
+          <li><strong>Phase 03 (Elevator Pitch in Russian):</strong> Say: <em translate="no" class="notranslate">"Добрый день! Я [Имя], только что задавал вопрос. Я несколько лет вел эфиры на Ближнем Востоке, сейчас в Москве. Ищу форматы работы с московскими редакциями."</em></li>
+          <li><strong>Phase 04 (Digital Handoff):</strong> Keep your phone unlocked with a lockscreen QR code leading to your showreel: <em translate="no" class="notranslate">"Вот секундный QR-код на мои эфиры, давайте обменяемся контактами в Telegram."</em></li>
         </ol>
       </details>
 

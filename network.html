@@ -12,17 +12,26 @@
   <header class="container">
     <nav>
       <ul>
-        <li><strong>MOSCOW MEDIA PLAYBOOK // 2026</strong></li>
+        <li><strong>MOSCOW MEDIA PLAYBOOK</strong></li>
       </ul>
       <ul>
-        <li><a href="./index.html">Overview & Urgent</a></li>
-        <li><a href="./studios.html">01. Studios</a></li>
-        <li><a href="./network.html">02. Jobs & Bureaus</a></li>
-        <li><a href="./scripts.html">03. RU Scripts</a></li>
+        <li><a href="./index.html">Overview</a></li>
+        <li><a href="./studios.html">Studios</a></li>
+        <li><a href="./network.html">Jobs & Bureaus</a></li>
+        <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li>
+          <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
+            <option value="en">🇬🇧 EN</option>
+            <option value="ru">🇷🇺 RU</option>
+            <option value="ku">☀️ Kurmancî</option>
+            <option value="ckb">☀️ کوردی (Soranî)</option>
+          </select>
+        </li>
       </ul>
     </nav>
   </header>
+  <div id="google_translate_element" hidden></div>
 
   <!-- Main Content -->
   <main class="container">
@@ -83,7 +92,7 @@
 
       <label>Russian Address for Yandex Taxi:</label>
       <fieldset role="group">
-        <input type="text" value="Трёхпрудный пер., 11/13, стр. 2, оф. 98" readonly />
+        <input type="text" value="Трёхпрудный пер., 11/13, стр. 2, оф. 98" readonly translate="no" class="notranslate" />
         <button class="contrast" onclick="copyText('Трёхпрудный пер., 11/13, стр. 2, оф. 98', this)">Copy RU</button>
       </fieldset>
       <p><a href="https://yandex.ru/maps/?text=Москва, Трёхпрудный переулок, 11/13с2" target="_blank" rel="noopener noreferrer">Open Trekhprudny 11/13 on Yandex Maps</a></p>
@@ -101,27 +110,27 @@
           <tbody>
             <tr>
               <td>Direct Mobile Phone</td>
-              <td>+7 (915) 264-86-80</td>
-              <td><button class="outline secondary" onclick="copyText('+79152648680', this)">Copy Phone</button></td>
+              <td class="notranslate" translate="no">+7 (915) 264-86-80</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('+79152648680', this)">Copy Phone</button></td>
             </tr>
             <tr>
               <td>Diplomatic Landline</td>
-              <td>+7 (499) 130-03-34</td>
-              <td><button class="outline secondary" onclick="copyText('+74991300334', this)">Copy Phone</button></td>
+              <td class="notranslate" translate="no">+7 (499) 130-03-34</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('+74991300334', this)">Copy Phone</button></td>
             </tr>
             <tr>
               <td>Official Email</td>
-              <td>russia@gov.krd</td>
-              <td><button class="outline secondary" onclick="copyText('russia@gov.krd', this)">Copy Email</button></td>
+              <td class="notranslate" translate="no">russia@gov.krd</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('russia@gov.krd', this)">Copy Email</button></td>
             </tr>
             <tr>
               <td>Official Telegram</td>
-              <td>@krgrus</td>
-              <td><button class="outline secondary" onclick="copyText('@krgrus', this)">Copy Telegram</button></td>
+              <td class="notranslate" translate="no">@krgrus</td>
+              <td><button class="outline secondary notranslate" translate="no" onclick="copyText('@krgrus', this)">Copy Telegram</button></td>
             </tr>
             <tr>
               <td>Official Website</td>
-              <td>krgrussia.ru</td>
+              <td class="notranslate" translate="no">krgrussia.ru</td>
               <td><a href="http://krgrussia.ru" target="_blank" rel="noopener noreferrer" role="button" class="outline secondary">Visit Site</a></td>
             </tr>
           </tbody>
@@ -153,7 +162,7 @@
         <article>
           <header><strong>RT Arabic & Ruptly HQ (Borovaya 3, Bldg 1)</strong></header>
           <fieldset role="group">
-            <input type="text" value="ул. Боровая, 3, стр. 1" readonly />
+            <input type="text" value="ул. Боровая, 3, стр. 1" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('ул. Боровая, 3, стр. 1', this)">Copy RU</button>
           </fieldset>
           <footer><a href="https://yandex.ru/maps/?text=Москва, ул. Боровая, 3с1" target="_blank" rel="noopener noreferrer">Yandex Maps</a></footer>
@@ -162,7 +171,7 @@
         <article>
           <header><strong>MIA «Rossiya Segodnya» / Sputnik HQ (Zubovsky Blvd, 4)</strong></header>
           <fieldset role="group">
-            <input type="text" value="Зубовский бульвар, 4" readonly />
+            <input type="text" value="Зубовский бульвар, 4" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('Зубовский бульвар, 4', this)">Copy RU</button>
           </fieldset>
           <footer><a href="https://yandex.ru/maps/?text=Москва, Зубовский бульвар, 4" target="_blank" rel="noopener noreferrer">Yandex Maps</a></footer>
@@ -176,7 +185,7 @@
 
       <label>HSE Campus Office for Yandex Taxi:</label>
       <fieldset role="group">
-        <input type="text" value="ул. Малая Ордынка, 17, стр. 1, каб. 316" readonly />
+        <input type="text" value="ул. Малая Ордынка, 17, стр. 1, каб. 316" readonly translate="no" class="notranslate" />
         <button class="contrast" onclick="copyText('ул. Малая Ордынка, 17, стр. 1, каб. 316', this)">Copy RU</button>
       </fieldset>
       <p><a href="https://yandex.ru/maps/?text=Москва, ул. Малая Ордынка, 17с1" target="_blank" rel="noopener noreferrer">Open Malaya Ordynka 17 on Yandex Maps</a></p>
@@ -207,7 +216,7 @@
           <header><strong>01. IV RAN (Rozhdestvenka, 12)</strong></header>
           <p>Kuznetsky Most metro. Hosts the Kurdish Studies Sector (Kirill Vertyaev, Vadim Makarenko). High-profile conferences on Nov 11 & Nov 17–18.</p>
           <fieldset role="group">
-            <input type="text" value="ул. Рождественка, 12" readonly />
+            <input type="text" value="ул. Рождественка, 12" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('ул. Рождественка, 12', this)">Copy RU</button>
           </fieldset>
           <footer><a href="./index.html#urgent" role="button" class="secondary">Conference Details</a></footer>
@@ -218,7 +227,7 @@
           <header><strong>02. RIAC / РСМД (4th Tverskaya-Yamskaya, 8)</strong></header>
           <p>Premier Russian foreign policy think tank. Regularly publishes op-eds on Middle Eastern and Kurdish developments.</p>
           <fieldset role="group">
-            <input type="text" value="ул. 4-я Тверская-Ямская, 8" readonly />
+            <input type="text" value="ул. 4-я Тверская-Ямская, 8" readonly translate="no" class="notranslate" />
             <button class="contrast" onclick="copyText('ул. 4-я Тверская-Ямская, 8', this)">Copy RU</button>
           </fieldset>
           <footer><a href="https://russiancouncil.ru" target="_blank" rel="noopener noreferrer" role="button" class="secondary">russiancouncil.ru</a></footer>
