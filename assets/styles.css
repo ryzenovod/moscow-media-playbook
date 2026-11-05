@@ -1,0 +1,179 @@
+/* ==========================================================================
+   MOSCOW MEDIA PLAYBOOK // CORE STYLESHEET (2026 EDITION)
+   Dark Editorial & Broadcast Terminal Aesthetic
+   ========================================================================== */
+
+/* 1. Native Cross-Document View Transitions (2026 Modern Web Standard) */
+@media (prefers-reduced-motion: no-preference) {
+  @view-transition {
+    navigation: auto;
+  }
+}
+
+::view-transition-old(root) {
+  animation: 140ms cubic-bezier(0.4, 0, 1, 1) both fade-out;
+}
+
+::view-transition-new(root) {
+  animation: 220ms cubic-bezier(0, 0, 0.2, 1) both fade-in;
+}
+
+@keyframes fade-out {
+  from { opacity: 1; transform: scale(1); }
+  to { opacity: 0; transform: scale(0.995); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.995); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+/* 2. Global Document & Theme Defaults */
+:root {
+  --color-ink-950: #09090B;
+  --color-ink-900: #101014;
+  --color-ink-800: #18181E;
+  --color-ink-700: #262730;
+  --color-ink-600: #383A47;
+  
+  --color-signal-amber: #F59E0B;
+  --color-signal-red: #EF4444;
+  --color-signal-emerald: #10B981;
+  --color-signal-sky: #38BDF8;
+}
+
+html {
+  color-scheme: dark;
+  scroll-behavior: smooth;
+  scrollbar-color: #262730 #101014;
+  scrollbar-width: thin;
+}
+
+body {
+  background-color: #09090B;
+  color: #F4F4F6;
+  background-image: radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.045) 1px, transparent 0);
+  background-size: 24px 24px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* 3. Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #101014;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #262730;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #383A47;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #09090B;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: #262730;
+  border-radius: 2px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: #383A47;
+}
+
+/* 4. Glassmorphism & Surface Cards */
+.glass-header {
+  background: rgba(9, 9, 11, 0.88);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.dossier-card {
+  background: #101014;
+  border: 1px solid #262730;
+  transition: border-color 0.2s ease, transform 0.18s ease, box-shadow 0.2s ease;
+}
+
+.dossier-card:hover {
+  border-color: #383A47;
+}
+
+/* 5. Live Radar Pulse Indicator */
+@keyframes pulse-fast {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.35; transform: scale(0.92); }
+}
+
+.live-dot {
+  animation: pulse-fast 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* 6. Navigation Link Active States */
+.nav-link {
+  transition: all 0.15s ease;
+}
+
+.nav-active {
+  background-color: #18181E !important;
+  color: #F59E0B !important;
+  border: 1px solid rgba(245, 158, 11, 0.35) !important;
+}
+
+.mobile-nav-active {
+  color: #F59E0B !important;
+}
+
+.mobile-nav-active svg,
+.mobile-nav-active i {
+  stroke: #F59E0B !important;
+}
+
+/* 7. Native-feel Mobile Bottom Navigation Bar */
+.mobile-bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: rgba(16, 16, 20, 0.94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-top: 1px solid #262730;
+  padding-bottom: env(safe-area-inset-bottom, 8px);
+}
+
+@supports not (backdrop-filter: blur(16px)) {
+  .mobile-bottom-nav {
+    background: #101014;
+  }
+}
+
+/* Safe touch feedback on iOS/Android */
+.bottom-nav-item {
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+}
+
+.bottom-nav-item:active {
+  transform: scale(0.94);
+  transition: transform 0.1s ease;
+}
+
+/* 8. Code & Mono formatting helpers */
+pre, code {
+  font-family: "JetBrains Mono", monospace;
+}

@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MOSCOW MEDIA PLAYBOOK // INSIDER DOSSIER 2026</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            ink: {
+              950: '#09090B',
+              900: '#101014',
+              800: '#18181E',
+              700: '#262730',
+              600: '#383A47'
+            },
+            signal: {
+              amber: '#F59E0B',
+              red: '#EF4444',
+              emerald: '#10B981',
+              sky: '#38BDF8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    body {
+      background-color: #09090B;
+      color: #F4F4F6;
+      background-image: 
+        radial-gradient(circle at 1px 1px, rgba(255, 255, 255, 0.04) 1px, transparent 0);
+      background-size: 24px 24px;
+    }
+    .glass-header {
+      background: rgba(9, 9, 11, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+    .dossier-card {
+      background: #101014;
+      border: 1px solid #262730;
+      transition: border-color 0.2s ease, transform 0.15s ease;
+    }
+    .dossier-card:hover {
+      border-color: #383A47;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #101014;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #262730;
+      border-radius: 3px;
+    }
+    @keyframes pulse-fast {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.35; }
+    }
+    .live-dot {
+      animation: pulse-fast 1.8s infinite;
+    }
+  </style>
+</head>
+<body class="min-h-screen antialiased selection:bg-signal-amber selection:text-black pb-24">
+
+  <!-- Toast Notification for Clipboard -->
+  <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-ink-800 border border-signal-amber/60 text-white px-4 py-3 rounded-lg shadow-2xl">
+    <i data-lucide="check-circle-2" class="w-5 h-5 text-signal-amber shrink-0"></i>
+    <div>
+      <p class="font-mono text-xs uppercase tracking-wider text-signal-amber">Copied to Clipboard</p>
+      <p id="toast-text" class="text-sm font-medium text-zinc-200 truncate max-w-xs"></p>
+    </div>
+  </div>
+
+  <!-- Top Sticky Status Bar -->
+  <header class="sticky top-0 z-40 glass-header border-b border-ink-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <span class="w-2.5 h-2.5 rounded-full bg-signal-amber live-dot"></span>
+        <span class="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100">
+          MOSCOW MEDIA PLAYBOOK <span class="text-zinc-500">//</span> <span class="text-signal-amber">NOV 2026</span>
+        </span>
+      </div>
+      
+      <!-- Navigation Pills -->
+      <nav class="hidden md:flex items-center gap-1 font-mono text-xs">
+        <a href="#urgent" class="px-3 py-1.5 rounded hover:bg-ink-800 text-signal-red font-medium flex items-center gap-1.5">
+          <i data-lucide="flame" class="w-3.5 h-3.5"></i> Urgent (Nov 11–18)
+        </a>
+        <a href="#studios" class="px-3 py-1.5 rounded hover:bg-ink-800 text-zinc-300 hover:text-white transition">01. Free Studios</a>
+        <a href="#jobs" class="px-3 py-1.5 rounded hover:bg-ink-800 text-zinc-300 hover:text-white transition">02. Jobs & Bureaus</a>
+        <a href="#scripts" class="px-3 py-1.5 rounded hover:bg-ink-800 text-zinc-300 hover:text-white transition">03. RU Email Scripts</a>
+        <a href="#checklist" class="px-3 py-1.5 rounded hover:bg-ink-800 text-signal-emerald font-medium">Checklist</a>
+      </nav>
+
+      <!-- Progress Counter -->
+      <div class="flex items-center gap-2 bg-ink-800 border border-ink-700 px-3 py-1.5 rounded text-xs font-mono">
+        <span class="text-zinc-400">ACTION PROGRESS:</span>
+        <span id="progress-badge" class="text-signal-emerald font-bold">0/8</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-16">
+
+    <!-- HERO BRIEFING -->
+    <section class="relative">
+      <div class="inline-flex items-center gap-2 px-3 py-1 rounded bg-signal-amber/10 border border-signal-amber/30 text-signal-amber font-mono text-xs mb-4">
+        <i data-lucide="radio" class="w-3.5 h-3.5"></i>
+        PREPARED FOR: RGGU JOURNALIST // KURDISH & MIDDLE EAST DESK
+      </div>
+      <h1 class="font-display text-3xl sm:text-5xl font-bold tracking-tight text-white leading-tight max-w-4xl">
+        Studio Access & Direct Media Hiring in Moscow — <span class="text-zinc-400">Bypassing Standard HR & University Bureaucracy.</span>
+      </h1>
+      <p class="mt-4 text-zinc-400 text-base sm:text-lg max-w-3xl leading-relaxed">
+        Forget <code class="text-zinc-200 font-mono text-sm bg-ink-800 px-1.5 py-0.5 rounded">hh.ru</code> (automated HR filters skip foreign diplomas/passports) and standard dean's office requests. Right now, Russian media and business councils have a massive pivot to the Middle East. This interactive briefing contains verified <strong>direct contacts, room numbers, Russian addresses for Yandex Taxi, and pre-written Russian emails</strong> so you and I (from HSE) can get you into a studio and in front of chief editors this week.
+      </p>
+
+      <!-- Quick Legend -->
+      <div class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-3 pt-4 border-t border-ink-800 font-mono text-xs text-zinc-400">
+        <div class="flex items-center gap-2">
+          <i data-lucide="copy" class="w-4 h-4 text-signal-amber"></i> Click any contact to copy
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="map-pin" class="w-4 h-4 text-signal-sky"></i> Copy RU address for Yandex Go
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="mail" class="w-4 h-4 text-signal-emerald"></i> Ready-made Russian emails below
+        </div>
+        <div class="flex items-center gap-2">
+          <i data-lucide="check-square" class="w-4 h-4 text-purple-400"></i> Progress saves automatically
+        </div>
+      </div>
+    </section>
+
+    <!-- URGENT ALERT: NOVEMBER 2026 CONFERENCES -->
+    <section id="urgent" class="scroll-mt-20">
+      <div class="rounded-xl bg-gradient-to-r from-red-950/40 via-ink-900 to-ink-900 border border-signal-red/50 p-6 sm:p-8 relative overflow-hidden">
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 pb-6 border-b border-ink-700">
+          <div>
+            <div class="inline-flex items-center gap-2 text-signal-red font-mono text-xs uppercase font-bold tracking-wider mb-1">
+              <span class="w-2 h-2 rounded-full bg-signal-red live-dot"></span>
+              TIME-SENSITIVE OPPORTUNITY // NOVEMBER 2026
+            </div>
+            <h2 class="font-display text-2xl sm:text-3xl font-bold text-white">
+              Institute of Oriental Studies (IV RAN) — In-Person Networking
+            </h2>
+          </div>
+          <div class="flex flex-wrap gap-2">
+            <button onclick="copyText('ул. Рождественка, 12', 'IV RAN Address (RU)')" class="inline-flex items-center gap-2 px-3 py-2 rounded bg-ink-800 hover:bg-ink-700 border border-ink-600 text-xs font-mono text-zinc-200 transition">
+              <i data-lucide="navigation" class="w-3.5 h-3.5 text-signal-sky"></i>
+              Copy RU for Yandex Taxi: ул. Рождественка, 12
+            </button>
+          </div>
+        </div>
+
+        <p class="mt-4 text-zinc-300 text-sm sm:text-base leading-relaxed">
+          All top Middle East chief editors (RT, Sputnik, TASS, Kurdistan.ru) and analysts gather at <strong>IV RAN</strong> (Kuznetsky Most metro). Two major conferences are happening <strong>over the next 12 days</strong>. You must accredit as a Kurdish journalist / RGGU researcher, raise your hand during the Q&A, introduce yourself with your past media title, ask a sharp question, and approach the speakers at the coffee break with a QR code to your portfolio.
+        </p>
+
+        <!-- Two Events Grid -->
+        <div class="mt-6 grid md:grid-cols-2 gap-4">
+          <!-- Event 1 -->
+          <div class="bg-ink-950/80 border border-ink-700 rounded-lg p-5">
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="px-2 py-0.5 rounded bg-signal-amber/20 text-signal-amber font-bold">EVENT 01 // NOV 11 (WED)</span>
+              <span class="text-signal-red font-bold">APPLY IMMEDIATELY</span>
+            </div>
+            <h3 class="font-display text-lg font-bold text-white">IX Conference "Asia & Africa at the Crossroads" + Roundtable</h3>
+            <p class="text-xs text-zinc-400 mt-1">Includes the Young Researchers Roundtable "The East in a Changing World". Great warm-up networking event.</p>
+            <div class="mt-4 pt-3 border-t border-ink-800 space-y-2 font-mono text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-400">Organizer: Dmitry Mileev</span>
+                <button onclick="copyText('dim.mil@mail.ru', 'Dmitry Mileev Email')" class="text-signal-amber hover:underline flex items-center gap-1">
+                  dim.mil@mail.ru <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Event 2 -->
+          <div class="bg-ink-950/80 border border-signal-red/40 rounded-lg p-5">
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="px-2 py-0.5 rounded bg-signal-red/20 text-signal-red font-bold">MAIN TARGET // NOV 17–18 (TUE–WED)</span>
+              <span class="text-zinc-400">CENTER FOR MIDDLE EAST STUDIES</span>
+            </div>
+            <h3 class="font-display text-lg font-bold text-white">XV Conference "Geopolitics in the Fate of Muslim Countries"</h3>
+            <p class="text-xs text-zinc-400 mt-1">Organized directly by the Center for Middle East Studies at IV RAN. Every major Kurdish & Middle East expert in Moscow will be in this room.</p>
+            <div class="mt-4 pt-3 border-t border-ink-800 space-y-2 font-mono text-xs">
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-400">Org. Secretary (Olga Evseenko):</span>
+                <button onclick="copyText('mitrofanenkova.olga@bk.ru', 'Olga Evseenko Email')" class="text-signal-amber hover:underline flex items-center gap-1">
+                  mitrofanenkova.olga@bk.ru <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-400">Press Accreditation (Dmitry Burmistrov):</span>
+                <button onclick="copyText('pr@ivran.ru', 'IV RAN Press Email')" class="text-signal-amber hover:underline flex items-center gap-1">
+                  pr@ivran.ru <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="text-zinc-400">Center Direct Phone:</span>
+                <button onclick="copyText('+74951327353', 'IV RAN Phone')" class="text-zinc-200 hover:underline flex items-center gap-1">
+                  +7 (495) 132-73-53 <i data-lucide="copy" class="w-3 h-3"></i>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- VIP Targets at IV RAN -->
+        <div class="mt-6 bg-ink-950/90 border border-ink-700 rounded-lg p-5">
+          <p class="font-mono text-xs uppercase tracking-wider text-signal-amber mb-3 flex items-center gap-2">
+            <i data-lucide="crosshair" class="w-4 h-4"></i>
+            3 VIPs You Must Approach in Person at the Coffee Break:
+          </p>
+          <div class="grid sm:grid-cols-3 gap-4 text-sm">
+            <div class="p-3 rounded bg-ink-900 border border-ink-800">
+              <p class="font-bold text-white">1. Vadim Makarenko</p>
+              <p class="text-xs font-mono text-signal-emerald mt-0.5">Editor-in-Chief, Kurdistan.ru</p>
+              <p class="text-xs text-zinc-400 mt-2">Senior Researcher at IV RAN & Head of Regional Studies at MGLU. He is the #1 bridge between Kurdish journalism and Russian media in Moscow.</p>
+            </div>
+            <div class="p-3 rounded bg-ink-900 border border-ink-800">
+              <p class="font-bold text-white">2. Kirill Vertyaev</p>
+              <p class="text-xs font-mono text-signal-sky mt-0.5">Head of Kurdish Studies Sector</p>
+              <p class="text-xs text-zinc-400 mt-2">Runs the official Kurdish Studies Sector (Сектор курдоведения) at IV RAN. Regularly quoted by major state media.</p>
+            </div>
+            <div class="p-3 rounded bg-ink-900 border border-ink-800">
+              <p class="font-bold text-white">3. Lana Ravandi-Fadai</p>
+              <p class="text-xs font-mono text-purple-400 mt-0.5">Senior Researcher, IV RAN</p>
+              <p class="text-xs text-zinc-400 mt-2">Leading specialist on "Russia and the Kurdish Factor" & Iranian/Middle Eastern media dynamics.</p>
+            </div>
+          </div>
+          <div class="mt-4 flex justify-end">
+            <a href="#scripts" class="inline-flex items-center gap-1.5 text-xs font-mono text-signal-amber hover:underline">
+              Jump to Pre-Written Russian Accreditation Email <i data-lucide="arrow-down-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECTION 01: FREE PROFESSIONAL STUDIOS -->
+    <section id="studios" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-ink-700 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="font-mono text-xs text-signal-emerald uppercase tracking-widest">MODULE 01 // PRODUCTION INFRASTRUCTURE</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">Where to Shoot for Free (Zero or Low Bureaucracy)</h2>
+        </div>
+        <span class="font-mono text-xs text-zinc-400">4 Verified Moscow Options</span>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+
+        <!-- Studio Card 1: Molodezh Moskvy -->
+        <div class="dossier-card rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded bg-signal-emerald/15 text-signal-emerald font-mono text-xs font-bold">
+                #1 BEST HACK // 100% FREE CITY STUDIO
+              </span>
+              <span class="font-mono text-xs text-zinc-400">Daily 10:00–20:00</span>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">«Molodezh Moskvy» Pro Media Studios</h3>
+            <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+              Run by the Moscow City Government for anyone aged 14–35. Zero university deans or paperwork. They provide a full <strong>Video Studio, Podcast/Media Studio, Audio Booth, and Editing Suites (with Adobe Creative Cloud & Maxon)</strong> completely free.
+            </p>
+
+            <!-- Two Hubs -->
+            <div class="mt-4 space-y-3">
+              <div class="p-3.5 rounded-lg bg-ink-950 border border-ink-800">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-signal-sky">HUB A: TULSKAYA METRO (Ryabovskaya Manufactory)</span>
+                  <button onclick="copyText('Холодильный переулок, 3, корп. 1, стр. 8', 'Tulskaya Studio Address')" class="text-xs font-mono text-zinc-300 hover:text-signal-amber flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3 h-3"></i> Copy RU
+                  </button>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Kholodilny Pereulok, 3, Bldg 1, Str. 8. Includes Pro Video Studio + "Content Farm".</p>
+              </div>
+
+              <div class="p-3.5 rounded-lg bg-ink-950 border border-ink-800">
+                <div class="flex items-center justify-between">
+                  <span class="font-mono text-xs font-bold text-signal-sky">HUB B: PROSPEKT VERNADSKOGO («Zvyozdny»)</span>
+                  <button onclick="copyText('проспект Вернадского, 14', 'Zvyozdny Studio Address')" class="text-xs font-mono text-zinc-300 hover:text-signal-amber flex items-center gap-1">
+                    <i data-lucide="map-pin" class="w-3 h-3"></i> Copy RU
+                  </button>
+                </div>
+                <p class="text-xs text-zinc-400 mt-1">Prospekt Vernadskogo, 14. Video Studio + Sound Studio + Adobe CC Editing Room.</p>
+                <div class="mt-2 pt-2 border-t border-ink-800 flex items-center justify-between font-mono text-xs">
+                  <span class="text-zinc-500">Waitlist / Admin Telegram:</span>
+                  <button onclick="copyText('@molodej_moscow_zv', 'Zvyozdny Admin TG')" class="text-signal-amber hover:underline flex items-center gap-1">
+                    @molodej_moscow_zv <i data-lucide="copy" class="w-3 h-3"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="mt-6 pt-4 border-t border-ink-800">
+            <p class="text-xs text-zinc-300 bg-ink-800/70 p-3 rounded border border-ink-700">
+              <strong class="text-signal-amber font-mono">HOW WE BOOK IT:</strong> If <a href="https://mosmolodezh.ru" target="_blank" class="underline text-white">mosmolodezh.ru</a> asks for Russian citizenship/registration, just tell me the date & time you want — <strong>I will book the slot under my name in 2 minutes</strong> and we walk in together!
+            </p>
+          </div>
+        </div>
+
+        <!-- Studio Card 2: HSE Media Center -->
+        <div class="dossier-card rounded-xl p-6 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <span class="px-2.5 py-1 rounded bg-signal-amber/15 text-signal-amber font-mono text-xs font-bold">
+                #2 MY UNIVERSITY // HSE MEDIA CENTER (FCI)
+              </span>
+              <button onclick="copyText('Хитровский пер., 2/8, корп. 5', 'HSE Media Center Address')" class="font-mono text-xs text-zinc-300 hover:text-signal-amber flex items-center gap-1">
+                <i data-lucide="map-pin" class="w-3.5 h-3.5"></i> Khitrovsky, 2/8
+              </button>
+            </div>
+            <h3 class="font-display text-xl font-bold text-white">HSE TV & Media Production Center (МИТТЦ)</h3>
+            <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+              Full broadcast TV studio, cyclorama, green screen, lighting rig, and sound rooms. <strong>The Rule:</strong> Personal blogs aren't allowed; bookings require an official memo (служебная записка) 5 days in advance tied to an HSE project. <strong>Our Bypass:</strong> We pitch a joint "HSE × RGGU Middle East Video Podcast" through HSE Creative Extracurriculars.
+            </p>
+
+            <!-- Direct Insiders List -->
+            <div class="mt-4 space-y-2 font-mono text-xs">
+              <div class="p-2.5 rounded bg-ink-950 border border-ink-800 flex items-center justify-between">
+                <div>
+                  <span class="text-white font-bold block">Anna Krasnovskaya</span>
+                  <span class="text-zinc-400 text-[11px]">Curator, HSE "Creative Extracurriculars" (Our entry point)</span>
+                </div>
+                <button onclick="copyText('akrasnovskaya@hse.ru', 'Anna Krasnovskaya Email')" class="px-2 py-1 rounded bg-ink-800 text-signal-amber hover:bg-ink-700">
+                  akrasnovskaya@hse.ru
+                </button>
+              </div>
+
+              <div class="p-2.5 rounded bg-ink-950 border border-ink-800 flex items-center justify-between">
+                <div>
+                  <span class="text-white font-bold block">Roman Dyakonov (Office P-205)</span>
+                  <span class="text-zinc-400 text-[11px]">Deputy Director / Stage Director (Student project resources)</span>
+                </div>
+                <button onclick="copyText('rdyakonov@hse.ru', 'Roman Dyakonov Email')" class="px-2 py-1 rounded bg-ink-800 text-signal-amber hover:bg-ink-700">
+                  rdyakonov@hse.ru
+                </button>
+              </div>
+
+              <div class="p-2.5 rounded bg-ink-950 border border-ink-800 flex items-center justify-between">
+                <div>
+                  <span class="text-white font-bold block">Sergey Pavlov (Office P-206)</span>
+                  <span class="text-zinc-400 text-[11px]">Director of HSE Media Center (External/Internal production)</span>
+                </div>
+                <button onclick="copyText('svpavlov@hse.ru', 'Sergey Pavlov Email')" class="px-2 py-1 rounded bg-ink-800 text-signal-amber hover:bg-ink-700">
+                  svpavlov@hse.ru
+                </button>
+              </div>
+
+              <div class="p-2.5 rounded bg-ink-950 border border-ink-800 flex items-center justify-between">
+                <div>
+                  <span class="text-white font-bold block">Elena Tultseva (Office P-216)</span>
+                  <span class="text-zinc-400 text-[11px]">Deputy Director — Direct TV Studio & Audio Booking</span>
+                </div>
+                <button onclick="copyText('tultseva@mail.ru', 'Elena Tultseva Email')" class="px-2 py-1 rounded bg-ink-800 text-signal-amber hover:bg-ink-700">
+                  tultseva@mail.ru
+                </button>
+              </div>
+
+              <div class="p-2.5 rounded bg-ink-950 border border-ink-800 flex items-center justify-between">
+                <div>
+                  <span class="text-white font-bold block">Sergey Tsymbal (Office P-215)</span>
+                  <span class="text-zinc-400 text-[11px]">Chief Engineer (Gear checkout): +7 (964) 638-89-44</span>
+                </div>
+                <button onclick="copyText('stsymbal@hse.ru', 'Sergey Tsymbal Email')" class="px-2 py-1 rounded bg-ink-800 text-zinc-300 hover:bg-ink-700">
+                  stsymbal@hse.ru
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Studio Card 3: RGGU Internal Bypass -->
+        <div class="dossier-card rounded-xl p-6">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded bg-purple-500/15 text-purple-300 font-mono text-xs font-bold">
+              #3 YOUR UNI (RGGU) // GOING OVER THEIR HEADS
+            </span>
+            <span class="font-mono text-xs text-zinc-400">Miusskaya Sq., 6</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">How to Override the "No" at RGGU</h3>
+          <p class="text-sm text-zinc-400 mt-2">
+            Low-level administrators always say no because they don't want responsibility. Go straight to the TV professionals and student media heads at RGGU who actually need high-profile content:
+          </p>
+          <ul class="mt-4 space-y-3 text-sm">
+            <li class="p-3 rounded bg-ink-950 border border-ink-800">
+              <span class="font-bold text-white block">1. Vladislav Flyarkovsky (Director, Institute of Mass Media & Advertising)</span>
+              <span class="text-xs text-zinc-400 block mt-1">He is a legendary Russian TV journalist himself. Walk up to him in person with your video reel on a tablet/phone. A real TV boss respects another pro and can unlock the RGGU TV studio with one phone call.</span>
+            </li>
+            <li class="p-3 rounded bg-ink-950 border border-ink-800">
+              <span class="font-bold text-white block">2. Anastasia Gavrilova — Head of Student Media «RGGU.LIVE»</span>
+              <span class="text-xs text-zinc-400 block mt-1">Find <code class="text-purple-300">RGGU.LIVE</code> on VK/Telegram. Offer a collab: they book the studio under their student media quota and put their logo in the corner; you deliver broadcast-level interviews.</span>
+            </li>
+            <li class="p-3 rounded bg-ink-950 border border-ink-800 flex items-center justify-between gap-2">
+              <div>
+                <span class="font-bold text-white block">3. Mikhail Boldyrev (Center for Project & Comm. Tech)</span>
+                <span class="text-xs text-zinc-400 block mt-0.5">Tel: +7 (495) 250-63-90</span>
+              </div>
+              <button onclick="copyText('der_kikr@rggu.ru', 'RGGU Media Comm Email')" class="px-2.5 py-1.5 rounded bg-ink-800 font-mono text-xs text-signal-amber shrink-0">
+                der_kikr@rggu.ru
+              </button>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Studio Card 4: RUDN & Svetlovka -->
+        <div class="dossier-card rounded-xl p-6">
+          <div class="flex items-center justify-between gap-2 mb-3">
+            <span class="px-2.5 py-1 rounded bg-signal-sky/15 text-signal-sky font-mono text-xs font-bold">
+              #4 BACKUP HUBS // RUDN & SVETLOVKA
+            </span>
+            <span class="font-mono text-xs text-zinc-400">International & Library Hubs</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">RUDN Middle East Association & Svetlovka Media Lab</h3>
+          <p class="text-sm text-zinc-400 mt-2">
+            RUDN University has the strongest Kurdish and Arab student community in Russia and a full TV production center at the Philological Faculty (Mass Communications Dept).
+          </p>
+          <div class="mt-4 space-y-3 font-mono text-xs">
+            <div class="p-3.5 rounded bg-ink-950 border border-ink-800">
+              <div class="flex items-center justify-between">
+                <span class="text-white font-bold">Hassi Oussama (President, Arab & Middle East Assoc. RUDN)</span>
+                <button onclick="copyText('1032249774@rudn.ru', 'Hassi Oussama RUDN Email')" class="text-signal-amber hover:underline">
+                  1032249774@rudn.ru
+                </button>
+              </div>
+              <p class="text-zinc-400 font-sans text-xs mt-1">Connect via him or the Kurdish student association at RUDN (Miklukho-Maklaya, 6) to co-host a Middle East media project in RUDN's TV studio.</p>
+            </div>
+
+            <div class="p-3.5 rounded bg-ink-950 border border-ink-800">
+              <div class="flex items-center justify-between">
+                <span class="text-white font-bold">«Svetlovka» Library Media Center (Mayakovskaya)</span>
+                <button onclick="copyText('Большая Садовая ул., 1', 'Svetlovka Address')" class="text-signal-sky hover:underline">
+                  Copy RU Address
+                </button>
+              </div>
+              <p class="text-zinc-400 font-sans text-xs mt-1">Bolshaya Sadovaya, 1 (<a href="https://svetlovka.ru" target="_blank" class="underline text-zinc-200">svetlovka.ru</a>). Modernized Moscow library with a sound/podcast studio and student-friendly space booking.</p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 02: DIRECT JOBS, BUREAUS & INSIDERS -->
+    <section id="jobs" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-ink-700 pb-4 flex flex-col sm:flex-row sm:items-end justify-between gap-2">
+        <div>
+          <span class="font-mono text-xs text-signal-amber uppercase tracking-widest">MODULE 02 // CAREER & MONETIZATION</span>
+          <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">Direct Doors to TV Bureaus, RT Arabic & Business Councils</h2>
+        </div>
+        <span class="font-mono text-xs text-zinc-400">Zero HR Portals — Direct Decision Makers</span>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Job Lead 1: KRG Representation + Rudaw / Kurdistan 24 -->
+        <div class="dossier-card rounded-xl p-6 border-l-4 border-l-signal-amber">
+          <div class="flex items-center justify-between font-mono text-xs text-signal-amber mb-2">
+            <span>PRIORITY TARGET #1 // KURDISH MEDIA & BUSINESS HUB</span>
+            <span>MAYAKOVSKAYA METRO</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">KRG Representation in Russia + «Kurdistan 24» & «Rudaw» Bureaus</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            Both <strong>Kurdistan 24</strong> (correspondents <em>Khoshawi Mohammed</em> & <em>Hemin Tahir Mohammed</em>) and <strong>Rudaw</strong> have official MFA-accredited bureaus in Moscow. Additionally, the KRG Representation actively organizes business missions with the <strong>Russian-Iraqi Business Council (at the Russian Chamber of Commerce)</strong> — Russian exporters desperately need PR/media directors who know the region.
+          </p>
+
+          <div class="mt-5 p-4 rounded-lg bg-ink-950 border border-ink-800 space-y-2.5 font-mono text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Key Contact:</span>
+              <span class="text-white font-bold">Danar Mustafa (Acting Rep / Press Sec)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Moscow Office:</span>
+              <button onclick="copyText('Трёхпрудный пер., 11/13, стр. 2, оф. 98', 'KRG Moscow Address')" class="text-signal-sky hover:underline flex items-center gap-1">
+                Трёхпрудный пер., 11/13, с.2, оф. 98 <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Direct Mobile:</span>
+              <button onclick="copyText('+79152648680', 'KRG Mobile')" class="text-signal-emerald hover:underline flex items-center gap-1">
+                +7 (915) 264-86-80 <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Landline:</span>
+              <button onclick="copyText('+74991300334', 'KRG Landline')" class="text-zinc-200 hover:underline flex items-center gap-1">
+                +7 (499) 130-03-34 <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Official Email & TG:</span>
+              <div class="flex items-center gap-3">
+                <button onclick="copyText('russia@gov.krd', 'KRG Email')" class="text-signal-amber hover:underline">russia@gov.krd</button>
+                <button onclick="copyText('@krgrus', 'KRG Telegram')" class="text-signal-sky hover:underline">@krgrus</button>
+              </div>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs text-zinc-400">
+            <strong class="text-white">Action:</strong> Call or visit Trekhprudny Pereulok in person with your portfolio. Through Danar Mustafa, you can get introduced directly to the Moscow bureau chiefs of <em>Rudaw</em> and <em>Kurdistan 24</em> in one afternoon.
+          </p>
+        </div>
+
+        <!-- Job Lead 2: RT Arabic / Sputnik Backdoor via HSE -->
+        <div class="dossier-card rounded-xl p-6 border-l-4 border-l-signal-sky">
+          <div class="flex items-center justify-between font-mono text-xs text-signal-sky mb-2">
+            <span>PRIORITY TARGET #2 // INTERNATIONAL BROADCASTING</span>
+            <span>TRETYAKOVSKAYA / POLYANKA</span>
+          </div>
+          <h3 class="font-display text-xl font-bold text-white">Backdoor into RT Arabic, Ruptly & Sputnik via HSE</h3>
+          <p class="text-sm text-zinc-400 mt-2 leading-relaxed">
+            <strong>RT Arabic</strong> HQ is at <em>Ulitsa Borovaya, 3, Bldg 1</em> (Head of RT Arabic: <strong>Maya Manna</strong>), and <strong>Sputnik / RIA Novosti</strong> is at <em>Zubovsky Blvd, 4</em>. Instead of sending a CV into their general inbox, we have a direct insider teaching at my university (HSE):
+          </p>
+
+          <div class="mt-5 p-4 rounded-lg bg-ink-950 border border-ink-800 space-y-2.5 font-mono text-xs">
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">HSE Insider:</span>
+              <span class="text-white font-bold">Rami El-Kalyubi (Рами Эль-Кальюби)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">Background:</span>
+              <span class="text-signal-emerald">Editor at RT Arabic & RIA Novosti Arabic</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">HSE Campus Office:</span>
+              <button onclick="copyText('ул. Малая Ордынка, 17, стр. 1, каб. 316', 'HSE Malaya Ordynka Address')" class="text-signal-sky hover:underline flex items-center gap-1">
+                Малая Ордынка, 17, с.1, каб. 316 <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="text-zinc-400">RT Arabic HQ Address:</span>
+              <button onclick="copyText('ул. Боровая, 3, стр. 1', 'RT HQ Address')" class="text-zinc-300 hover:underline flex items-center gap-1">
+                ул. Боровая, 3, стр. 1 <i data-lucide="copy" class="w-3 h-3"></i>
+              </button>
+            </div>
+          </div>
+
+          <p class="mt-4 text-xs text-zinc-400">
+            <strong class="text-white">Action:</strong> Prepare a clean 1-page link/PDF of your best TV reports and reels. I will message Rami El-Kalyubi from my HSE student account to book a 10-minute coffee/consultation at Malaya Ordynka so he can pass your CV directly to the executive producers at RT and Sputnik.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- SECTION 03: READY-TO-SEND RUSSIAN EMAIL SCRIPTS -->
+    <section id="scripts" class="scroll-mt-20 space-y-6">
+      <div class="border-b border-ink-700 pb-4">
+        <span class="font-mono text-xs text-purple-400 uppercase tracking-widest">MODULE 03 // READY-TO-SEND RUSSIAN TEMPLATES</span>
+        <h2 class="font-display text-2xl sm:text-3xl font-bold text-white mt-1">Pre-Written Russian Emails (One-Click Copy or Open in Mail)</h2>
+        <p class="text-sm text-zinc-400 mt-1">Just fill in your <code class="text-signal-amber">[Name / Phone / Portfolio Link]</code> and click <strong>Copy Russian Text</strong> or <strong>Open in Mail App</strong>.</p>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-6">
+
+        <!-- Script 1: IV RAN Nov 17-18 Conference -->
+        <div class="dossier-card rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="text-signal-red font-bold">SCRIPT 01 // IV RAN ACCREDITATION (NOV 17–18)</span>
+              <span class="text-zinc-500">To: mitrofanenkova.olga@bk.ru, pr@ivran.ru</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white">Request to Attend Middle East Conference at IV RAN</h3>
+            <p class="text-xs text-zinc-400 mt-1 italic">English meaning: Polite request as a professional Kurdish journalist & RGGU researcher to attend the Nov 17–18 Geopolitics conference as press/listener.</p>
+            
+            <pre id="script-1" class="mt-3 p-3 rounded bg-ink-950 border border-ink-800 text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-48 overflow-y-auto">Уважаемая Ольга Евгеньевна, уважаемые коллеги!
+
+Меня зовут [ВАШЕ ИМЯ], я профессиональный курдский тележурналист (опыт работы на Ближнем Востоке — [УКАЗАТЬ КАНАЛ/СМИ]) и в настоящее время обучаюсь в РГГУ в Москве.
+
+Прошу зарегистрировать меня в качестве участника (слушателя / представителя СМИ) на XV Всероссийскую конференцию «Геополитика в судьбе мусульманских стран к югу от исторических рубежей России», которая состоится 17–18 ноября 2026 года в ИВ РАН на ул. Рождественка, 12.
+
+Буду рад возможности лично присутствовать на секциях Центра изучения стран Ближнего и Среднего Востока.
+
+С уважением,
+[ВАШЕ ИМЯ И ФАМИЛИЯ]
+Телефон / Telegram: [ВАШ НОМЕР]
+Портфолио: [ССЫЛКА]</pre>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 pt-3 border-t border-ink-800">
+            <button onclick="copyElementText('script-1', 'IV RAN Russian Email Script')" class="flex-1 py-2 px-3 rounded bg-signal-amber text-black font-mono text-xs font-bold hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Russian Text
+            </button>
+            <a href="mailto:mitrofanenkova.olga@bk.ru?cc=pr@ivran.ru&subject=Заявка%20на%20участие%20в%20конференции%2017-18%20ноября%20(ИВ%20РАН)" class="py-2 px-3 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 font-mono text-xs flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Open Mail App
+            </a>
+          </div>
+        </div>
+
+        <!-- Script 2: KRG Representation & Media Pitch -->
+        <div class="dossier-card rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="text-signal-amber font-bold">SCRIPT 02 // KRG MOSCOW & TV BUREAUS</span>
+              <span class="text-zinc-500">To: russia@gov.krd / TG: @krgrus</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white">Direct Intro to Danar Mustafa (KRG Representation)</h3>
+            <p class="text-xs text-zinc-400 mt-1 italic">English meaning: Introduces your journalism background in Kurdistan, states you are now based in Moscow at RGGU, and asks for a brief meeting at Trekhprudny Pereulok.</p>
+            
+            <pre id="script-2" class="mt-3 p-3 rounded bg-ink-950 border border-ink-800 text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-48 overflow-y-auto">Уважаемый господин Данар Мустафа!
+
+Приветствую Вас! Меня зовут [ВАШЕ ИМЯ], я профессиональный журналист из Курдистана (ранее работал в [НАЗВАНИЕ СМИ/КАНАЛА]), сейчас живу в Москве и учусь в РГГУ.
+
+Я активно развиваю медиапроекты в Москве и хотел бы предложить свое профессиональное содействие в информационном освещении деятельности Представительства и деловых миссий, а также буду очень признателен за возможность короткой личной встречи в Представительстве в Трехпрудном переулке и знакомства с коллегами из московских бюро курдских СМИ.
+
+Направляю ссылку на свои телевизионные работы: [ССЫЛКА НА ПОРТФОЛИО]
+
+С уважением,
+[ВАШЕ ИМЯ]
+Тел. / Telegram: [ВАШ НОМЕР]</pre>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 pt-3 border-t border-ink-800">
+            <button onclick="copyElementText('script-2', 'KRG Russian Email Script')" class="flex-1 py-2 px-3 rounded bg-signal-amber text-black font-mono text-xs font-bold hover:bg-amber-400 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Russian Text
+            </button>
+            <a href="mailto:russia@gov.krd?subject=Сотрудничество%20в%20сфере%20СМИ%20в%20Москве%20/%20Встреча" class="py-2 px-3 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 font-mono text-xs flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Open Mail App
+            </a>
+          </div>
+        </div>
+
+        <!-- Script 3: HSE Media Center Pitch (Sent by HSE Friend) -->
+        <div class="dossier-card rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="text-signal-emerald font-bold">SCRIPT 03 // HSE STUDIO PITCH (FOR ME TO SEND)</span>
+              <span class="text-zinc-500">To: akrasnovskaya@hse.ru, rdyakonov@hse.ru</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white">Pitching Our Joint Podcast to HSE Creative Extracurriculars</h3>
+            <p class="text-xs text-zinc-400 mt-1 italic">English meaning: I will send this from my HSE email to register our show as a joint student project so we get official free access to the HSE TV studio on Khitrovka.</p>
+            
+            <pre id="script-3" class="mt-3 p-3 rounded bg-ink-950 border border-ink-800 text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-48 overflow-y-auto">Добрый день, Анна и Роман Вячеславович!
+
+Я студент НИУ ВШЭ. Мы совместно с коллегой — профессиональным тележурналистом с Ближнего Востока (сейчас учится в магистратуре РГГУ, имеет большой опыт работы в кадре и продюсирования) — запускаем англо/русскоязычный видеоподкаст и серию интервью о культуре, медиа и бизнесе Ближнего Востока.
+
+Подскажите, пожалуйста, как мы можем интегрировать этот проект в рамки «Креативной Внеучебки» ФКИ или привлечь студентов ОП «Медиакоммуникации» в команду (операторов/продюсеров для их портфолио), чтобы официально бронировать телестудию или тон-ателье Медиацентра ФКИ на Хитровке?
+
+Будем очень признательны за короткую консультацию!
+
+С уважением,
+[ИМЯ СТУДЕНТА ВШЭ]
+Telegram: [КОНТАКТ]</pre>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 pt-3 border-t border-ink-800">
+            <button onclick="copyElementText('script-3', 'HSE Studio Pitch Script')" class="flex-1 py-2 px-3 rounded bg-signal-emerald text-black font-mono text-xs font-bold hover:bg-emerald-400 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Russian Text
+            </button>
+            <a href="mailto:akrasnovskaya@hse.ru?cc=rdyakonov@hse.ru&subject=Международный%20медиапроект%20/%20Съемки%20в%20Медиацентре%20ФКИ" class="py-2 px-3 rounded bg-ink-800 hover:bg-ink-700 text-zinc-200 font-mono text-xs flex items-center gap-1.5">
+              <i data-lucide="external-link" class="w-3.5 h-3.5"></i> Open Mail App
+            </a>
+          </div>
+        </div>
+
+        <!-- Script 4: Note to Rami El-Kalyubi (RT Arabic / HSE) -->
+        <div class="dossier-card rounded-xl p-5 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center justify-between font-mono text-xs mb-2">
+              <span class="text-signal-sky font-bold">SCRIPT 04 // RT ARABIC BACKDOOR VIA HSE</span>
+              <span class="text-zinc-500">To: Rami El-Kalyubi (Malaya Ordynka, 17, Office 316)</span>
+            </div>
+            <h3 class="font-display text-base font-bold text-white">Requesting 10-Min Coffee with Rami El-Kalyubi at HSE</h3>
+            <p class="text-xs text-zinc-400 mt-1 italic">English meaning: Polite message to HSE lecturer & RT Arabic / RIA Novosti veteran Rami El-Kalyubi asking to introduce you and show your portfolio.</p>
+            
+            <pre id="script-4" class="mt-3 p-3 rounded bg-ink-950 border border-ink-800 text-xs text-zinc-300 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-48 overflow-y-auto">Уважаемый Рами Мохамедович, добрый день!
+
+Извините за беспокойство. Я учусь в ВШЭ, а мой близкий друг — профессиональный тележурналист из Иракского Курдистана (сейчас учится в РГГУ в Москве, имеет серьезный опыт репортажной и студийной работы на Ближнем Востоке).
+
+Поскольку Вы обладаете огромным практическим опытом работы в RT Arabic и международных редакциях в Москве, можно ли нам подойти к Вам на Малую Ордынку, 17 (в каб. 316) буквально на 10 минут в удобное для Вас время за коротким профессиональным советом, кому в московских ближневосточных редакциях сейчас может быть наиболее интересен специалист его уровня?
+
+Портфолио и резюме друга: [ССЫЛКА]
+
+Заранее большое спасибо!
+С уважением,
+[ИМЯ]</pre>
+          </div>
+          <div class="mt-4 flex flex-wrap gap-2 pt-3 border-t border-ink-800">
+            <button onclick="copyElementText('script-4', 'Rami El-Kalyubi Intro Script')" class="flex-1 py-2 px-3 rounded bg-signal-sky text-black font-mono text-xs font-bold hover:bg-sky-300 transition flex items-center justify-center gap-1.5">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i> Copy Russian Text
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- INTERACTIVE EXECUTION CHECKLIST -->
+    <section id="checklist" class="scroll-mt-20">
+      <div class="dossier-card rounded-xl p-6 sm:p-8 border border-ink-700">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-ink-800">
+          <div>
+            <span class="font-mono text-xs text-signal-emerald uppercase tracking-widest">MODULE 04 // TACTICAL TRACKER</span>
+            <h2 class="font-display text-2xl font-bold text-white mt-1">Your Step-by-Step Action Checklist</h2>
+            <p class="text-xs text-zinc-400 mt-0.5">Tick these off as we execute them. Progress is saved automatically in your browser.</p>
+          </div>
+          <button onclick="resetChecklist()" class="self-start sm:self-auto px-3 py-1.5 rounded bg-ink-800 hover:bg-ink-700 text-zinc-400 hover:text-white font-mono text-xs transition">
+            Reset Tracker
+          </button>
+        </div>
+
+        <div id="checklist-container" class="mt-6 grid sm:grid-cols-2 gap-3">
+          <!-- Populated dynamically via JS -->
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 pt-8 border-t border-ink-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+    <div>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026)</div>
+    <div>ALL CONTACTS & ADDRESSES VERIFIED</div>
+  </footer>
+
+  <script>
+    // Initialize Lucide icons
+    lucide.createIcons();
+
+    // Clipboard helper with Toast
+    let toastTimeout;
+    function copyText(text, label) {
+      navigator.clipboard.writeText(text).then(() => {
+        showToast(`${label}: ${text}`);
+      });
+    }
+
+    function copyElementText(elementId, label) {
+      const el = document.getElementById(elementId);
+      if (!el) return;
+      navigator.clipboard.writeText(el.innerText).then(() => {
+        showToast(`Copied ${label}`);
+      });
+    }
+
+    function showToast(message) {
+      const toast = document.getElementById('toast');
+      const toastText = document.getElementById('toast-text');
+      toastText.textContent = message;
+      toast.classList.remove('translate-y-20', 'opacity-0');
+      clearTimeout(toastTimeout);
+      toastTimeout = setTimeout(() => {
+        toast.classList.add('translate-y-20', 'opacity-0');
+      }, 2600);
+    }
+
+    // Interactive Checklist Data
+    const checklistItems = [
+      { id: 'step1', title: 'Package Portfolio + QR Code', desc: 'Put your best TV reports/reels into 1 clean link (Notion/Drive) and generate a QR code for your phone lockscreen.' },
+      { id: 'step2', title: 'Email IV RAN for Nov 17–18 Conference', desc: 'Send Script #1 to mitrofanenkova.olga@bk.ru and pr@ivran.ru to register for the Middle East conference.' },
+      { id: 'step3', title: 'Book Free Studio at «Molodezh Moskvy»', desc: 'Pick a slot at Tulskaya (Kholodilny, 3) or Vernadskogo, 14 on mosmolodezh.ru (I can book under my account).' },
+      { id: 'step4', title: 'Send HSE Media Center Pitch', desc: 'Email Anna Krasnovskaya (akrasnovskaya@hse.ru) & Roman Dyakonov (rdyakonov@hse.ru) for Khitrovka studio access.' },
+      { id: 'step5', title: 'Contact / Visit KRG Office (Danar Mustafa)', desc: 'Send Script #2 to russia@gov.krd / @krgrus and visit Trekhprudny Pereulok, 11/13 to connect with Rudaw & Kurdistan 24.' },
+      { id: 'step6', title: 'Approach Vladislav Flyarkovsky & RGGU.LIVE', desc: 'Bypass RGGU admins by showing your reel in person to Director Flyarkovsky or Anastasia Gavrilova (RGGU.LIVE).' },
+      { id: 'step7', title: 'Coffee with Rami El-Kalyubi at HSE', desc: 'Visit Malaya Ordynka, 17 (Office 316) to get a direct referral to RT Arabic / Sputnik editors.' },
+      { id: 'step8', title: 'Attend IV RAN on Nov 17–18 in Person', desc: 'Meet Vadim Makarenko (Editor-in-Chief, Kurdistan.ru) & Kirill Vertyaev during the coffee break at Rozhdestvenka, 12.' }
+    ];
+
+    const STORAGE_KEY = 'moscow_media_playbook_2026_v1';
+
+    function loadState() {
+      try {
+        return JSON.parse(localStorage.getItem(STORAGE_KEY)) || {};
+      } catch (e) {
+        return {};
+      }
+    }
+
+    function saveState(state) {
+      try {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      } catch (e) {}
+    }
+
+    function renderChecklist() {
+      const container = document.getElementById('checklist-container');
+      const state = loadState();
+      container.innerHTML = '';
+
+      let completedCount = 0;
+
+      checklistItems.forEach((item, index) => {
+        const isChecked = !!state[item.id];
+        if (isChecked) completedCount++;
+
+        const card = document.createElement('div');
+        card.className = `p-4 rounded-lg border cursor-pointer transition flex items-start gap-3.5 select-none ${
+          isChecked 
+            ? 'bg-emerald-950/20 border-signal-emerald/50 text-zinc-400' 
+            : 'bg-ink-950 border-ink-800 hover:border-ink-600 text-white'
+        }`;
+        card.onclick = () => toggleItem(item.id);
+
+        card.innerHTML = `
+          <div class="mt-0.5 w-5 h-5 rounded flex items-center justify-center border shrink-0 transition ${
+            isChecked ? 'bg-signal-emerald border-signal-emerald text-black' : 'border-zinc-600 bg-ink-900'
+          }">
+            ${isChecked ? '<svg class="w-3.5 h-3.5 stroke-[3]" viewBox="0 0 24 24" fill="none" stroke="currentColor"><polyline points="20 6 9 17 4 12"></polyline></svg>' : ''}
+          </div>
+          <div>
+            <div class="font-mono text-xs uppercase tracking-wider ${isChecked ? 'text-signal-emerald line-through' : 'text-signal-amber'}">
+              STEP 0${index + 1}
+            </div>
+            <div class="font-display font-bold text-sm mt-0.5 ${isChecked ? 'line-through text-zinc-400' : 'text-white'}">
+              ${item.title}
+            </div>
+            <p class="text-xs text-zinc-400 mt-1 leading-relaxed">${item.desc}</p>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+
+      document.getElementById('progress-badge').textContent = `${completedCount}/${checklistItems.length}`;
+    }
+
+    function toggleItem(id) {
+      const state = loadState();
+      state[id] = !state[id];
+      saveState(state);
+      renderChecklist();
+    }
+
+    function resetChecklist() {
+      localStorage.removeItem(STORAGE_KEY);
+      renderChecklist();
+      showToast('Action tracker reset');
+    }
+
+    // Initial render
+    renderChecklist();
+  </script>
+</body>
+</html>

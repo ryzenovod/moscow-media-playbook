@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>MOSCOW MEDIA PLAYBOOK // RU EMAIL & MESSAGE GENERATOR (MODULE 03)</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Space Grotesk, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <!-- Custom Stylesheet -->
+  <link rel="stylesheet" href="assets/styles.css" />
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            display: ['"Space Grotesk"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+          },
+          colors: {
+            ink: {
+              950: '#09090B',
+              900: '#101014',
+              800: '#18181E',
+              700: '#262730',
+              600: '#383A47'
+            },
+            signal: {
+              amber: '#F59E0B',
+              red: '#EF4444',
+              emerald: '#10B981',
+              sky: '#38BDF8'
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="min-h-screen antialiased selection:bg-signal-amber selection:text-black pb-32 md:pb-24">
+
+  <!-- Global Toast Notification Container -->
+  <div id="toast" class="fixed bottom-24 md:bottom-6 right-4 sm:right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none flex items-center gap-3 bg-ink-900/95 border border-signal-amber/70 text-white px-4 py-3 rounded-xl shadow-2xl backdrop-blur-md max-w-sm">
+    <div class="w-8 h-8 rounded-lg bg-signal-amber/15 border border-signal-amber/40 flex items-center justify-center shrink-0 text-signal-amber">
+      <i data-lucide="check-circle-2" class="w-4 h-4 stroke-[2.5]"></i>
+    </div>
+    <div class="overflow-hidden">
+      <p id="toast-label" class="font-mono text-[10px] uppercase tracking-wider text-signal-amber font-bold">Copied to Clipboard</p>
+      <p id="toast-text" class="text-xs sm:text-sm font-medium text-zinc-200 truncate mt-0.5"></p>
+    </div>
+  </div>
+
+  <!-- Shared Top Navigation Header -->
+  <header class="sticky top-0 z-40 glass-header border-b border-ink-700">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <span class="w-2.5 h-2.5 rounded-full bg-signal-sky live-dot"></span>
+        <span class="font-mono text-xs sm:text-sm font-bold tracking-wider uppercase text-zinc-100 group-hover:text-signal-amber transition">
+          MOSCOW MEDIA PLAYBOOK <span class="text-zinc-500">//</span> <span class="text-signal-sky">SCRIPTS</span>
+        </span>
+      </a>
+
+      <!-- Desktop Navigation Bar -->
+      <nav class="hidden md:flex items-center gap-1.5 font-mono text-xs">
+        <a href="index.html" data-nav="index.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
+          <i data-lucide="flame" class="w-3.5 h-3.5 text-signal-red"></i>
+          Overview & Urgent
+        </a>
+        <a href="studios.html" data-nav="studios.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
+          <i data-lucide="video" class="w-3.5 h-3.5 text-signal-emerald"></i>
+          01. Free Studios
+        </a>
+        <a href="network.html" data-nav="network.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
+          <i data-lucide="briefcase" class="w-3.5 h-3.5 text-signal-amber"></i>
+          02. Jobs & Bureaus
+        </a>
+        <a href="scripts.html" data-nav="scripts.html" class="px-3 py-1.5 rounded-lg border border-transparent text-zinc-300 hover:text-white hover:bg-ink-800 transition flex items-center gap-1.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5 text-signal-sky"></i>
+          03. RU Email Scripts
+        </a>
+      </nav>
+
+      <!-- Global Checklist Progress Badge -->
+      <div class="flex items-center gap-2 bg-ink-800/90 border border-ink-700 px-3 py-1.5 rounded-lg text-xs font-mono shadow-sm">
+        <span class="text-zinc-400 hidden sm:inline">TRACKER:</span>
+        <span class="flex items-center gap-1.5">
+          <i data-lucide="check-square" class="w-3.5 h-3.5 text-signal-emerald"></i>
+          <span id="progress-badge" class="text-signal-emerald font-bold progress-badge">0/8</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-12">
+
+    <!-- HERO HEADER -->
+    <section class="border-b border-ink-700 pb-6 flex flex-col md:flex-row md:items-end justify-between gap-4">
+      <div>
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-signal-sky/10 border border-signal-sky/30 text-signal-sky font-mono text-xs mb-3">
+          <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+          MODULE 03 // INTERACTIVE RUSSIAN EMAIL GENERATOR
+        </div>
+        <h1 class="font-display text-3xl sm:text-4xl font-bold text-white tracking-tight">
+          Pre-Written Russian Outreach Templates <span class="text-zinc-400">(Live Auto-Filler)</span>
+        </h1>
+        <p class="mt-2 text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+          High-protocol Russian emails written in natural diplomatic and journalistic register. Customize your details once in the panel below — all templates and <code class="text-signal-amber font-mono text-xs">mailto:</code> buttons populate dynamically in real time.
+        </p>
+      </div>
+      <div class="flex items-center gap-2 font-mono text-xs text-zinc-400 shrink-0">
+        <span class="bg-ink-900 border border-ink-800 px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+          <span class="w-2 h-2 rounded-full bg-signal-emerald live-dot"></span>
+          Real-Time DOM Binding
+        </span>
+      </div>
+    </section>
+
+    <!-- LIVE PROFILE AUTO-FILLER PANEL -->
+    <section class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-amber/60 bg-gradient-to-br from-amber-950/20 via-ink-950 to-ink-900 shadow-2xl relative overflow-hidden">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-ink-800">
+        <div>
+          <div class="inline-flex items-center gap-2 text-signal-amber font-mono text-xs uppercase font-bold tracking-wider mb-1">
+            <i data-lucide="sliders" class="w-4 h-4"></i>
+            Personalize Your Scripts (Auto-Fill Profile)
+          </div>
+          <p class="text-xs text-zinc-300">
+            Changes update all templates below instantly and persist across page visits via <code class="text-signal-amber font-mono">localStorage</code>.
+          </p>
+        </div>
+        <div class="flex items-center gap-2">
+          <button onclick="resetProfile()" class="px-3 py-1.5 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-400 hover:text-white font-mono text-xs border border-ink-700 transition flex items-center gap-1.5">
+            <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i>
+            Reset to Sample Data
+          </button>
+        </div>
+      </div>
+
+      <!-- 4 Live Input Fields -->
+      <div class="mt-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Field 1: Full Name -->
+        <div class="space-y-1.5">
+          <label for="input-name" class="block font-mono text-xs text-zinc-300 font-bold uppercase tracking-wider flex items-center justify-between">
+            <span>Your Full Name</span>
+            <span class="text-[10px] text-signal-amber">[ВАШЕ ИМЯ]</span>
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="input-name" 
+              placeholder="e.g. Aram Rashid"
+              class="w-full bg-ink-900 border border-ink-700 focus:border-signal-amber focus:ring-1 focus:ring-signal-amber rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 font-sans outline-none transition"
+              oninput="handleProfileInput()"
+            />
+          </div>
+        </div>
+
+        <!-- Field 2: Past Media -->
+        <div class="space-y-1.5">
+          <label for="input-media" class="block font-mono text-xs text-zinc-300 font-bold uppercase tracking-wider flex items-center justify-between">
+            <span>Past Media / Channel</span>
+            <span class="text-[10px] text-signal-amber">[КАНАЛ/СМИ]</span>
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="input-media" 
+              placeholder="e.g. Kurdistan 24 / Rudaw"
+              class="w-full bg-ink-900 border border-ink-700 focus:border-signal-amber focus:ring-1 focus:ring-signal-amber rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 font-sans outline-none transition"
+              oninput="handleProfileInput()"
+            />
+          </div>
+        </div>
+
+        <!-- Field 3: Phone & Telegram -->
+        <div class="space-y-1.5">
+          <label for="input-phone" class="block font-mono text-xs text-zinc-300 font-bold uppercase tracking-wider flex items-center justify-between">
+            <span>Phone & Telegram</span>
+            <span class="text-[10px] text-signal-amber">[ВАШ НОМЕР]</span>
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="input-phone" 
+              placeholder="e.g. +7 999 000-00-00 / @aram"
+              class="w-full bg-ink-900 border border-ink-700 focus:border-signal-amber focus:ring-1 focus:ring-signal-amber rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 font-sans outline-none transition"
+              oninput="handleProfileInput()"
+            />
+          </div>
+        </div>
+
+        <!-- Field 4: Portfolio Link -->
+        <div class="space-y-1.5">
+          <label for="input-portfolio" class="block font-mono text-xs text-zinc-300 font-bold uppercase tracking-wider flex items-center justify-between">
+            <span>Portfolio / Showreel URL</span>
+            <span class="text-[10px] text-signal-amber">[ССЫЛКА]</span>
+          </label>
+          <div class="relative">
+            <input 
+              type="text" 
+              id="input-portfolio" 
+              placeholder="e.g. https://notion.so/..."
+              class="w-full bg-ink-900 border border-ink-700 focus:border-signal-amber focus:ring-1 focus:ring-signal-amber rounded-xl px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 font-sans outline-none transition"
+              oninput="handleProfileInput()"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 COMPLETE RUSSIAN SCRIPTS -->
+    <div class="space-y-10">
+
+      <!-- ===================================================================
+           SCRIPT 01: IV RAN ACCREDITATION (NOV 17-18)
+           =================================================================== -->
+      <section id="script-1-sec" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-red/50 hover:border-signal-red/80 transition-all shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-ink-700">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-2.5 py-0.5 rounded bg-signal-red/20 text-signal-red font-mono text-xs font-bold uppercase">
+                SCRIPT 01 // MAIN GEOPOLITICS CONFERENCE (NOV 17–18)
+              </span>
+              <span class="font-mono text-xs text-zinc-400">
+                To: <code class="text-signal-amber font-bold">mitrofanenkova.olga@bk.ru</code>, CC: <code class="text-zinc-300">pr@ivran.ru</code>
+              </span>
+            </div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
+              Accreditation Request for Center for Middle East Studies (IV RAN)
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyElementText('script-1', 'IV RAN Nov 17-18 Russian Email')" class="px-4 py-2 rounded-lg bg-signal-amber hover:bg-amber-400 text-black font-mono text-xs font-bold flex items-center gap-2 transition shadow-md">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Russian Text</span>
+            </button>
+            <a id="mailto-1" href="#" class="px-3.5 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 font-mono text-xs flex items-center gap-2 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-sky"></i>
+              <span>Open in Mail App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- English Meaning Accordion -->
+        <details class="mt-4 p-3.5 rounded-xl bg-ink-950 border border-ink-800 group">
+          <summary class="font-mono text-xs text-zinc-400 cursor-pointer flex items-center justify-between select-none hover:text-white transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-signal-sky"></i>
+              <strong>What this email says in English (Full Translation):</strong>
+            </span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs text-zinc-300 leading-relaxed font-sans pl-6 border-l-2 border-signal-sky">
+            "Dear Olga Evgenievna, dear colleagues! My name is <strong class="text-white profile-var-name">[Name]</strong>, I am a professional Kurdish television journalist (experience in the Middle East with <strong class="text-white profile-var-media">[Media]</strong>) and currently studying at RGGU in Moscow. Please register me as a participant (observer / press representative) for the XV All-Russian Conference 'Geopolitics in the Fate of Muslim Countries South of Russia's Historical Borders', which will take place on November 17–18, 2026 at IV RAN on Rozhdestvenka St, 12. I would be glad to attend the panels of the Center for Middle East Studies in person. Respectfully, <strong class="text-white profile-var-name">[Name]</strong>, Tel/TG: <strong class="text-white profile-var-phone">[Phone]</strong>, Portfolio: <strong class="text-white profile-var-portfolio">[Link]</strong>."
+          </p>
+        </details>
+
+        <!-- Live Russian Output Pre -->
+        <div class="mt-4">
+          <pre id="script-1" class="p-4 sm:p-5 rounded-xl bg-ink-950 border border-ink-800 text-xs sm:text-sm text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-72 overflow-y-auto selection:bg-signal-amber selection:text-black"></pre>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SCRIPT 02: IV RAN URGENT REGISTRATION (NOV 11)
+           =================================================================== -->
+      <section id="script-2-sec" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-amber/50 hover:border-signal-amber/80 transition-all shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-ink-700">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-2.5 py-0.5 rounded bg-signal-amber/20 text-signal-amber font-mono text-xs font-bold uppercase">
+                SCRIPT 02 // URGENT WARM-UP CONFERENCE (NOV 11)
+              </span>
+              <span class="font-mono text-xs text-zinc-400">
+                To: Dmitry Mileev (<code class="text-signal-amber font-bold">dim.mil@mail.ru</code>)
+              </span>
+            </div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
+              Quick Registration for "Asia & Africa at the Crossroads" + Roundtable
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyElementText('script-2', 'IV RAN Nov 11 Russian Email')" class="px-4 py-2 rounded-lg bg-signal-amber hover:bg-amber-400 text-black font-mono text-xs font-bold flex items-center gap-2 transition shadow-md">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Russian Text</span>
+            </button>
+            <a id="mailto-2" href="#" class="px-3.5 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 font-mono text-xs flex items-center gap-2 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-sky"></i>
+              <span>Open in Mail App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- English Meaning Accordion -->
+        <details class="mt-4 p-3.5 rounded-xl bg-ink-950 border border-ink-800 group">
+          <summary class="font-mono text-xs text-zinc-400 cursor-pointer flex items-center justify-between select-none hover:text-white transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-signal-sky"></i>
+              <strong>What this email says in English (Full Translation):</strong>
+            </span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs text-zinc-300 leading-relaxed font-sans pl-6 border-l-2 border-signal-amber">
+            "Dear Dmitry Aleksandrovich, good afternoon! My name is <strong class="text-white profile-var-name">[Name]</strong>, I am a journalist from Kurdistan (formerly with <strong class="text-white profile-var-media">[Media]</strong>), currently studying at RGGU in Moscow. Please include me in the list of participants/listeners for the IX Conference 'Asia and Africa at the Crossroads' and the Young Researchers Roundtable 'The East in a Changing World', held on November 11 at IV RAN (Rozhdestvenka St, 12). I am deeply interested in the panels and eager to meet institute researchers in person. Respectfully, <strong class="text-white profile-var-name">[Name]</strong>, Tel/TG: <strong class="text-white profile-var-phone">[Phone]</strong>, Portfolio: <strong class="text-white profile-var-portfolio">[Link]</strong>."
+          </p>
+        </details>
+
+        <!-- Live Russian Output Pre -->
+        <div class="mt-4">
+          <pre id="script-2" class="p-4 sm:p-5 rounded-xl bg-ink-950 border border-ink-800 text-xs sm:text-sm text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-72 overflow-y-auto selection:bg-signal-amber selection:text-black"></pre>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SCRIPT 03: KRG REPRESENTATION & MEDIA PITCH
+           =================================================================== -->
+      <section id="script-3-sec" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-sky/50 hover:border-signal-sky/80 transition-all shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-ink-700">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-2.5 py-0.5 rounded bg-signal-sky/20 text-signal-sky font-mono text-xs font-bold uppercase">
+                SCRIPT 03 // KRG MOSCOW & TV BUREAUS
+              </span>
+              <span class="font-mono text-xs text-zinc-400">
+                To: <code class="text-signal-amber font-bold">russia@gov.krd</code> / TG: <code class="text-signal-sky">@krgrus</code> (Danar Mustafa)
+              </span>
+            </div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
+              Direct Meeting & Collaboration Pitch to Danar Mustafa (KRG Moscow)
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyElementText('script-3', 'KRG Representation Russian Email')" class="px-4 py-2 rounded-lg bg-signal-amber hover:bg-amber-400 text-black font-mono text-xs font-bold flex items-center gap-2 transition shadow-md">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Russian Text</span>
+            </button>
+            <a id="mailto-3" href="#" class="px-3.5 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 font-mono text-xs flex items-center gap-2 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-sky"></i>
+              <span>Open in Mail App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- English Meaning Accordion -->
+        <details class="mt-4 p-3.5 rounded-xl bg-ink-950 border border-ink-800 group">
+          <summary class="font-mono text-xs text-zinc-400 cursor-pointer flex items-center justify-between select-none hover:text-white transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-signal-sky"></i>
+              <strong>What this email says in English (Full Translation):</strong>
+            </span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs text-zinc-300 leading-relaxed font-sans pl-6 border-l-2 border-signal-sky">
+            "Dear Mr. Danar Mustafa! Greetings! My name is <strong class="text-white profile-var-name">[Name]</strong>, I am a professional journalist from Kurdistan (formerly worked with <strong class="text-white profile-var-media">[Media]</strong>), currently living in Moscow and studying at RGGU. I am actively developing media projects in Moscow and would like to offer my professional media assistance in covering the Representation's activities and trade missions. I would also be very grateful for a brief in-person meeting at the Representation in Trekhprudny Pereulok and the opportunity to connect with colleagues from Moscow bureaus of Kurdish media. Attached is a link to my television work: <strong class="text-white profile-var-portfolio">[Link]</strong>. Respectfully, <strong class="text-white profile-var-name">[Name]</strong>, Tel/TG: <strong class="text-white profile-var-phone">[Phone]</strong>."
+          </p>
+        </details>
+
+        <!-- Live Russian Output Pre -->
+        <div class="mt-4">
+          <pre id="script-3" class="p-4 sm:p-5 rounded-xl bg-ink-950 border border-ink-800 text-xs sm:text-sm text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-72 overflow-y-auto selection:bg-signal-amber selection:text-black"></pre>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SCRIPT 04: HSE MEDIA CENTER PITCH (FOR HSE FRIEND TO SEND)
+           =================================================================== -->
+      <section id="script-4-sec" class="dossier-card rounded-2xl p-6 sm:p-8 border-signal-emerald/50 hover:border-signal-emerald/80 transition-all shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-ink-700">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-2.5 py-0.5 rounded bg-signal-emerald/20 text-signal-emerald font-mono text-xs font-bold uppercase">
+                SCRIPT 04 // HSE STUDIO PITCH (SENT BY HSE FRIEND)
+              </span>
+              <span class="font-mono text-xs text-zinc-400">
+                To: <code class="text-signal-amber font-bold">akrasnovskaya@hse.ru</code>, CC: <code class="text-zinc-300">rdyakonov@hse.ru</code>
+              </span>
+            </div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
+              Pitching Joint HSE × RGGU Podcast to «Creative Extracurriculars»
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyElementText('script-4', 'HSE Media Center Russian Pitch Script')" class="px-4 py-2 rounded-lg bg-signal-emerald hover:bg-emerald-400 text-black font-mono text-xs font-bold flex items-center gap-2 transition shadow-md">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Russian Text</span>
+            </button>
+            <a id="mailto-4" href="#" class="px-3.5 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 font-mono text-xs flex items-center gap-2 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-sky"></i>
+              <span>Open in Mail App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- English Meaning Accordion -->
+        <details class="mt-4 p-3.5 rounded-xl bg-ink-950 border border-ink-800 group">
+          <summary class="font-mono text-xs text-zinc-400 cursor-pointer flex items-center justify-between select-none hover:text-white transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-signal-sky"></i>
+              <strong>What this email says in English (Full Translation):</strong>
+            </span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs text-zinc-300 leading-relaxed font-sans pl-6 border-l-2 border-signal-emerald">
+            "Good afternoon, Anna and Roman Vyacheslavovich! I am an HSE student. Together with a colleague — a professional Middle Eastern television journalist <strong class="text-white profile-var-name">[Name]</strong> (formerly with <strong class="text-white profile-var-media">[Media]</strong>, now doing master's studies at RGGU with substantial on-camera and production background) — we are launching an English/Russian video podcast and interview series on Middle Eastern culture, media, and business. Could you advise how we can integrate this project into HSE 'Creative Extracurriculars' (Креативная Внеучебка ФКИ) or recruit Media Communications undergraduates into our crew for their portfolios, so we can officially book the TV studio or sound booth at the Khitrovka Media Center? We would appreciate a short consultation! Respectfully, HSE Student, Colleague's Telegram: <strong class="text-white profile-var-phone">[Phone]</strong>, Showreel: <strong class="text-white profile-var-portfolio">[Link]</strong>."
+          </p>
+        </details>
+
+        <!-- Live Russian Output Pre -->
+        <div class="mt-4">
+          <pre id="script-4" class="p-4 sm:p-5 rounded-xl bg-ink-950 border border-ink-800 text-xs sm:text-sm text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-72 overflow-y-auto selection:bg-signal-amber selection:text-black"></pre>
+        </div>
+      </section>
+
+      <!-- ===================================================================
+           SCRIPT 05: NOTE TO RAMI EL-KALYUBI (RT ARABIC / HSE)
+           =================================================================== -->
+      <section id="script-5-sec" class="dossier-card rounded-2xl p-6 sm:p-8 border-purple-500/50 hover:border-purple-500/80 transition-all shadow-xl">
+        <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-3 pb-4 border-b border-ink-700">
+          <div>
+            <div class="flex items-center gap-2 flex-wrap mb-1">
+              <span class="px-2.5 py-0.5 rounded bg-purple-500/20 text-purple-300 font-mono text-xs font-bold uppercase">
+                SCRIPT 05 // RT ARABIC BACKDOOR VIA HSE
+              </span>
+              <span class="font-mono text-xs text-zinc-400">
+                To: Rami El-Kalyubi (<code class="text-purple-300 font-bold">Malaya Ordynka 17, Office 316</code>)
+              </span>
+            </div>
+            <h2 class="font-display text-xl sm:text-2xl font-bold text-white">
+              Requesting 10-Min In-Person Coffee at HSE Campus
+            </h2>
+          </div>
+          <div class="flex items-center gap-2">
+            <button onclick="copyElementText('script-5', 'Rami El-Kalyubi Intro Script')" class="px-4 py-2 rounded-lg bg-purple-400 hover:bg-purple-300 text-black font-mono text-xs font-bold flex items-center gap-2 transition shadow-md">
+              <i data-lucide="copy" class="w-3.5 h-3.5"></i>
+              <span>Copy Russian Text</span>
+            </button>
+            <a id="mailto-5" href="#" class="px-3.5 py-2 rounded-lg bg-ink-800 hover:bg-ink-700 text-zinc-200 border border-ink-600 font-mono text-xs flex items-center gap-2 transition">
+              <i data-lucide="external-link" class="w-3.5 h-3.5 text-signal-sky"></i>
+              <span>Open in Mail App</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- English Meaning Accordion -->
+        <details class="mt-4 p-3.5 rounded-xl bg-ink-950 border border-ink-800 group">
+          <summary class="font-mono text-xs text-zinc-400 cursor-pointer flex items-center justify-between select-none hover:text-white transition">
+            <span class="flex items-center gap-2">
+              <i data-lucide="languages" class="w-4 h-4 text-signal-sky"></i>
+              <strong>What this email says in English (Full Translation):</strong>
+            </span>
+            <i data-lucide="chevron-down" class="w-4 h-4 text-zinc-500 group-open:rotate-180 transition-transform"></i>
+          </summary>
+          <p class="mt-3 text-xs text-zinc-300 leading-relaxed font-sans pl-6 border-l-2 border-purple-400">
+            "Dear Rami Mohamedovich, good afternoon! Apologies for the disturbance. I am an HSE student, and my close friend <strong class="text-white profile-var-name">[Name]</strong> is a professional television journalist from Iraqi Kurdistan (formerly with <strong class="text-white profile-var-media">[Media]</strong>, now studying at RGGU in Moscow with substantial reporting and studio anchoring experience on Middle Eastern affairs). Given your extensive broadcast experience at RT Arabic and international newsrooms in Moscow, would it be possible for us to drop by your office at Malaya Ordynka 17 (Room 316) for literally 10 minutes at your convenience for brief professional advice on which Moscow Middle Eastern newsrooms would be most interested in a specialist of his profile? Friend's portfolio and showreel: <strong class="text-white profile-var-portfolio">[Link]</strong>. Thank you in advance! Respectfully, HSE Student, Friend's Contact/Telegram: <strong class="text-white profile-var-phone">[Phone]</strong>."
+          </p>
+        </details>
+
+        <!-- Live Russian Output Pre -->
+        <div class="mt-4">
+          <pre id="script-5" class="p-4 sm:p-5 rounded-xl bg-ink-950 border border-ink-800 text-xs sm:text-sm text-zinc-200 font-mono whitespace-pre-wrap leading-relaxed custom-scrollbar max-h-72 overflow-y-auto selection:bg-signal-amber selection:text-black"></pre>
+        </div>
+      </section>
+
+    </div>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="max-w-6xl mx-auto px-4 sm:px-6 mt-16 pt-8 border-t border-ink-800 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono text-zinc-500">
+    <div>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026)</div>
+    <div class="flex items-center gap-2">
+      <span class="w-2 h-2 rounded-full bg-signal-sky"></span>
+      <span>ALL 5 TEMPLATES PROTOCOL-VERIFIED FOR MOSCOW EDITORIALS</span>
+    </div>
+  </footer>
+
+  <!-- Mobile Bottom Navigation Bar (iOS / Android Native Feel) -->
+  <nav class="mobile-bottom-nav md:hidden" aria-label="Mobile Bottom Navigation">
+    <div class="grid grid-cols-4 h-16 max-w-md mx-auto items-center px-2">
+      <a href="index.html" data-nav="index.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
+        <i data-lucide="layout-dashboard" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
+        <span class="text-[10px] font-mono leading-none tracking-tight">Overview</span>
+      </a>
+      <a href="studios.html" data-nav="studios.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
+        <i data-lucide="video" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
+        <span class="text-[10px] font-mono leading-none tracking-tight">Studios</span>
+      </a>
+      <a href="network.html" data-nav="network.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center text-zinc-400 group">
+        <i data-lucide="briefcase" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
+        <span class="text-[10px] font-mono leading-none tracking-tight">Jobs</span>
+      </a>
+      <a href="scripts.html" data-nav="scripts.html" class="bottom-nav-item flex flex-col items-center justify-center py-1 text-center group">
+        <i data-lucide="mail" class="w-5 h-5 mb-1 transition-transform group-hover:scale-110"></i>
+        <span class="text-[10px] font-mono leading-none tracking-tight">Emails</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Client Application Controller -->
+  <script src="assets/app.js"></script>
+
+  <!-- Live Profile Auto-Filler Engine -->
+  <script>
+    const PROFILE_KEY = 'moscow_media_autofill_profile_v1';
+
+    const DEFAULT_PROFILE = {
+      name: 'Aram Rashid',
+      media: 'Kurdistan 24 / Rudaw',
+      phone: '+7 (999) 000-00-00 / @username',
+      portfolio: 'https://drive.google.com/your-showreel'
+    };
+
+    const TEMPLATES = {
+      'script-1': (p) => `Уважаемая Ольга Евгеньевна, уважаемые коллеги!
+
+Меня зовут ${p.name}, я профессиональный курдский тележурналист (опыт работы на Ближнем Востоке — ${p.media}) и в настоящее время обучаюсь в РГГУ в Москве.
+
+Прошу зарегистрировать меня в качестве участника (слушателя / представителя СМИ) на XV Всероссийскую конференцию «Геополитика в судьбе мусульманских стран к югу от исторических рубежей России», которая состоится 17–18 ноября 2026 года в ИВ РАН на ул. Рождественка, 12.
+
+Буду рад возможности лично присутствовать на секциях Центра изучения стран Ближнего и Среднего Востока.
+
+С уважением,
+${p.name}
+Телефон / Telegram: ${p.phone}
+Портфолио: ${p.portfolio}`,
+
+      'script-2': (p) => `Уважаемый Дмитрий Александрович, добрый день!
+
+Меня зовут ${p.name}, я журналист из Курдистана (ранее работал в ${p.media}), сейчас обучаюсь в РГГУ в Москве.
+
+Прошу включить меня в список слушателей / участников IX Конференции «Азия и Африка на перепутье» и круглого стола молодых ученых «Восток в меняющемся мире», которые пройдут 11 ноября в Институте востоковедения РАН (ул. Рождественка, 12).
+
+Очень заинтересован в тематике секций и личном профессиональном знакомстве с исследователями института.
+
+С уважением,
+${p.name}
+Телефон / Telegram: ${p.phone}
+Портфолио: ${p.portfolio}`,
+
+      'script-3': (p) => `Уважаемый господин Данар Мустафа!
+
+Приветствую Вас! Меня зовут ${p.name}, я профессиональный журналист из Курдистана (ранее работал в ${p.media}), сейчас живу в Москве и учусь в РГГУ.
+
+Я активно развиваю медиапроекты в Москве и хотел бы предложить свое профессиональное содействие в информационном освещении деятельности Представительства и деловых миссий, а также буду очень признателен за возможность короткой личной встречи в Представительстве в Трехпрудном переулке и знакомства с коллегами из московских бюро курдских СМИ.
+
+Направляю ссылку на свои телевизионные работы: ${p.portfolio}
+
+С уважением,
+${p.name}
+Тел. / Telegram: ${p.phone}`,
+
+      'script-4': (p) => `Добрый день, Анна и Роман Вячеславович!
+
+Я студент НИУ ВШЭ. Мы совместно с коллегой — профессиональным тележурналистом с Ближнего Востока (${p.name}, ранее работал в ${p.media}, сейчас учится в магистратуре РГГУ, имеет большой опыт работы в кадре и продюсирования) — запускаем англо/русскоязычный видеоподкаст и серию интервью о культуре, медиа и бизнесе Ближнего Востока.
+
+Подскажите, пожалуйста, как мы можем интегрировать этот проект в рамки «Креативной Внеучебки» ФКИ или привлечь студентов ОП «Медиакоммуникации» в команду (операторов/продюсеров для их портфолио), чтобы официально бронировать телестудию или тон-ателье Медиацентра ФКИ на Хитровке?
+
+Будем очень признательны за короткую консультацию!
+
+С уважением,
+Студент НИУ ВШЭ
+Telegram коллеги (${p.name}): ${p.phone}
+Портфолио: ${p.portfolio}`,
+
+      'script-5': (p) => `Уважаемый Рами Мохамедович, добрый день!
+
+Извините за беспокойство. Я учусь в ВШЭ, а мой близкий друг — профессиональный тележурналист из Иракского Курдистана (${p.name}, ранее работал в ${p.media}, сейчас учится в РГГУ в Москве, имеет серьезный опыт репортажной и студийной работы на Ближнем Востоке).
+
+Поскольку Вы обладаете огромным практическим опытом работы в RT Arabic и международных редакциях в Москве, можно ли нам подойти к Вам на Малую Ордынку, 17 (в каб. 316) буквально на 10 минут в удобное для Вас время за коротким профессиональным советом, кому в московских ближневосточных редакциях сейчас может быть наиболее интересен специалист его уровня?
+
+Портфолио и резюме друга: ${p.portfolio}
+
+Заранее большое спасибо!
+С уважением,
+Студент НИУ ВШЭ
+Контакты коллеги (${p.name}): ${p.phone}`
+    };
+
+    function loadProfile() {
+      try {
+        const stored = localStorage.getItem(PROFILE_KEY);
+        return stored ? JSON.parse(stored) : DEFAULT_PROFILE;
+      } catch (e) {
+        return DEFAULT_PROFILE;
+      }
+    }
+
+    function saveProfile(profile) {
+      try {
+        localStorage.setItem(PROFILE_KEY, JSON.stringify(profile));
+      } catch (e) {}
+    }
+
+    function syncInputsFromProfile(p) {
+      document.getElementById('input-name').value = p.name || '';
+      document.getElementById('input-media').value = p.media || '';
+      document.getElementById('input-phone').value = p.phone || '';
+      document.getElementById('input-portfolio').value = p.portfolio || '';
+    }
+
+    function getLiveProfile() {
+      return {
+        name: document.getElementById('input-name').value.trim() || '[ВАШЕ ИМЯ]',
+        media: document.getElementById('input-media').value.trim() || '[УКАЗАТЬ КАНАЛ/СМИ]',
+        phone: document.getElementById('input-phone').value.trim() || '[ВАШ НОМЕР]',
+        portfolio: document.getElementById('input-portfolio').value.trim() || '[ССЫЛКА]'
+      };
+    }
+
+    function updateTemplates() {
+      const p = getLiveProfile();
+
+      // Render each script text in pre
+      for (const [scriptId, templateFn] of Object.entries(TEMPLATES)) {
+        const preEl = document.getElementById(scriptId);
+        if (preEl) {
+          preEl.textContent = templateFn(p);
+        }
+      }
+
+      // Update English description inline variables
+      document.querySelectorAll('.profile-var-name').forEach(el => el.textContent = p.name);
+      document.querySelectorAll('.profile-var-media').forEach(el => el.textContent = p.media);
+      document.querySelectorAll('.profile-var-phone').forEach(el => el.textContent = p.phone);
+      document.querySelectorAll('.profile-var-portfolio').forEach(el => el.textContent = p.portfolio);
+
+      // Update dynamic mailto hrefs
+      updateMailtoLinks(p);
+    }
+
+    function updateMailtoLinks(p) {
+      // Script 01: IV RAN Nov 17-18
+      const m1 = document.getElementById('mailto-1');
+      if (m1) {
+        const to = 'mitrofanenkova.olga@bk.ru';
+        const cc = 'pr@ivran.ru';
+        const sub = 'Заявка на участие в конференции 17-18 ноября (ИВ РАН)';
+        const body = TEMPLATES['script-1'](p);
+        m1.href = `mailto:${to}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // Script 02: IV RAN Nov 11
+      const m2 = document.getElementById('mailto-2');
+      if (m2) {
+        const to = 'dim.mil@mail.ru';
+        const sub = 'Заявка на конференцию и круглый стол 11 ноября (ИВ РАН)';
+        const body = TEMPLATES['script-2'](p);
+        m2.href = `mailto:${to}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // Script 03: KRG Moscow
+      const m3 = document.getElementById('mailto-3');
+      if (m3) {
+        const to = 'russia@gov.krd';
+        const sub = 'Сотрудничество в сфере СМИ в Москве / Встреча';
+        const body = TEMPLATES['script-3'](p);
+        m3.href = `mailto:${to}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // Script 04: HSE Studio Pitch
+      const m4 = document.getElementById('mailto-4');
+      if (m4) {
+        const to = 'akrasnovskaya@hse.ru';
+        const cc = 'rdyakonov@hse.ru';
+        const sub = 'Международный медиапроект / Съемки в Медиацентре ФКИ';
+        const body = TEMPLATES['script-4'](p);
+        m4.href = `mailto:${to}?cc=${encodeURIComponent(cc)}&subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+      }
+
+      // Script 05: Rami El-Kalyubi
+      const m5 = document.getElementById('mailto-5');
+      if (m5) {
+        const to = 'rel-kalyubi@hse.ru';
+        const sub = 'Консультация по международным медиа в Москве (ВШЭ)';
+        const body = TEMPLATES['script-5'](p);
+        m5.href = `mailto:${to}?subject=${encodeURIComponent(sub)}&body=${encodeURIComponent(body)}`;
+      }
+    }
+
+    function handleProfileInput() {
+      const p = {
+        name: document.getElementById('input-name').value,
+        media: document.getElementById('input-media').value,
+        phone: document.getElementById('input-phone').value,
+        portfolio: document.getElementById('input-portfolio').value
+      };
+      saveProfile(p);
+      updateTemplates();
+    }
+
+    function resetProfile() {
+      saveProfile(DEFAULT_PROFILE);
+      syncInputsFromProfile(DEFAULT_PROFILE);
+      updateTemplates();
+      showToast('Profile restored to Aram Rashid sample data', 'Auto-Filler Reset');
+    }
+
+    // Initialize on page load
+    document.addEventListener('DOMContentLoaded', () => {
+      const p = loadProfile();
+      syncInputsFromProfile(p);
+      updateTemplates();
+    });
+  </script>
+</body>
+</html>
