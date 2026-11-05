@@ -391,9 +391,9 @@ async function loadLiveNews() {
 // 9. Digital Press Card Modal (vCard QR Generator for In-Person Networking)
 function openPressCardModal() {
   let profile = {
-    name: 'Aram Rashid',
+    name: 'Ragaz Jumaa',
     media: 'Kurdistan 24 / Rudaw',
-    phone: '+7 (999) 000-00-00 / @username',
+    phone: '+7 996 119 2300 / @RagazJumaa',
     portfolio: 'https://drive.google.com/your-showreel'
   };
 
