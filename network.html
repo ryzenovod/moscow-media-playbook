@@ -20,6 +20,7 @@
         <li><a href="./network.html">Jobs & Bureaus</a></li>
         <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li><button class="outline" onclick="openPressCardModal()">📱 QR Card</button></li>
         <li>
           <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
             <option value="en">🇬🇧 EN</option>
@@ -77,6 +78,70 @@
           <footer><small>Result: Direct pilot recordings, paid on-air commentary & op-eds.</small></footer>
         </article>
       </div>
+    </article>
+
+    <!-- Live Media Honorarium & Stringer Rate Calculator -->
+    <article id="rate-calculator">
+      <header>
+        <p><mark>LIVE MEDIA HONORARIUM & STRINGER RATE CALCULATOR (USD ↔ RUB)</mark></p>
+        <h3>Freelance Stringer, Columnist & On-Air Rates</h3>
+        <p>Real-Time Exchange Rate: <mark id="live-usd-rate">Loading live USD/RUB rate...</mark></p>
+      </header>
+
+      <p>
+        Calculate your gross and take-home earnings for commissions across Russian broadcasters (RT Arabic, Sputnik, RIA Novosti) and Kurdish international bureaus (Kurdistan 24, Rudaw). Rates auto-convert in real-time.
+      </p>
+
+      <div class="grid">
+        <label>
+          Amount in Russian Rubles (RUB ₽)
+          <input type="number" id="calc-rub-input" value="25000" step="1000" placeholder="e.g. 25000" />
+        </label>
+        <label>
+          Equivalent in US Dollars (USD $)
+          <input type="number" id="calc-usd-input" step="10" placeholder="e.g. 300" />
+        </label>
+      </div>
+
+      <p><small><strong>Standard Market Benchmarks (Click to load preset):</strong></small></p>
+      <div class="grid">
+        <button class="outline secondary" onclick="setCalcPreset(15000)">RT Arabic Op-Ed (15,000 ₽)</button>
+        <button class="outline secondary" onclick="setCalcPreset(25000)">Sputnik Studio Guest Hit (25,000 ₽)</button>
+        <button class="outline secondary" onclick="setCalcPreset(40000)">K24 / Rudaw Shoot Day (40,000 ₽ / ~$450)</button>
+      </div>
+
+      <div class="overflow-auto">
+        <table class="striped">
+          <thead>
+            <tr>
+              <th scope="col">Contract Category</th>
+              <th scope="col">Withholding Rate</th>
+              <th scope="col">Estimated Payout (RUB / USD)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Gross Editorial Fee</strong></td>
+              <td>0% (Base Contract Amount)</td>
+              <td><span id="calc-gross">Calculating...</span></td>
+            </tr>
+            <tr>
+              <td><strong>Net Payout: Standard Civil Contract (ГПХ 13% НДФЛ)</strong><br /><small>Russian Tax Resident or Registered Self-Employed (Самозанятый)</small></td>
+              <td>13% Withheld at Source</td>
+              <td><mark><strong id="calc-net-13">Calculating...</strong></mark></td>
+            </tr>
+            <tr>
+              <td><strong>Net Payout: Non-Resident Foreign Contractor (ГПХ 30% НДФЛ)</strong><br /><small>First 183 days of stay in Russian Federation</small></td>
+              <td>30% Withheld at Source</td>
+              <td><strong id="calc-net-30">Calculating...</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <footer>
+        <small><strong>Editorial Contract Tip:</strong> Russian media outlets routinely hire foreign journalists via Civil Law Contracts (договор ГПХ — оказание услуг / авторский заказ). If you obtain temporary residence or register as Self-Employed (<em>Самозанятый</em> via the "Мой налог" app), the tax withholding is reduced to 6% on commercial editorial contracts.</small>
+      </footer>
     </article>
 
     <!-- Target 1: KRG Representation -->
@@ -244,6 +309,45 @@
     </article>
 
   </main>
+
+  <!-- Digital Press Card Modal -->
+  <dialog id="press-card-modal">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" onclick="closePressCardModal()"></button>
+        <h3>Digital Press Card // Showreel QR</h3>
+      </header>
+      <p align="center">
+        <img id="modal-qr-img" width="240" height="240" alt="Showreel & vCard QR Code" />
+      </p>
+      <p align="center"><small>Scan with phone camera at coffee breaks to import vCard contacts & video showreel.</small></p>
+      <div class="overflow-auto">
+        <table class="striped">
+          <tbody>
+            <tr>
+              <td><strong>Journalist Name</strong></td>
+              <td id="modal-profile-name">Aram Rashid</td>
+            </tr>
+            <tr>
+              <td><strong>Media Desk</strong></td>
+              <td id="modal-profile-media">Kurdistan 24 / Rudaw</td>
+            </tr>
+            <tr>
+              <td><strong>Direct Phone / TG</strong></td>
+              <td id="modal-profile-phone" class="notranslate" translate="no">+7 (999) 000-00-00</td>
+            </tr>
+            <tr>
+              <td><strong>Showreel Portfolio</strong></td>
+              <td><a id="modal-profile-portfolio" target="_blank" rel="noopener noreferrer" href="#">View Portfolio</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer>
+        <button class="secondary" onclick="closePressCardModal()">Close</button>
+      </footer>
+    </article>
+  </dialog>
 
   <!-- Footer -->
   <footer class="container">

@@ -20,6 +20,7 @@
         <li><a href="./network.html">Jobs & Bureaus</a></li>
         <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li><button class="outline" onclick="openPressCardModal()">📱 QR Card</button></li>
         <li>
           <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
             <option value="en">🇬🇧 EN</option>
@@ -79,11 +80,15 @@
           <header>
             <small>EVENT 01 // NOV 11 (WED) — APPLY IMMEDIATELY</small>
             <h4>IX Conference "Asia & Africa at the Crossroads"</h4>
+            <p><mark id="countdown-nov11">Calculating...</mark></p>
           </header>
           <p>Includes the Young Researchers Roundtable "The East in a Changing World". Great warm-up networking event.</p>
           <footer>
             <small>Organizer: Dmitry Mileev</small><br />
-            <button class="outline secondary notranslate" translate="no" onclick="copyText('dim.mil@mail.ru', this)">Copy dim.mil@mail.ru</button>
+            <div class="grid">
+              <button class="outline secondary notranslate" translate="no" onclick="copyText('dim.mil@mail.ru', this)">Copy dim.mil@mail.ru</button>
+              <button class="outline secondary" onclick="downloadICS('IX Conference Asia & Africa at the Crossroads', '2026-11-11T10:30:00+03:00', '2026-11-11T18:00:00+03:00', 'IV RAN, ул. Рождественка, 12, Москва', 'Young Researchers Roundtable The East in a Changing World. Organizer: Dmitry Mileev (dim.mil@mail.ru)')">📅 Add to iPhone/Google Calendar (.ics)</button>
+            </div>
           </footer>
         </article>
 
@@ -92,6 +97,7 @@
           <header>
             <small>MAIN TARGET // NOV 17–18 (TUE–WED) — CENTER FOR MIDDLE EAST STUDIES</small>
             <h4>XV Conference "Geopolitics in the Fate of Muslim Countries"</h4>
+            <p><mark id="countdown-nov17">Calculating...</mark></p>
           </header>
           <p>Organized directly by the Center for Middle East Studies at IV RAN. Every major Kurdish & Middle East expert in Moscow will be in this room.</p>
           <footer>
@@ -113,6 +119,7 @@
                 </tbody>
               </table>
             </div>
+            <button class="outline secondary" onclick="downloadICS('XV Conference Geopolitics in Muslim Countries', '2026-11-17T10:30:00+03:00', '2026-11-18T18:00:00+03:00', 'IV RAN, ул. Рождественка, 12, Москва', 'Center for Middle East Studies XV Conference. Contacts: Olga Evseenko (mitrofanenkova.olga@bk.ru), Dmitry Burmistrov (pr@ivran.ru), Phone: +7 (495) 132-73-53')">📅 Add to iPhone/Google Calendar (.ics)</button>
           </footer>
         </article>
       </div>
@@ -161,6 +168,16 @@
       </footer>
     </article>
 
+    <!-- Live Moscow International Media Wire (RSS) -->
+    <article>
+      <header>
+        <p><mark>REAL-TIME MEDIA MONITORING // MOSCOW DESK</mark></p>
+        <h3>Live Moscow International Media Wire (Real-Time RSS)</h3>
+      </header>
+      <p>Breaking international and Middle East headlines aggregated directly from major Moscow wire services.</p>
+      <div id="live-news-feed" aria-busy="true">Loading live wire...</div>
+    </article>
+
     <!-- Tactical Checklist Tracker -->
     <article id="checklist">
       <header>
@@ -179,6 +196,45 @@
     </article>
 
   </main>
+
+  <!-- Digital Press Card Modal -->
+  <dialog id="press-card-modal">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" onclick="closePressCardModal()"></button>
+        <h3>Digital Press Card // Showreel QR</h3>
+      </header>
+      <p align="center">
+        <img id="modal-qr-img" width="240" height="240" alt="Showreel & vCard QR Code" />
+      </p>
+      <p align="center"><small>Scan with phone camera at coffee breaks to import vCard contacts & video showreel.</small></p>
+      <div class="overflow-auto">
+        <table class="striped">
+          <tbody>
+            <tr>
+              <td><strong>Journalist Name</strong></td>
+              <td id="modal-profile-name">Aram Rashid</td>
+            </tr>
+            <tr>
+              <td><strong>Media Desk</strong></td>
+              <td id="modal-profile-media">Kurdistan 24 / Rudaw</td>
+            </tr>
+            <tr>
+              <td><strong>Direct Phone / TG</strong></td>
+              <td id="modal-profile-phone" class="notranslate" translate="no">+7 (999) 000-00-00</td>
+            </tr>
+            <tr>
+              <td><strong>Showreel Portfolio</strong></td>
+              <td><a id="modal-profile-portfolio" target="_blank" rel="noopener noreferrer" href="#">View Portfolio</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer>
+        <button class="secondary" onclick="closePressCardModal()">Close</button>
+      </footer>
+    </article>
+  </dialog>
 
   <!-- Footer -->
   <footer class="container">

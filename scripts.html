@@ -20,6 +20,7 @@
         <li><a href="./network.html">Jobs & Bureaus</a></li>
         <li><a href="./scripts.html">RU Scripts</a></li>
         <li><mark id="progress-badge">0/8</mark></li>
+        <li><button class="outline" onclick="openPressCardModal()">📱 QR Card</button></li>
         <li>
           <select id="lang-switcher" aria-label="Language" onchange="changeLanguage(this.value)">
             <option value="en">🇬🇧 EN</option>
@@ -209,6 +210,45 @@
 
   </main>
 
+  <!-- Digital Press Card Modal -->
+  <dialog id="press-card-modal">
+    <article>
+      <header>
+        <button aria-label="Close" rel="prev" onclick="closePressCardModal()"></button>
+        <h3>Digital Press Card // Showreel QR</h3>
+      </header>
+      <p align="center">
+        <img id="modal-qr-img" width="240" height="240" alt="Showreel & vCard QR Code" />
+      </p>
+      <p align="center"><small>Scan with phone camera at coffee breaks to import vCard contacts & video showreel.</small></p>
+      <div class="overflow-auto">
+        <table class="striped">
+          <tbody>
+            <tr>
+              <td><strong>Journalist Name</strong></td>
+              <td id="modal-profile-name">Aram Rashid</td>
+            </tr>
+            <tr>
+              <td><strong>Media Desk</strong></td>
+              <td id="modal-profile-media">Kurdistan 24 / Rudaw</td>
+            </tr>
+            <tr>
+              <td><strong>Direct Phone / TG</strong></td>
+              <td id="modal-profile-phone" class="notranslate" translate="no">+7 (999) 000-00-00</td>
+            </tr>
+            <tr>
+              <td><strong>Showreel Portfolio</strong></td>
+              <td><a id="modal-profile-portfolio" target="_blank" rel="noopener noreferrer" href="#">View Portfolio</a></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <footer>
+        <button class="secondary" onclick="closePressCardModal()">Close</button>
+      </footer>
+    </article>
+  </dialog>
+
   <!-- Footer -->
   <footer class="container">
     <small>MOSCOW MEDIA PLAYBOOK // COMPILED FOR RGGU × HSE COLLABORATION (NOV 2026) — 5 VERIFIED TEMPLATES</small>
@@ -219,8 +259,6 @@
 
   <!-- Auto-Filler Script Engine -->
   <script>
-    const PROFILE_KEY = 'moscow_media_autofill_profile_v1';
-
     const DEFAULT_PROFILE = {
       name: 'Aram Rashid',
       media: 'Kurdistan 24 / Rudaw',
